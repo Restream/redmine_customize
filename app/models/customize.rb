@@ -3,6 +3,23 @@ class Customize
 
   TOP_MENU_ITEMS = :top_menu_items
 
+  class << self
+
+    def instance
+      @@instance ||= Customize.new
+    end
+
+
+    def valid_top_menu_items
+      instance.top_menu_items.find_all(&:valid?)
+    end
+
+    def default_settings
+      { :top_menu_items => [] }
+    end
+
+  end
+
   def top_menu_items
     items = settings[TOP_MENU_ITEMS]
     convert_menu_items!(items)
@@ -14,10 +31,6 @@ class Customize
 
   def save
     Setting['plugin_redmine_customize'] = settings
-  end
-
-  def initialize(settings = nil)
-    @settings = settings
   end
 
   private
@@ -35,7 +48,9 @@ class Customize
   end
 
   def settings
-    @settings ||= Setting['plugin_redmine_customize']
+    result = Setting['plugin_redmine_customize']
+    result = self.class.default_settings if result.blank?
+    result
   end
 
   def convert_menu_items!(items)

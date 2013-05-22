@@ -18,4 +18,8 @@ class CustomMenuItem < Hashie::Dash
   def blank?
     to_s.blank?
   end
+
+  def valid?
+    body.present? && url.present?
+  end
 end

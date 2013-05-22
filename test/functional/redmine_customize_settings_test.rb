@@ -36,7 +36,7 @@ class RedmineCustomizeSettingsTest < ActionController::TestCase
         'top_menu_items[][url]'   => url,
         'top_menu_items[][title]' => title
     }
-    post get :plugin, :id => @plugin_id, :settings => attrs
+    post :plugin, :id => @plugin_id, :settings => attrs
     assert_response :redirect
 
     cust = Customize.new
