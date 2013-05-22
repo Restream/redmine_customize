@@ -1,0 +1,8 @@
+<tr>
+  <td><%= text_field_tag 'settings[top_menu_items][][body]', top_menu_item.body %></td>
+  <td><%= text_field_tag 'settings[top_menu_items][][url]', top_menu_item.url %></td>
+  <td><%= text_field_tag 'settings[top_menu_items][][title]', top_menu_item.title %></td>
+  <td>
+    <a href="#" class="icon icon-del delete-top-menu-item"><%= l :button_delete %></a>
+  </td>
+</tr>

@@ -14,4 +14,8 @@ class CustomMenuItem < Hashie::Dash
   def to_s
     [body, url, title].compact.join(',')
   end
+
+  def blank?
+    to_s.blank?
+  end
 end

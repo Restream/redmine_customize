@@ -1,0 +1,41 @@
+<% customize = Customize.new(@settings) %>
+
+<%=	stylesheet_link_tag 'redmine_customize', :plugin => 'redmine_customize' %>
+<fieldset class="top-menu-items">
+  <legend><%= l(:label_top_menu_items) %></legend>
+
+  <div class="contextual">
+    <a href="#" class="icon icon-add add-top-menu-item"><%= l :button_add %></a>
+  </div>
+
+  <table class="list">
+    <thead>
+      <tr>
+        <th width="20%"><%= l(:label_top_menu_item_body)%></th>
+        <th><%= l(:label_top_menu_item_url)%></th>
+        <th><%= l(:label_top_menu_item_title)%></th>
+        <th width="10%"></th>
+      </tr>
+    </thead>
+    <tbody class="top-menu-items">
+      <% customize.top_menu_items.each do |item| %>
+        <%= render 'top_menu_item', :top_menu_item => item unless item.blank? %>
+      <% end %>
+    </tbody>
+  </table>
+
+</fieldset>
+
+<%= javascript_tag do %>
+  $("document").ready(function() {
+    var top_menu_item = "<%= escape_javascript(render('top_menu_item', :top_menu_item => CustomMenuItem.new())).html_safe %>";
+    $("fieldset").on("click", "a.add-top-menu-item", function(event) {
+      $("tbody.top-menu-items").append(top_menu_item);
+      event.stopPropagation()
+    });
+    $("fieldset").on("click", "a.delete-top-menu-item", function(event) {
+      $(this).closest('tr').remove();
+      event.stopPropagation()
+    });
+  });
+<% end %>

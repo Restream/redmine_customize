@@ -1,0 +1,7 @@
+en:
+  redmine_customize_settings: "RedmineCustomize settings"
+
+  label_top_menu_items: "Links that will be added to the top menu"
+  label_top_menu_item_body: "Link body"
+  label_top_menu_item_url: "URL"
+  label_top_menu_item_title: "Title"

@@ -1,0 +1,8 @@
+fieldset.top-menu-items .contextual {
+  margin-top: -6px;
+  margin-bottom: 8px;
+}
+
+fieldset.top-menu-items input[type=text] {
+  width: 100%;
+}

@@ -8,7 +8,7 @@ ActionDispatch::Callbacks.to_prepare do
 end
 
 Redmine::Plugin.register :redmine_customize do
-  name        'Redmine customization plugin'
+  name        'RedmineCustomize plugin'
   description 'Plugin for Redmine customization'
   author      'Undev'
   version     '0.0.1'
@@ -16,6 +16,6 @@ Redmine::Plugin.register :redmine_customize do
 
   requires_redmine :version_or_higher => '2.1'
 
-  settings :default => { RedmineCustomize::TOP_MENU_ITEMS => [] }
-
+  settings :partial => 'settings/redmine_customize',
+           :default => { :top_menu_items => [] }
 end
