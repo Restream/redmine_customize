@@ -14,16 +14,4 @@ class CustomizeTest < ActiveSupport::TestCase
     assert_equal item_b.to_s, item_a.to_s
   end
 
-  def test_create_with_settings
-    body, url, title = 'link_body', 'http://example.com', 'link_title'
-    settings = { :top_menu_items => [ {
-        :body => body, :url => url, :title => title } ] }
-    customize = Customize.new(settings)
-    menu_item = customize.top_menu_items.last
-    assert_not_nil menu_item
-    assert_equal body,  menu_item.body
-    assert_equal url,   menu_item.url
-    assert_equal title, menu_item.title
-  end
-  
 end

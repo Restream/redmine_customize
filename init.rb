@@ -16,6 +16,8 @@ Redmine::Plugin.register :redmine_customize do
 
   requires_redmine :version_or_higher => '2.1'
 
+  require File.expand_path('../app/models/customize', __FILE__)
+
   settings :partial => 'settings/redmine_customize',
-           :default => { :top_menu_items => [] }
+           :default => Customize.default_settings
 end

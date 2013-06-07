@@ -1,0 +1,8 @@
+<%- if Customize.valid_top_menu_items.any? -%>
+  <ul id="custom-top-menu">
+    <%- Customize.valid_top_menu_items.each do |item| -%>
+      <li><%= link_to item.body, item.url, :title => item.title %></li>
+    <%- end -%>
+  </ul>
+<%- end -%>
+
