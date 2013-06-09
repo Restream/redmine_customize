@@ -1,0 +1,55 @@
+<div class="contextual">
+  <%= link_to l( :new_custom_button ), new_custom_button_path, :class => 'icon icon-add' %>
+</div>
+
+<h2><%=l( :label_custom_buttons_plural )%></h2>
+
+<% if @custom_buttons.any? %>
+  <table class="list">
+    <thead>
+    <tr>
+      <th><%= l( :field_name ) %></th>
+      <th><%= l( :field_project ) %></th>
+      <th><%= l( :field_tracker ) %></th>
+      <th><%= l( :field_status ) %></th>
+      <th><%= l( :field_category ) %></th>
+      <th><%= l( :field_author ) %></th>
+      <th><%= l( :field_assigned_to ) %></th>
+      <th><%= l( :field_new_values ) %></th>
+      <th><%= l( :button_sort ) %></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @custom_buttons.each do |custom_button| %>
+      <tr>
+        <td><%= custom_button.name %></td>
+        <td><%= custom_button.project %></td>
+        <td><%= custom_button.tracker %></td>
+        <td><%= custom_button.status %></td>
+        <td><%= custom_button.category %></td>
+        <td><%= custom_button.author %></td>
+        <td><%= custom_button.assigned_to %></td>
+        <td><%= custom_button.new_values %></td>
+        <td>
+          <%= reorder_links('custom_button', {
+              :controller => 'custom_buttons',
+              :action => 'update',
+              :id => custom_button
+          }, :put) %>
+        </td>
+        <td class="buttons">
+          <%= link_to(l(:button_edit), edit_custom_button_path(custom_button), :class => 'icon icon-edit') %>
+
+          <%= link_to(l(:button_delete), custom_button_path(custom_button),
+                      :method  => :delete,
+                      :confirm => l( :text_are_you_sure ),
+                      :class   => 'icon icon-del' ) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="nodata"><%= l(:label_no_custom_buttons) %></p>
+<% end %>

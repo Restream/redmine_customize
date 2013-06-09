@@ -1,6 +1,7 @@
-require File.expand_path('../../test_helper', __FILE__)
+require File.expand_path('../../../test_helper', __FILE__)
+require 'settings_controller'
 
-class RedmineCustomizeSettingsTest < ActionController::TestCase
+class RedmineCustomize::SettingsControllerTest < ActionController::TestCase
   fixtures :users, :roles, :members, :member_roles
 
   def setup
@@ -21,7 +22,7 @@ class RedmineCustomizeSettingsTest < ActionController::TestCase
   def test_show_settings
     body, url, title = 'link_body', 'http://example.com', 'link_title'
     item = CustomMenuItem.new(body, url, title)
-    cust = Customize.new
+    cust = Customize.instance
     cust.top_menu_items << item
     cust.save
 
@@ -30,16 +31,15 @@ class RedmineCustomizeSettingsTest < ActionController::TestCase
   end
 
   def test_save_settings
-    body, url, title = 'link_body', 'http://example.com', 'link_title'
+    body, url, title = 'link_Xbody', 'http://exampleX.com', 'link_Xtitle'
     attrs = {
-        'top_menu_items[][body]'  => body,
-        'top_menu_items[][url]'   => url,
-        'top_menu_items[][title]' => title
+        'top_menu_items' => [{ 'body' => body, 'url' => url, 'title' => title }]
     }
     post :plugin, :id => @plugin_id, :settings => attrs
     assert_response :redirect
 
-    cust = Customize.new
+    Setting.clear_cache
+    cust = Customize.instance
     assert_equal 1, cust.top_menu_items.count
 
     item = cust.top_menu_items[0]

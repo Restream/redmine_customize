@@ -11,7 +11,7 @@ Redmine::Plugin.register :redmine_customize do
   name        'RedmineCustomize plugin'
   description 'Plugin for Redmine customization'
   author      'Undev'
-  version     '0.0.1'
+  version     '0.2.0'
   url         'https://github.com/Undev/redmine_customize'
 
   requires_redmine :version_or_higher => '2.1'
@@ -20,4 +20,14 @@ Redmine::Plugin.register :redmine_customize do
 
   settings :partial => 'settings/redmine_customize',
            :default => Customize.default_settings
+
+  # permission for custom buttons the same as :edit_issues
+  Redmine::AccessControl.permission(:edit_issues).actions.push *%w{
+      custom_buttons/index
+      custom_buttons/new
+      custom_buttons/create
+      custom_buttons/edit
+      custom_buttons/update
+      custom_buttons/destroy
+  }
 end

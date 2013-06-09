@@ -1,0 +1,19 @@
+ru:
+  redmine_customize_settings: "Настройки RedmineCustomize"
+
+  label_top_menu_items: "Ссылки, которые будут добавлены в главное меню"
+  label_top_menu_item_body: "Текст ссылки"
+  label_top_menu_item_url: "URL"
+  label_top_menu_item_title: "Всплывающая подсказка"
+
+  label_custom_button_new: "Новая дополнительная кнопка"
+  label_custom_button_edit: "Изменение дополнительной кнопки"
+  label_custom_buttons_plural: "Дополнительные кнопки"
+  text_manage_custom_buttons: "Здесь Вы можете добавить дополнительные кнопки на страницу задачи"
+  label_no_custom_buttons: "Дополнительных кнопок пока нет"
+  text_custom_button_new_values_can_not_be_empty: "Заполните новые значения"
+  text_custom_button_created: "Дополнительная кнопка создана!"
+  text_custom_button_updated: "Дополнительная кнопка изменена!"
+  text_custom_button_destroyed: "Дополнительная кнопка удалена!"
+
+  new_custom_button: "Добавить дополнительную кнопку"

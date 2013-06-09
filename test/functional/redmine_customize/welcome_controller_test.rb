@@ -1,6 +1,7 @@
-require File.expand_path('../../test_helper', __FILE__)
+require File.expand_path('../../../test_helper', __FILE__)
+require 'welcome_controller'
 
-class RedmineCustomizeTomMenuTest < ActionController::TestCase
+class RedmineCustomize::WelcomeControllerTest < ActionController::TestCase
   fixtures :users, :roles, :members, :member_roles
 
   def setup
@@ -15,7 +16,7 @@ class RedmineCustomizeTomMenuTest < ActionController::TestCase
   def test_show_top_menu
     body, url, title = 'link_body', 'http://example.com', 'link_title'
     item = CustomMenuItem.new(body, url, title)
-    cust = Customize.new
+    cust = Customize.instance
     cust.top_menu_items << item
     cust.save
 
@@ -29,7 +30,7 @@ class RedmineCustomizeTomMenuTest < ActionController::TestCase
   def test_show_top_menu_after_change
     body, url, title = 'link_body', 'http://example.com', 'link_title'
     item = CustomMenuItem.new(body, url, title)
-    cust = Customize.new
+    cust = Customize.instance
     cust.top_menu_items << item
     cust.save
 

@@ -9,7 +9,6 @@ class Customize
       @@instance ||= Customize.new
     end
 
-
     def valid_top_menu_items
       instance.top_menu_items.find_all(&:valid?)
     end
@@ -21,7 +20,7 @@ class Customize
   end
 
   def top_menu_items
-    items = settings[TOP_MENU_ITEMS]
+    items = settings[TOP_MENU_ITEMS] || []
     convert_menu_items!(items)
   end
 

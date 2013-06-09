@@ -1,0 +1,10 @@
+<fieldset class="box">
+  <legend><%=l( :label_custom_buttons_plural )%></legend>
+  <% if @user.custom_buttons.any? %>
+  <% else %>
+    <p class="nodata"><%= l(:label_no_custom_buttons) %></p>
+  <% end %>
+  <p>
+    <%= link_to l(:text_manage_custom_buttons), custom_buttons_path %>
+  </p>
+</fieldset>

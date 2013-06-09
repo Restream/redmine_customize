@@ -5,3 +5,15 @@ en:
   label_top_menu_item_body: "Link body"
   label_top_menu_item_url: "URL"
   label_top_menu_item_title: "Title"
+
+  label_custom_button_new: "New custom button"
+  label_custom_button_edit: "Edit custom button"
+  label_custom_buttons_plural: "Custom buttons"
+  text_manage_custom_buttons: "You can add custom buttons to issue page here"
+  label_no_custom_buttons: "No custom buttons defined yet"
+  text_custom_button_new_values_can_not_be_empty: "New values can not be empty"
+  text_custom_button_created: "Custom button created!"
+  text_custom_button_updated: "Custom button updated!"
+  text_custom_button_destroyed: "Custom button destroyed!"
+
+  new_custom_button: "Add new custom button"

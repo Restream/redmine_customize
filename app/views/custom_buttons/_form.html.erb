@@ -1,0 +1,30 @@
+<%= labelled_form_for(custom_button, :url => url) do |f| %>
+  <%= error_messages_for 'custom_button' %>
+
+  <div class="box">
+
+    <p><%= f.text_field :name, :required => true %></p>
+
+    <p><%= f.select :project_id, project_tree_options_for_select(
+        @projects, :selected => custom_button.project), :include_blank => true %></p>
+
+    <p><%= f.select :tracker_id, @trackers.map { |t| [t.name, t.id] }, :include_blank => true %></p>
+
+    <p><%= f.select :status_id, @statuses.map { |s| [s.name, s.id] }, :include_blank => true %></p>
+
+    <p><%= f.select :category_id, @categories.map { |c| ["#{c.name} (#{c.project})", c.id] }, :include_blank => true %></p>
+
+    <p><%= f.select :author_id, @users.map { |u| [u.name, u.id] }, :include_blank => true %></p>
+
+    <p><%= f.select :assigned_to_id, @users.map { |u| [u.name, u.id] }, :include_blank => true %></p>
+
+
+
+    <p>
+      NEW VALUES
+    </p>
+
+  </div>
+  <%= submit_tag l(:button_save) %>
+  <%= link_to l(:button_cancel), custom_buttons_path %>
+<% end %>
