@@ -2,6 +2,8 @@ class CustomButtonsController < ApplicationController
   before_filter :require_login
   before_filter :get_user
 
+  helper :custom_fields
+
   def index
     @custom_buttons = @user.custom_buttons
   end
@@ -59,4 +61,5 @@ class CustomButtonsController < ApplicationController
         order('projects.name, issue_categories.name')
     @users = User.active.order(User.fields_for_order_statement)
   end
+
 end

@@ -2,16 +2,18 @@ class CustomButton < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
   belongs_to :tracker
-  belongs_to :status
-  belongs_to :category
-  belongs_to :author
-  belongs_to :assigned_to
-  attr_accessible :project, :tracker, :status, :category, :author, :assigned_to,
-                  :name, :move_to, :title, :image, :new_values
+  belongs_to :status, :class_name => 'IssueStatus'
+  belongs_to :category, :class_name => 'IssueCategory'
+  belongs_to :author, :class_name => 'User'
+  belongs_to :assigned_to, :class_name => 'User'
+  attr_accessible :project_id, :tracker_id, :status_id, :category_id, :author_id,
+                  :assigned_to_id, :name, :move_to, :title, :image, :new_values,
+                  :custom_field_values
 
   serialize :new_values, Hash
 
   acts_as_list :scope => :user
+  acts_as_customizable
 
   validates :user, :presence => true
   validates :name, :presence => true
@@ -22,4 +24,13 @@ class CustomButton < ActiveRecord::Base
   end
 
   scope :by_position, -> { order("#{table_name}.position") }
+
+  def available_custom_fields
+    CustomField.where('type = ?', 'IssueCustomField').order('position')
+  end
+
+  def validate_custom_field_values
+    true
+  end
+
 end

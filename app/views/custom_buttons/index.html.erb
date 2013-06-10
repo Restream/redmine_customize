@@ -15,23 +15,21 @@
       <th><%= l( :field_category ) %></th>
       <th><%= l( :field_author ) %></th>
       <th><%= l( :field_assigned_to ) %></th>
-      <th><%= l( :field_new_values ) %></th>
-      <th><%= l( :button_sort ) %></th>
+      <th style="min-width: 80px"><%= l( :button_sort ) %></th>
       <th></th>
     </tr>
     </thead>
     <tbody>
     <% @custom_buttons.each do |custom_button| %>
       <tr>
-        <td><%= custom_button.name %></td>
-        <td><%= custom_button.project %></td>
-        <td><%= custom_button.tracker %></td>
-        <td><%= custom_button.status %></td>
-        <td><%= custom_button.category %></td>
-        <td><%= custom_button.author %></td>
-        <td><%= custom_button.assigned_to %></td>
-        <td><%= custom_button.new_values %></td>
-        <td>
+        <td class="center"><%= custom_button.name %></td>
+        <td class="center"><%= custom_button.project %></td>
+        <td class="center"><%= custom_button.tracker %></td>
+        <td class="center"><%= custom_button.status %></td>
+        <td class="center"><%= custom_button.category %></td>
+        <td class="center"><%= custom_button.author %></td>
+        <td class="center"><%= custom_button.assigned_to %></td>
+        <td class="center">
           <%= reorder_links('custom_button', {
               :controller => 'custom_buttons',
               :action => 'update',

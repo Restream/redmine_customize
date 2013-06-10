@@ -1,29 +1,68 @@
 <%= labelled_form_for(custom_button, :url => url) do |f| %>
   <%= error_messages_for 'custom_button' %>
 
-  <div class="box">
+  <div class="box tabular splitcontent">
 
-    <p><%= f.text_field :name, :required => true %></p>
+    <div class="splitcontentleft">
+      <fieldset>
+        <legend><%= l(:label_custom_button_filter) %></legend>
 
-    <p><%= f.select :project_id, project_tree_options_for_select(
-        @projects, :selected => custom_button.project), :include_blank => true %></p>
+        <p><%= f.text_field :name, :required => true %></p>
+        <p><%= f.text_field :title %></p>
 
-    <p><%= f.select :tracker_id, @trackers.map { |t| [t.name, t.id] }, :include_blank => true %></p>
+        <p><%= f.select :project_id, project_tree_options_for_select(
+            @projects, :selected => custom_button.project), :include_blank => true %></p>
 
-    <p><%= f.select :status_id, @statuses.map { |s| [s.name, s.id] }, :include_blank => true %></p>
+        <p><%= f.select :tracker_id,
+                        @trackers.map { |t| [t.name, t.id] },
+                        :include_blank => true %></p>
 
-    <p><%= f.select :category_id, @categories.map { |c| ["#{c.name} (#{c.project})", c.id] }, :include_blank => true %></p>
+        <p><%= f.select :status_id,
+                        @statuses.map { |s| [s.name, s.id] },
+                        :include_blank => true %></p>
 
-    <p><%= f.select :author_id, @users.map { |u| [u.name, u.id] }, :include_blank => true %></p>
+        <p><%= f.select :category_id,
+                        @categories.map { |c| ["#{c.name} (#{c.project})", c.id] },
+                        :include_blank => true %></p>
 
-    <p><%= f.select :assigned_to_id, @users.map { |u| [u.name, u.id] }, :include_blank => true %></p>
+        <p><%= f.select :author_id,
+                        @users.map { |u| [u.name, u.id] },
+                        :include_blank => true %></p>
 
+        <p><%= f.select :assigned_to_id,
+                        @users.map { |u| [u.name, u.id] },
+                        :include_blank => true %></p>
+      </fieldset>
+    </div>
+    <div class="splitcontentright">
+      <fieldset>
+        <legend><%= l(:label_custom_button_new_values) %></legend>
 
+        <p><%= f.label_for_field :status %><%= select_tag 'custom_button[new_values][status_id]',
+                          options_for_select(@statuses.map { |s| [s.name, s.id] },
+                                             custom_button.new_values['status_id']),
+                          :include_blank => true %></p>
 
-    <p>
-      NEW VALUES
-    </p>
+        <p><%= f.label_for_field :category %><%= select_tag 'custom_button[new_values][category_id]',
+                          options_for_select(@categories.map { |c| ["#{c.name} (#{c.project})", c.id] },
+                                             custom_button.new_values['category_id']),
+                          :include_blank => true %></p>
 
+        <p><%= f.label_for_field :assigned_to %><%= select_tag 'custom_button[new_values][assigned_to_id]',
+                          options_for_select(@users.map { |u| [u.name, u.id] },
+                                             custom_button.new_values['assigned_to_id']),
+                          :include_blank => true %></p>
+
+        <p><%= f.label_for_field :notes %><%= text_area_tag 'custom_button[new_values][notes]',
+                          custom_button.new_values['notes'],
+                          :cols => 60 %></p>
+
+        <% custom_button.custom_field_values.each do |value| %>
+          <p><%= custom_field_tag_with_label :custom_button, value %></p>
+        <% end -%>
+
+      </fieldset>
+    </div>
   </div>
   <%= submit_tag l(:button_save) %>
   <%= link_to l(:button_cancel), custom_buttons_path %>

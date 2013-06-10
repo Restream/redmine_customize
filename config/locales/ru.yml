@@ -9,8 +9,11 @@ ru:
   label_custom_button_new: "Новая дополнительная кнопка"
   label_custom_button_edit: "Изменение дополнительной кнопки"
   label_custom_buttons_plural: "Дополнительные кнопки"
-  text_manage_custom_buttons: "Здесь Вы можете добавить дополнительные кнопки на страницу задачи"
   label_no_custom_buttons: "Дополнительных кнопок пока нет"
+  label_custom_button_filter: "Показывать для следующих задач"
+  label_custom_button_new_values: "Новые значения для задачи"
+
+  text_manage_custom_buttons: "Здесь Вы можете добавить дополнительные кнопки на страницу задачи"
   text_custom_button_new_values_can_not_be_empty: "Заполните новые значения"
   text_custom_button_created: "Дополнительная кнопка создана!"
   text_custom_button_updated: "Дополнительная кнопка изменена!"
