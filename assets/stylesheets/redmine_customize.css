@@ -6,3 +6,87 @@ fieldset.top-menu-items .contextual {
 fieldset.top-menu-items input[type=text] {
   width: 100%;
 }
+
+.custom-icon-accept { background-image: url(../images/custom_icons/accept.png); }
+.custom-icon-bomb { background-image: url(../images/custom_icons/bomb.png); } 
+.custom-icon-flag_blue { background-image: url(../images/custom_icons/flag_blue.png); } 
+.custom-icon-flag_green { background-image: url(../images/custom_icons/flag_green.png); } 
+.custom-icon-flag_orange { background-image: url(../images/custom_icons/flag_orange.png); } 
+.custom-icon-flag_pink { background-image: url(../images/custom_icons/flag_pink.png); } 
+.custom-icon-flag_purple { background-image: url(../images/custom_icons/flag_purple.png); } 
+.custom-icon-flag_red { background-image: url(../images/custom_icons/flag_red.png); } 
+.custom-icon-flag_yellow { background-image: url(../images/custom_icons/flag_yellow.png); } 
+.custom-icon-hourglass { background-image: url(../images/custom_icons/hourglass.png); } 
+.custom-icon-lightbulb { background-image: url(../images/custom_icons/lightbulb.png); } 
+.custom-icon-lightbulb_off { background-image: url(../images/custom_icons/lightbulb_off.png); } 
+.custom-icon-lightning_add { background-image: url(../images/custom_icons/lightning_add.png); } 
+.custom-icon-lightning_delete { background-image: url(../images/custom_icons/lightning_delete.png); } 
+.custom-icon-note_add { background-image: url(../images/custom_icons/note_add.png); } 
+.custom-icon-status_away { background-image: url(../images/custom_icons/status_away.png); } 
+.custom-icon-status_busy { background-image: url(../images/custom_icons/status_busy.png); } 
+.custom-icon-status_offline { background-image: url(../images/custom_icons/status_offline.png); } 
+.custom-icon-status_online { background-image: url(../images/custom_icons/status_online.png); } 
+.custom-icon-stop { background-image: url(../images/custom_icons/stop.png); } 
+.custom-icon-tag_blue { background-image: url(../images/custom_icons/tag_blue.png); } 
+.custom-icon-tag_blue_add { background-image: url(../images/custom_icons/tag_blue_add.png); } 
+.custom-icon-tag_blue_delete { background-image: url(../images/custom_icons/tag_blue_delete.png); } 
+.custom-icon-tag_blue_edit { background-image: url(../images/custom_icons/tag_blue_edit.png); } 
+.custom-icon-tag_green { background-image: url(../images/custom_icons/tag_green.png); } 
+.custom-icon-tag_orange { background-image: url(../images/custom_icons/tag_orange.png); } 
+.custom-icon-tag_pink { background-image: url(../images/custom_icons/tag_pink.png); } 
+.custom-icon-tag_purple { background-image: url(../images/custom_icons/tag_purple.png); } 
+.custom-icon-tag_red { background-image: url(../images/custom_icons/tag_red.png); } 
+.custom-icon-tag_yellow { background-image: url(../images/custom_icons/tag_yellow.png); } 
+.custom-icon-telephone { background-image: url(../images/custom_icons/telephone.png); } 
+.custom-icon-telephone_add { background-image: url(../images/custom_icons/telephone_add.png); } 
+.custom-icon-telephone_delete { background-image: url(../images/custom_icons/telephone_delete.png); } 
+.custom-icon-telephone_edit { background-image: url(../images/custom_icons/telephone_edit.png); } 
+.custom-icon-telephone_error { background-image: url(../images/custom_icons/telephone_error.png); } 
+.custom-icon-telephone_go { background-image: url(../images/custom_icons/telephone_go.png); } 
+.custom-icon-telephone_key { background-image: url(../images/custom_icons/telephone_key.png); } 
+.custom-icon-telephone_link { background-image: url(../images/custom_icons/telephone_link.png); } 
+.custom-icon-thumb_down { background-image: url(../images/custom_icons/thumb_down.png); } 
+.custom-icon-thumb_up { background-image: url(../images/custom_icons/thumb_up.png); } 
+.custom-icon-tick { background-image: url(../images/custom_icons/tick.png); }
+
+/*accept*/
+/*bomb*/
+/*flag_blue*/
+/*flag_green*/
+/*flag_orange*/
+/*flag_pink*/
+/*flag_purple*/
+/*flag_red*/
+/*flag_yellow*/
+/*hourglass*/
+/*lightbulb*/
+/*lightbulb_off*/
+/*lightning_add*/
+/*lightning_delete*/
+/*note_add*/
+/*status_away*/
+/*status_busy*/
+/*status_offline*/
+/*status_online*/
+/*stop*/
+/*tag_blue*/
+/*tag_blue_add*/
+/*tag_blue_delete*/
+/*tag_blue_edit*/
+/*tag_green*/
+/*tag_orange*/
+/*tag_pink*/
+/*tag_purple*/
+/*tag_red*/
+/*tag_yellow*/
+/*telephone*/
+/*telephone_add*/
+/*telephone_delete*/
+/*telephone_edit*/
+/*telephone_error*/
+/*telephone_go*/
+/*telephone_key*/
+/*telephone_link*/
+/*thumb_down*/
+/*thumb_up*/
+/*tick*/

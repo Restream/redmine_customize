@@ -1,4 +1,7 @@
 class CustomButton < ActiveRecord::Base
+
+  include CustomIcons
+
   belongs_to :user
   belongs_to :project
   belongs_to :tracker
@@ -31,6 +34,25 @@ class CustomButton < ActiveRecord::Base
 
   def validate_custom_field_values
     true
+  end
+
+  def visible?(issue)
+    filter_hash.inject(true) do |r, (k, v)|
+      r && (v.nil? || issue[k] == v)
+    end
+  end
+
+  private
+
+  def filter_hash
+    {
+        :project_id     => project_id,
+        :tracker_id     => tracker_id,
+        :status_id      => status_id,
+        :category_id    => category_id,
+        :author_id      => author_id,
+        :assigned_to_id => assigned_to_id
+    }
   end
 
 end

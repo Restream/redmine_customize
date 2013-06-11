@@ -32,6 +32,19 @@
         <p><%= f.select :assigned_to_id,
                         @users.map { |u| [u.name, u.id] },
                         :include_blank => true %></p>
+
+        <p>
+          <%= label_tag l(:field_image) %>
+
+          <% CustomButton::CUSTOM_ICONS.each do |icon| %>
+            <%= label_tag "custom_button_image_#{icon}", nil,
+                          :class => "icon custom-icon-#{icon}",
+                          :style => 'margin-left: 0px; width: 20px; margin-right: 30px;' do %>
+              <%= f.radio_button :image, icon %>
+            <% end %>
+          <% end %>
+        </p>
+
       </fieldset>
     </div>
     <div class="splitcontentright">

@@ -20,3 +20,5 @@ en:
   text_custom_button_destroyed: "Custom button destroyed!"
 
   new_custom_button: "Add new custom button"
+
+  field_image: "Icon"
