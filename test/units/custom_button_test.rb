@@ -68,4 +68,19 @@ class CustomButtonTest < ActiveSupport::TestCase
 
     assert_equal h, button.send(:filter_hash)
   end
+
+  def test_public_button
+    admin = User.find(1)
+    button = admin.custom_buttons.build(
+        :is_public => 1
+    )
+
+    assert_true button.is_public?
+  end
+
+  def test_private_button_by_default
+    button = CustomButton.new()
+
+    assert_false button.is_public?
+  end
 end

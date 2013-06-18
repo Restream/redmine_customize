@@ -11,7 +11,7 @@ class CustomButton < ActiveRecord::Base
   belongs_to :assigned_to, :class_name => 'User'
   attr_accessible :project_id, :tracker_id, :status_id, :category_id, :author_id,
                   :assigned_to_id, :name, :move_to, :title, :image, :new_values,
-                  :custom_field_values
+                  :custom_field_values, :is_public
 
   serialize :new_values, Hash
 
@@ -27,6 +27,7 @@ class CustomButton < ActiveRecord::Base
   end
 
   scope :by_position, -> { order("#{table_name}.position") }
+  scope :public, -> { where("#{table_name}.is_public = ?", true) }
 
   def available_custom_fields
     CustomField.where('type = ?', 'IssueCustomField').order('position')

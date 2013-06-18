@@ -40,4 +40,20 @@ class RedmineCustomize::UserTest < ActiveSupport::TestCase
     button_names = @user.visible_custom_buttons(@issue).map(&:name).sort
     assert_equal %w[button1 button2 button4], button_names
   end
+
+  def test_visible_public_button
+    admin = User.find(1)
+    admin.custom_buttons.create(
+        :name => 'button5',
+        :new_values => { 'project_id' => 2 }
+    )
+    admin.custom_buttons.create(
+        :name => 'button6',
+        :new_values => { 'project_id' => 2 },
+        :is_public => true
+    )
+    button_names = @user.visible_custom_buttons(@issue).map(&:name).sort
+    assert_equal %w[button1 button2 button4 button6], button_names
+
+  end
 end

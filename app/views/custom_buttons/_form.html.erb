@@ -7,6 +7,8 @@
       <fieldset>
         <legend><%= l(:label_custom_button_filter) %></legend>
 
+        <p><%= f.check_box :is_public %></p>
+
         <p><%= f.text_field :name, :required => true %></p>
         <p><%= f.text_field :title %></p>
 
