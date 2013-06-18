@@ -7,7 +7,9 @@
       <fieldset>
         <legend><%= l(:label_custom_button_filter) %></legend>
 
+        <% if @user.admin? %>
         <p><%= f.check_box :is_public %></p>
+        <% end %>
 
         <p><%= f.text_field :name, :required => true %></p>
         <p><%= f.text_field :title %></p>

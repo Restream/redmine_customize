@@ -1,6 +1,7 @@
 class CustomButtonsController < ApplicationController
   before_filter :require_login
   before_filter :get_user
+  before_filter :watch_is_public, :only => [:create, :update]
 
   helper :custom_fields
 
@@ -60,6 +61,11 @@ class CustomButtonsController < ApplicationController
     @categories = IssueCategory.includes(:project).
         order('projects.name, issue_categories.name')
     @users = User.active.order(User.fields_for_order_statement)
+  end
+
+  def watch_is_public
+    params[:custom_button].delete(:is_public) unless @user.admin?
+    true
   end
 
 end

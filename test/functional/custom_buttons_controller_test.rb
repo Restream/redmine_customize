@@ -122,4 +122,57 @@ class CustomButtonsControllerTest < ActionController::TestCase
     assert_equal 1, b2.position
   end
 
+  def test_user_can_not_create_public_button
+    attrs = {
+        :is_public => '1',
+        :name => 'test_user_create_public',
+        :new_values => { :status_id => 1, :done_ratio => 100 }
+    }
+    post :create, :custom_button => attrs
+    assert_response :redirect
+
+    btn = @user.custom_buttons.find_by_name(attrs[:name])
+    assert btn
+    assert_false btn.is_public?
+  end
+
+  def test_only_admin_can_create_public_button
+    admin = User.find(1) #admin
+    @request.session[:user_id] = admin.id
+    attrs = {
+        :is_public => '1',
+        :name => 'test_admin_create_public',
+        :new_values => { :status_id => 1, :done_ratio => 100 }
+    }
+    post :create, :custom_button => attrs
+    assert_response :redirect
+
+    btn = admin.custom_buttons.find_by_name(attrs[:name])
+    assert btn
+    assert_true btn.is_public?
+  end
+
+  def test_user_can_not_update_public
+    put :update, :id => @button.id, :custom_button => { :is_public => '1' }
+    assert_response :redirect
+
+    @button.reload
+    assert_false @button.is_public?
+  end
+
+  def test_admin_can_update_public
+    admin = User.find(1) #admin
+    @request.session[:user_id] = admin.id
+
+    button = admin.custom_buttons.create(
+        :name => 'test_admin_button',
+        :new_values => { :status_id => 1 }
+    )
+
+    put :update, :id => button.id, :custom_button => { :is_public => '1' }
+    assert_response :redirect
+
+    button.reload
+    assert_true button.is_public?
+  end
 end
