@@ -3,17 +3,11 @@ class CustomButton < ActiveRecord::Base
   include CustomIcons
 
   belongs_to :user
-  belongs_to :project
-  belongs_to :tracker
-  belongs_to :status, :class_name => 'IssueStatus'
-  belongs_to :category, :class_name => 'IssueCategory'
-  belongs_to :author, :class_name => 'User'
-  belongs_to :assigned_to, :class_name => 'User'
-  attr_accessible :project_id, :tracker_id, :status_id, :category_id, :author_id,
-                  :assigned_to_id, :name, :move_to, :title, :image, :new_values,
+  attr_accessible :filters, :name, :move_to, :title, :image, :new_values,
                   :custom_field_values, :is_public
 
   serialize :new_values, Hash
+  serialize :filters, Hash
 
   acts_as_list :scope => :user
   acts_as_customizable
@@ -38,22 +32,9 @@ class CustomButton < ActiveRecord::Base
   end
 
   def visible?(issue)
-    filter_hash.inject(true) do |r, (k, v)|
-      r && (v.nil? || issue[k] == v)
+    filters.inject(true) do |r, (k, v)|
+      r && (v.nil? || v.empty? || v.include?(issue[k]))
     end
-  end
-
-  private
-
-  def filter_hash
-    {
-        :project_id     => project_id,
-        :tracker_id     => tracker_id,
-        :status_id      => status_id,
-        :category_id    => category_id,
-        :author_id      => author_id,
-        :assigned_to_id => assigned_to_id
-    }
   end
 
 end

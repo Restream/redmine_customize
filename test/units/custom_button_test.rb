@@ -14,36 +14,36 @@ class CustomButtonTest < ActiveSupport::TestCase
   end
 
   def test_visible_all_filter
-    button = CustomButton.new(
-        :project_id     => 1,
-        :tracker_id     => 2,
-        :status_id      => 3,
-        :category_id    => 4,
-        :author_id      => 5,
-        :assigned_to_id => 6
-    )
+    button = CustomButton.new(:filters => {
+        :project_id     => [1],
+        :tracker_id     => [2],
+        :status_id      => [3],
+        :category_id    => [4],
+        :author_id      => [5],
+        :assigned_to_id => [6]
+    })
 
     assert_true button.visible?(@issue)
   end
 
   def test_visible_some_filter
-    button = CustomButton.new(
-        :status_id      => 3,
-        :category_id    => 4,
-        :author_id      => 5,
-        :assigned_to_id => 6
-    )
+    button = CustomButton.new(:filters => {
+        :status_id      => [1,3],
+        :category_id    => [4],
+        :author_id      => [5],
+        :assigned_to_id => [6]
+    })
 
     assert_true button.visible?(@issue)
   end
 
   def test_visible_wrong_filter
-    button = CustomButton.new(
-        :status_id      => 1,
-        :category_id    => 2,
-        :author_id      => 5,
-        :assigned_to_id => 6
-    )
+    button = CustomButton.new(:filters => {
+        :status_id      => [1],
+        :category_id    => [2],
+        :author_id      => [5],
+        :assigned_to_id => [6]
+    })
 
     assert_false button.visible?(@issue)
   end
@@ -52,21 +52,6 @@ class CustomButtonTest < ActiveSupport::TestCase
     button = CustomButton.new()
 
     assert_true button.visible?(@issue)
-  end
-
-  def test_filter_hash
-    h = {
-        :project_id     => 1,
-        :tracker_id     => 2,
-        :status_id      => 3,
-        :category_id    => 4,
-        :author_id      => 5,
-        :assigned_to_id => 6
-    }
-
-    button = CustomButton.new h
-
-    assert_equal h, button.send(:filter_hash)
   end
 
   def test_public_button

@@ -13,11 +13,13 @@ class CustomButtonsControllerTest < ActionController::TestCase
     @response   = ActionController::TestResponse.new
     @button = @user.custom_buttons.create(
         :name => 'test_button',
-        :tracker_id => 2,
-        :status_id => 3,
-        :category_id => 2,
-        :author_id => 1,
-        :assigned_to_id => 1,
+        :filters => {
+            :tracker_id => [2],
+            :status_id => [3],
+            :category_id => [2],
+            :author_id => [1],
+            :assigned_to_id => [1]
+        },
         :new_values => { :status_id => 1 } )
   end
 
@@ -53,11 +55,13 @@ class CustomButtonsControllerTest < ActionController::TestCase
   def test_put_update
     attrs = {
         :name => 'test_update',
-        :tracker_id => 1,
-        :status_id => 1,
-        :category_id => 1,
-        :author_id => 2,
-        :assigned_to_id => 2,
+        :filters => {
+            :tracker_id => [1],
+            :status_id => [1],
+            :category_id => [1],
+            :author_id => [2],
+            :assigned_to_id => [2]
+        },
         :new_values => { :status_id => 3, :done_ratio => 50 }
     }
 
@@ -66,11 +70,7 @@ class CustomButtonsControllerTest < ActionController::TestCase
 
     btn = @user.custom_buttons.find_by_name(attrs[:name])
     assert btn
-    assert_equal attrs[:tracker_id], btn.tracker_id
-    assert_equal attrs[:status_id], btn.status_id
-    assert_equal attrs[:category_id], btn.category_id
-    assert_equal attrs[:author_id], btn.author_id
-    assert_equal attrs[:assigned_to_id], btn.assigned_to_id
+    assert_equal attrs.filters, btn.filters
     assert_equal attrs[:new_values][:status_id], btn.new_values['status_id'].to_i
     assert_equal attrs[:new_values][:done_ratio], btn.new_values['done_ratio'].to_i
   end

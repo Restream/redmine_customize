@@ -20,18 +20,17 @@ class RedmineCustomize::UserTest < ActiveSupport::TestCase
     )
     @user.custom_buttons.create(
         :name => 'button2',
-        :project_id => 1,
+        :filters => { :project_id => [1] },
         :new_values => { 'project_id' => 2 }
     )
     @user.custom_buttons.create(
         :name => 'button3',
-        :project_id => 2,
+        :filters => { :project_id => [2] },
         :new_values => { 'project_id' => 2 }
     )
     @user.custom_buttons.create(
         :name => 'button4',
-        :project_id => 1,
-        :category_id => 4,
+        :filters => { :project_id => [1, 2], :category_id => [4] },
         :new_values => { 'project_id' => 2 }
     )
   end
@@ -54,6 +53,6 @@ class RedmineCustomize::UserTest < ActiveSupport::TestCase
     )
     button_names = @user.visible_custom_buttons(@issue).map(&:name).sort
     assert_equal %w[button1 button2 button4 button6], button_names
-
   end
+
 end
