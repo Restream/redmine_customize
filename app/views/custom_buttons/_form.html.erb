@@ -1,7 +1,7 @@
 <%= labelled_form_for(custom_button, :url => url) do |f| %>
   <%= error_messages_for 'custom_button' %>
 
-  <div class="box tabular splitcontent">
+  <div class="box tabular splitcontent custom-button-form">
 
     <div class="splitcontentleft">
       <fieldset>
@@ -14,28 +14,42 @@
         <p><%= f.text_field :name, :required => true %></p>
         <p><%= f.text_field :title %></p>
 
-        <p><%= f.select :project_id, project_tree_options_for_select(
-            @projects, :selected => custom_button.project), :include_blank => true %></p>
+        <p id="custom-button-projects" class="select2-field">
+          <%= label_tag l(:field_project) %>
+          <%= f.hidden_field :project_ids,
+                             :data => { :options => project_ids_options_for_select } %>
+        </p>
 
-        <p><%= f.select :tracker_id,
-                        @trackers.map { |t| [t.name, t.id] },
-                        :include_blank => true %></p>
+        <p id="custom-button-trackers" class="select2-field">
+          <%= label_tag l(:field_tracker) %>
+          <%= f.hidden_field :tracker_ids,
+                             :data => { :options => select2_options(@trackers) } %>
+        </p>
 
-        <p><%= f.select :status_id,
-                        @statuses.map { |s| [s.name, s.id] },
-                        :include_blank => true %></p>
+        <p id="custom-button-statuses" class="select2-field">
+          <%= label_tag l(:field_status) %>
+          <%= f.hidden_field :status_ids,
+                             :data => { :options => select2_options(@statuses) } %>
+        </p>
 
-        <p><%= f.select :category_id,
-                        @categories.map { |c| ["#{c.name} (#{c.project})", c.id] },
-                        :include_blank => true %></p>
+        <p id="custom-button-categories" class="select2-field">
+          <%= label_tag l(:field_category) %>
+          <%= f.hidden_field :category_ids,
+                             :data => { :options =>
+            @categories.map { |c| { :text => "#{c.name} (#{c.project})", :id => c.id } } } %>
+        </p>
 
-        <p><%= f.select :author_id,
-                        @users.map { |u| [u.name, u.id] },
-                        :include_blank => true %></p>
+        <p id="custom-button-authors" class="select2-field">
+          <%= label_tag l(:field_author) %>
+          <%= f.hidden_field :author_ids,
+                             :data => { :options => select2_options(@users) } %>
+        </p>
 
-        <p><%= f.select :assigned_to_id,
-                        @users.map { |u| [u.name, u.id] },
-                        :include_blank => true %></p>
+        <p id="custom-button-assigned_tos" class="select2-field">
+          <%= label_tag l(:field_assigned_to) %>
+          <%= f.hidden_field :assigned_to_ids,
+                             :data => { :options => select2_options(@users) } %>
+        </p>
 
         <p>
           <%= label_tag l(:field_image) %>
@@ -84,3 +98,5 @@
   <%= submit_tag l(:button_save) %>
   <%= link_to l(:button_cancel), custom_buttons_path %>
 <% end %>
+
+<%= javascript_include_tag 'custom_buttons_form', :plugin => 'redmine_customize' %>

@@ -1,7 +1,6 @@
 require File.expand_path('../../../test_helper', __FILE__)
 
 class RedmineCustomize::UserTest < ActiveSupport::TestCase
-
   fixtures :users
 
   def setup
@@ -20,17 +19,18 @@ class RedmineCustomize::UserTest < ActiveSupport::TestCase
     )
     @user.custom_buttons.create(
         :name => 'button2',
-        :filters => { :project_id => [1] },
+        :project_ids => '1',
         :new_values => { 'project_id' => 2 }
     )
     @user.custom_buttons.create(
         :name => 'button3',
-        :filters => { :project_id => [2] },
+        :project_ids => '2',
         :new_values => { 'project_id' => 2 }
     )
     @user.custom_buttons.create(
         :name => 'button4',
-        :filters => { :project_id => [1, 2], :category_id => [4] },
+        :project_ids => '1,2',
+        :category_ids => '4',
         :new_values => { 'project_id' => 2 }
     )
   end

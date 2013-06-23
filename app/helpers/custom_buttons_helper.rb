@@ -22,10 +22,14 @@ module CustomButtonsHelper
     result
   end
 
-  def find_select2_js_locale(lang)
-    url = "select2/select2_locale_#{lang}"
-    file_path = File.join(Rails.root, "/plugin_assets/redmine_customize/#{url}")
-    url if File.exists?(file_path)
+  def select2_options(collection, name = :name, id = :id)
+    collection.map do |el|
+      { :text => el.send(name), :id => el.send(id) }
+    end
+  end
+
+  def hruled_list(collection, name = :name)
+    collection.map{ |e| h(e.send(name)) }.join('<hr/>').html_safe
   end
 
 end

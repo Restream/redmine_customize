@@ -29,12 +29,12 @@
           <td class="center"><%= check_box_tag 'is_public', '1', custom_button.is_public, :disabled => true %></td>
         <% end %>
         <td class="center"><%= custom_button.name %></td>
-        <td class="center"><%= custom_button.project %></td>
-        <td class="center"><%= custom_button.tracker %></td>
-        <td class="center"><%= custom_button.status %></td>
-        <td class="center"><%= custom_button.category %></td>
-        <td class="center"><%= custom_button.author %></td>
-        <td class="center"><%= custom_button.assigned_to %></td>
+        <td class="center"><%= hruled_list custom_button.projects %></td>
+        <td class="center"><%= hruled_list custom_button.trackers %></td>
+        <td class="center"><%= hruled_list custom_button.statuses %></td>
+        <td class="center"><%= hruled_list custom_button.categories %></td>
+        <td class="center"><%= hruled_list custom_button.authors %></td>
+        <td class="center"><%= hruled_list custom_button.assigned_tos %></td>
         <td class="center">
           <%= reorder_links('custom_button', {
               :controller => 'custom_buttons',

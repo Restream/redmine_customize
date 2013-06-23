@@ -30,4 +30,7 @@ Redmine::Plugin.register :redmine_customize do
       custom_buttons/update
       custom_buttons/destroy
   }
+
+  #TODO:
+  #requires_redmine_plugin :redmine_select2
 end
