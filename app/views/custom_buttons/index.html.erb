@@ -18,6 +18,7 @@
       <th><%= l( :field_category ) %></th>
       <th><%= l( :field_author ) %></th>
       <th><%= l( :field_assigned_to ) %></th>
+      <th><%= l( :field_assigned_to_role ) %></th>
       <th style="min-width: 80px"><%= l( :button_sort ) %></th>
       <th></th>
     </tr>
@@ -35,6 +36,7 @@
         <td class="center"><%= hruled_list custom_button.categories %></td>
         <td class="center"><%= hruled_list custom_button.authors %></td>
         <td class="center"><%= hruled_list custom_button.assigned_tos %></td>
+        <td class="center"><%= hruled_list custom_button.assigned_to_roles %></td>
         <td class="center">
           <%= reorder_links('custom_button', {
               :controller => 'custom_buttons',

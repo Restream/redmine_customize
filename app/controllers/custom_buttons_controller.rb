@@ -61,6 +61,7 @@ class CustomButtonsController < ApplicationController
     @categories = IssueCategory.includes(:project).
         order('projects.name, issue_categories.name')
     @users = User.active.order(User.fields_for_order_statement)
+    @roles = Role.givable
   end
 
   def watch_is_public

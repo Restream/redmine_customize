@@ -20,4 +20,5 @@ $(document).ready(function(){
   makeMultiSelect2("#custom_button_category_ids");
   makeMultiSelect2("#custom_button_author_ids");
   makeMultiSelect2("#custom_button_assigned_to_ids");
+  makeMultiSelect2("#custom_button_assigned_to_role_ids");
 });

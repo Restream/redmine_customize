@@ -51,6 +51,12 @@
                              :data => { :options => select2_options(@users) } %>
         </p>
 
+        <p id="custom-button-assigned_to_roles" class="select2-field">
+          <%= label_tag l(:field_assigned_to_role) %>
+          <%= f.hidden_field :assigned_to_role_ids,
+                             :data => { :options => select2_options(@roles) } %>
+        </p>
+
         <p>
           <%= label_tag l(:field_image) %>
 

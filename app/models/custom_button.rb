@@ -1,12 +1,13 @@
 class CustomButton < ActiveRecord::Base
 
   FILTERS = {
-      :project      => Project,
-      :tracker      => Tracker,
-      :status       => IssueStatus,
-      :category     => IssueCategory,
-      :author       => User,
-      :assigned_to  => User
+      :project       => Project,
+      :tracker       => Tracker,
+      :status        => IssueStatus,
+      :category      => IssueCategory,
+      :author        => User,
+      :assigned_to   => User,
+      :assigned_to_role => Role
   }
 
   include CustomIcons
@@ -33,6 +34,7 @@ class CustomButton < ActiveRecord::Base
 
   scope :by_position, -> { order("#{table_name}.position") }
   scope :public, -> { where("#{table_name}.is_public = ?", true) }
+  scope :private, -> { where("#{table_name}.is_public = ?", false) }
 
   def available_custom_fields
     CustomField.where('type = ?', 'IssueCustomField').order('position')
@@ -43,37 +45,36 @@ class CustomButton < ActiveRecord::Base
   end
 
   def visible?(issue)
-    filters.inject(true) do |r, (k, v)|
-      r && (v.nil? || v.empty? || v.include?(issue[k]))
+    filters.inject(true) do |r, (filter_key, ids)|
+      issue_matched = if filter_key == :assigned_to_role_id
+        role_ids = issue.assigned_to && issue.assigned_to.roles_for_project(issue.project).map(&:id)
+        role_ids && (role_ids & ids).any?
+      else
+        ids.include?(issue.send(filter_key))
+      end
+      r && (ids.nil? || ids.empty? || issue_matched)
     end
   end
 
   FILTERS.each do |f, klass|
     filter_key = "#{f}_id".to_sym
+    filter_getter = "#{f}_ids"
+    filter_setter = "#{f}_ids="
+    filter_collection = "#{f.to_s.pluralize}"
 
-    define_method "#{f}_ids" do
+    define_method filter_getter do
       Array === filters[filter_key] ? filters[filter_key].join(',') : []
     end
 
-    define_method "#{f}_ids=" do |val|
-      filters[filter_key] = val.to_s.split(',').map(&:to_i)
+    define_method filter_setter do |val|
+      ids = val.to_s.split(',').map(&:to_i)
+      ids.reject! { |i| i == 0  }
+      filters[filter_key] = ids
     end
 
-    define_method "#{f.to_s.pluralize}" do
+    define_method filter_collection do
       filters[filter_key] ? klass.where(:id => filters[filter_key]) : []
     end
   end
-
-  #def project_ids
-  #  Array === filters[:project_id] ? filters[:project_id].join(',') : []
-  #end
-  #
-  #def project_ids=(val)
-  #  filters[:project_id] = val.to_s.split(',')
-  #end
-  #
-  #def projects
-  #  filters[:project_id] ? Project.where(:id => filters[:project_id]) : []
-  #end
 
 end

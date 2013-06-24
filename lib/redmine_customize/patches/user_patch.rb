@@ -10,7 +10,7 @@ module RedmineCustomize::Patches::UserPatch
   end
 
   def visible_custom_buttons(issue)
-    btns = custom_buttons.to_a + CustomButton.public.by_position.to_a
+    btns = custom_buttons.private.to_a + CustomButton.public.by_position.to_a
     btns.uniq_by(&:id).find_all { |b| b.visible?(issue) }
   end
 end
