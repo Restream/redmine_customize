@@ -1,12 +1,12 @@
 class CustomButton < ActiveRecord::Base
 
   FILTERS = {
-      :project       => Project,
-      :tracker       => Tracker,
-      :status        => IssueStatus,
-      :category      => IssueCategory,
-      :author        => User,
-      :assigned_to   => User,
+      :project          => Project,
+      :tracker          => Tracker,
+      :status           => IssueStatus,
+      :category         => IssueCategory,
+      :author           => User,
+      :assigned_to      => User,
       :assigned_to_role => Role
   }
 

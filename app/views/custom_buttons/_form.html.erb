@@ -80,6 +80,11 @@
                                              custom_button.new_values['status_id']),
                           :include_blank => true %></p>
 
+        <p><%= f.label_for_field :done_ratio %><%= select_tag 'custom_button[new_values][done_ratio]',
+                          options_for_select((0..10).to_a.collect { |r| ["#{r*10} %", r*10] },
+                                             custom_button.new_values['done_ratio']),
+                          :include_blank => true %></p>
+
         <p><%= f.label_for_field :category %><%= select_tag 'custom_button[new_values][category_id]',
                           options_for_select(@categories.map { |c| ["#{c.name} (#{c.project})", c.id] },
                                              custom_button.new_values['category_id']),
