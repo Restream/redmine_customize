@@ -40,8 +40,8 @@ class CustomButtonTest < ActiveSupport::TestCase
 
   def test_visible_wrong_filter
     button = CustomButton.new(
-        :status_ids      => '1',
-        :category_ids    => '2',
+        :status_ids      => '1,2',
+        :category_ids    => '4',
         :author_ids      => '5',
         :assigned_to_ids => '6'
     )
