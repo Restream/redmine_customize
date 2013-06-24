@@ -91,7 +91,7 @@
                           :include_blank => true %></p>
 
         <p><%= f.label_for_field :assigned_to %><%= select_tag 'custom_button[new_values][assigned_to_id]',
-                          options_for_select(@users.map { |u| [u.name, u.id] },
+                          options_for_select(@users_with_author.map { |u| [u.name, u.id] },
                                              custom_button.new_values['assigned_to_id']),
                           :include_blank => true %></p>
 

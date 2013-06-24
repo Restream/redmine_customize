@@ -84,13 +84,13 @@ class CustomButtonTest < ActiveSupport::TestCase
         :assigned_to_ids   => '3,4',
         :assigned_to_role_ids => '1,2'
     )
-    assert_equal [1, 2], button.filters[:project_id]
-    assert_equal [2, 3], button.filters[:tracker_id]
-    assert_equal [1, 3], button.filters[:status_id]
-    assert_equal [2, 3], button.filters[:category_id]
-    assert_equal [1, 2], button.filters[:author_id]
-    assert_equal [3, 4], button.filters[:assigned_to_id]
-    assert_equal [1, 2], button.filters[:assigned_to_role_id]
+    assert_equal ['1', '2'], button.filters[:project_id]
+    assert_equal ['2', '3'], button.filters[:tracker_id]
+    assert_equal ['1', '3'], button.filters[:status_id]
+    assert_equal ['2', '3'], button.filters[:category_id]
+    assert_equal ['1', '2'], button.filters[:author_id]
+    assert_equal ['3', '4'], button.filters[:assigned_to_id]
+    assert_equal ['1', '2'], button.filters[:assigned_to_role_id]
   end
 
   def test_filter_getter

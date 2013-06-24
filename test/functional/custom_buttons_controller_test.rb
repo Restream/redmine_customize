@@ -54,11 +54,11 @@ class CustomButtonsControllerTest < ActionController::TestCase
 
   def test_put_update
     fltrs = {
-        :tracker_id => [1],
-        :status_id => [1],
-        :category_id => [1],
-        :author_id => [2],
-        :assigned_to_id => [2]
+        :tracker_id => ['1'],
+        :status_id => ['1'],
+        :category_id => ['1'],
+        :author_id => ['2'],
+        :assigned_to_id => ['2']
     }
     attrs = {
         :name => 'test_update',

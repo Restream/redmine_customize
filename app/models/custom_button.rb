@@ -46,13 +46,17 @@ class CustomButton < ActiveRecord::Base
 
   def visible?(issue)
     filters.inject(true) do |r, (filter_key, ids)|
-      issue_matched = if filter_key == :assigned_to_role_id
-        role_ids = issue.assigned_to && issue.assigned_to.roles_for_project(issue.project).map(&:id)
-        role_ids && (role_ids & ids).any?
-      else
-        ids.include?(issue.send(filter_key))
-      end
-      r && (ids.nil? || ids.empty? || issue_matched)
+      r && (ids.nil? || ids.empty? || issue_matched?(issue, filter_key, ids))
+    end
+  end
+
+  def issue_matched?(issue, filter_key, ids)
+    int_ids = ids.map &:to_i
+    if filter_key == :assigned_to_role_id
+      role_ids = issue.assigned_to && issue.assigned_to.roles_for_project(issue.project).map(&:id)
+      role_ids && (role_ids & int_ids).any?
+    else
+      int_ids.include?(issue.send(filter_key))
     end
   end
 
@@ -67,8 +71,8 @@ class CustomButton < ActiveRecord::Base
     end
 
     define_method filter_setter do |val|
-      ids = val.to_s.split(',').map(&:to_i)
-      ids.reject! { |i| i == 0  }
+      ids = val.to_s.split(',')
+      ids.reject! { |i| i.to_s == '[]' || i.to_s == '0' }
       filters[filter_key] = ids
     end
 
