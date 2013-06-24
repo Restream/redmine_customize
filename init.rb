@@ -11,7 +11,7 @@ Redmine::Plugin.register :redmine_customize do
   name        'RedmineCustomize plugin'
   description 'Plugin for Redmine customization'
   author      'Undev'
-  version     '0.2.4'
+  version     '0.2.5'
   url         'https://github.com/Undev/redmine_customize'
 
   requires_redmine :version_or_higher => '2.1'
@@ -31,6 +31,5 @@ Redmine::Plugin.register :redmine_customize do
       custom_buttons/destroy
   }
 
-  #TODO:
-  #requires_redmine_plugin :redmine_select2
+  requires_redmine_plugin :redmine_select2, :version_or_higher => '0.0.1'
 end
