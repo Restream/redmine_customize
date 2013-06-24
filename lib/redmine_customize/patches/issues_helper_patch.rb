@@ -9,6 +9,9 @@ module RedmineCustomize::Patches::IssuesHelperPatch
       if k == 'assigned_to_id' && v == 'author'
         v = issue.author_id
       end
+      if k == 'assigned_to_id' && v == 'me'
+        v = User.current.id
+      end
       new_values[k] = v if v.present? && issue.safe_attribute?(k)
     end
     button.custom_field_values.each do |v|

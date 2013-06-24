@@ -61,7 +61,10 @@ class CustomButtonsController < ApplicationController
     @categories = IssueCategory.includes(:project).
         order('projects.name, issue_categories.name')
     @users = User.active.order(User.fields_for_order_statement).to_a
-    @users_with_author = [Hashie::Mash.new(:name => l(:field_author), :id => 'author')] + @users
+    @users_with_author = [
+        Hashie::Mash.new(:name => l(:field_author), :id => 'author'),
+        Hashie::Mash.new(:name => l(:label_me), :id => 'me'),
+    ] + @users
     @roles = Role.givable
   end
 
