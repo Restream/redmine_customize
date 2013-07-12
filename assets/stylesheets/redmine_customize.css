@@ -58,44 +58,6 @@ fieldset.top-menu-items input[type=text] {
 .custom-icon-thumb_up { background-image: url(../images/custom_icons/thumb_up.png); }
 .custom-icon-tick { background-image: url(../images/custom_icons/tick.png); }
 
-/*accept*/
-/*bomb*/
-/*flag_blue*/
-/*flag_green*/
-/*flag_orange*/
-/*flag_pink*/
-/*flag_purple*/
-/*flag_red*/
-/*flag_yellow*/
-/*hourglass*/
-/*lightbulb*/
-/*lightbulb_off*/
-/*lightning_add*/
-/*lightning_delete*/
-/*note_add*/
-/*status_away*/
-/*status_busy*/
-/*status_offline*/
-/*status_online*/
-/*stop*/
-/*tag_blue*/
-/*tag_blue_add*/
-/*tag_blue_delete*/
-/*tag_blue_edit*/
-/*tag_green*/
-/*tag_orange*/
-/*tag_pink*/
-/*tag_purple*/
-/*tag_red*/
-/*tag_yellow*/
-/*telephone*/
-/*telephone_add*/
-/*telephone_delete*/
-/*telephone_edit*/
-/*telephone_error*/
-/*telephone_go*/
-/*telephone_key*/
-/*telephone_link*/
-/*thumb_down*/
-/*thumb_up*/
-/*tick*/
+.filter select[multiple] {
+  min-height: 200px;
+}
