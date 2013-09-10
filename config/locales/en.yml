@@ -8,6 +8,7 @@ en:
 
   label_custom_button_new: "New custom button"
   label_custom_button_edit: "Edit custom button"
+  label_custom_button: "Custom button"
   label_custom_buttons_plural: "Custom buttons"
   label_no_custom_buttons: "No custom buttons defined yet"
   label_custom_button_filter: "Show on the following issues"
@@ -22,3 +23,4 @@ en:
   new_custom_button: "Add new custom button"
 
   field_image: "Icon"
+  field_hide_when_nothing_change: "Hide button if no changes will made"

@@ -8,6 +8,7 @@ ru:
 
   label_custom_button_new: "Новая дополнительная кнопка"
   label_custom_button_edit: "Изменение дополнительной кнопки"
+  label_custom_button: "Дополнительная кнопка"
   label_custom_buttons_plural: "Дополнительные кнопки"
   label_no_custom_buttons: "Дополнительных кнопок пока нет"
   label_custom_button_filter: "Показывать для следующих задач"
@@ -22,3 +23,4 @@ ru:
   new_custom_button: "Добавить дополнительную кнопку"
 
   field_image: "Иконка"
+  field_hide_when_nothing_change: "Не показывать в случае отсутствия изменений"

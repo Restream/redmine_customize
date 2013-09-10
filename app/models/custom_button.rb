@@ -14,7 +14,7 @@ class CustomButton < ActiveRecord::Base
 
   belongs_to :user
   attr_accessible :name, :move_to, :title, :image, :new_values,
-                  :custom_field_values, :is_public
+                  :custom_field_values, :is_public, :hide_when_nothing_change
 
   FILTERS.keys.each { |f| attr_accessible "#{f}_ids" }
 
@@ -45,9 +45,11 @@ class CustomButton < ActiveRecord::Base
   end
 
   def visible?(issue)
-    filters.inject(true) do |r, (filter_key, ids)|
-      r && (ids.nil? || ids.empty? || issue_matched?(issue, filter_key, ids))
-    end
+    match_filters?(issue) && show_for_issue?(issue)
+  end
+
+  def always_show?
+    !hide_when_nothing_change?
   end
 
   def issue_matched?(issue, filter_key, ids)
@@ -78,6 +80,34 @@ class CustomButton < ActiveRecord::Base
 
     define_method filter_collection do
       filters[filter_key] ? klass.where(:id => filters[filter_key]) : []
+    end
+  end
+
+  private
+
+  def match_filters?(issue)
+    filters.inject(true) do |r, (filter_key, ids)|
+      r && (ids.nil? || ids.empty? || issue_matched?(issue, filter_key, ids))
+    end
+  end
+
+  def show_for_issue?(issue)
+    always_show? || has_changes_for_issue?(issue)
+  end
+
+  def has_changes_for_issue?(issue)
+    new_values.inject(false) do |has_changes, (key, value)|
+      has_changes ||
+          (value.present? && issue.safe_attribute?(key) &&
+              issue.send(key).to_s != value.to_s)
+    end || has_custom_field_changes_for_issue?(issue)
+  end
+
+  def has_custom_field_changes_for_issue?(issue)
+    issue.custom_field_values.inject(false) do |has_changes, cfvalue|
+      new_cfvalue = custom_value_for(cfvalue.custom_field)
+      has_changes ||
+          (new_cfvalue.present? && cfvalue.value.to_s != new_cfvalue.value.to_s)
     end
   end
 

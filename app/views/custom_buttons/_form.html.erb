@@ -5,14 +5,20 @@
 
     <div class="splitcontentleft">
       <fieldset>
-        <legend><%= l(:label_custom_button_filter) %></legend>
+        <legend><%= l(:label_custom_button) %></legend>
 
         <% if @user.admin? %>
-        <p><%= f.check_box :is_public %></p>
+          <p><%= f.check_box :is_public %></p>
         <% end %>
 
         <p><%= f.text_field :name, :required => true %></p>
         <p><%= f.text_field :title %></p>
+
+      </fieldset>
+      <fieldset>
+        <legend><%= l(:label_custom_button_filter) %></legend>
+
+        <p><%= f.check_box :hide_when_nothing_change %></p>
 
         <p id="custom-button-projects" class="select2-field">
           <%= label_tag l(:field_project) %>

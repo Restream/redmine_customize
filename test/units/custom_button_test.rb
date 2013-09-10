@@ -2,9 +2,12 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class CustomButtonTest < ActiveSupport::TestCase
   fixtures :projects, :trackers, :issue_statuses, :issue_categories, :users,
-           :issues, :members, :roles, :member_roles
+           :issues, :members, :roles, :member_roles, :enumerations,
+           :enabled_modules
 
   def setup
+    @user = User.find(2)
+    User.current = @user
     @issue = Issue.find(2)
     @issue.category_id = 2
     @issue.save!
@@ -138,6 +141,22 @@ class CustomButtonTest < ActiveSupport::TestCase
     assert_equal [], button.filters[:project_id]
     button.project_ids = nil
     assert_equal [], button.filters[:project_id]
+  end
+
+  def test_show_for_issue__when_has_changes
+    button = CustomButton.new(
+        :hide_when_nothing_change => '1',
+        :new_values => { :status_id => 3 }
+    )
+    assert_true button.send(:show_for_issue?, @issue)
+  end
+
+  def test_show_for_issue__when_has_no_changes
+    button = CustomButton.new(
+        :hide_when_nothing_change => '1',
+        :new_values => { :status_id => 2 }
+    )
+    assert_false button.send(:show_for_issue?, @issue)
   end
 
 end
