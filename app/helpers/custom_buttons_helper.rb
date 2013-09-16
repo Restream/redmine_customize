@@ -1,21 +1,26 @@
 module CustomButtonsHelper
   def project_ids_options_for_select
-    root_projects = Project.visible.active.roots.has_module(:issue_tracking).order(:name)
+    root_projects = Project.active.roots.has_module(:issue_tracking).order(:name)
     projects_tree(root_projects)
   end
 
   def projects_tree(projects)
     result = []
     projects.each do |project|
-      result << {
-          :text => project.name,
-          :id => project.id
-      }
-      children = project.children.active.has_module(:issue_tracking).order(:name)
-      if children.any?
+
+      if project.visible?
         result << {
             :text => project.name,
-            :children => projects_tree(children)
+            :id => project.id
+        }
+      end
+
+      children = project.children.active.has_module(:issue_tracking).order(:name)
+      children_tree = projects_tree(children)
+      if children_tree.any?
+        result << {
+            :text => project.name,
+            :children => children_tree
         }
       end
     end
