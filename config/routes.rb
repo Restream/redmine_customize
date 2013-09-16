@@ -3,4 +3,5 @@ RedmineApp::Application.routes.draw do
   resources :custom_buttons, :only => [
       :index, :new, :create, :edit, :update, :destroy
   ]
+  resources :sidebar_blocks, :only => [:update]
 end

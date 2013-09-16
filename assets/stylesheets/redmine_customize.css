@@ -61,3 +61,21 @@ fieldset.top-menu-items input[type=text] {
 .filter select[multiple] {
   min-height: 200px;
 }
+
+#sidebar h3.collapsed {
+  background: url(../images/bullet_toggle_plus.png) -4px 5px no-repeat;
+  padding-left: 12px;
+  cursor: pointer;
+  display: block;
+}
+#sidebar h3 {
+  background: url(../images/bullet_toggle_minus.png) -4px 5px no-repeat;
+  padding-left: 12px;
+  cursor: pointer;
+  display: block;
+}
+
+#sidebar .collapsed {
+  display: none;
+}
+

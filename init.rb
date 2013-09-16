@@ -11,7 +11,7 @@ Redmine::Plugin.register :redmine_customize do
   name        'RedmineCustomize plugin'
   description 'Plugin for Redmine customization'
   author      'Undev'
-  version     '0.3.0'
+  version     '0.4.0'
   url         'https://github.com/Undev/redmine_customize'
 
   requires_redmine :version_or_higher => '2.1'
