@@ -1,6 +1,6 @@
 // Headers of blocks
-var sidebarBlockHeaders= 'div#sidebar > h3, div#sidebar > div#watchers > h3';
-var sidebarBlockUntil = 'div#sidebar > h3, div#sidebar > div#watchers';
+var sidebarBlockHeaders = 'div#sidebar h3';
+var sidebarBlockUntil = 'div#sidebar > h3, div#sidebar > div#watchers, div#sidebar > form';
 var sidebarCollapsedClass = 'collapsed';
 var sidebarUpdateUrl = '';
 
