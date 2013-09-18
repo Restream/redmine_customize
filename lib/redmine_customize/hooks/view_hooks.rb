@@ -20,5 +20,9 @@ module RedmineCustomize::Hooks
     def view_layouts_base_body_bottom(_ = {})
       javascript_tag "initSidebar(\"#{sidebar_block_path('')}\", #{User.current.pref.collapsed_sidebar_blocks.to_json});"
     end
+
+    def view_issues_new_top(_ = {})
+      javascript_include_tag 'get_url_link', :plugin => 'redmine_customize'
+    end
   end
 end

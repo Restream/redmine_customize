@@ -14,6 +14,8 @@ en:
   label_custom_button_filter: "Show on the following issues"
   label_custom_button_new_values: "New values for the issue"
 
+  label_get_url: 'Get url for this form'
+
   text_manage_custom_buttons: "You can add custom buttons to issue page here"
   text_custom_button_new_values_can_not_be_empty: "New values can not be empty"
   text_custom_button_created: "Custom button created!"
