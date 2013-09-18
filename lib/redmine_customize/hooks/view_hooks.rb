@@ -1,5 +1,8 @@
 module RedmineCustomize::Hooks
   class ViewHooks < Redmine::Hook::ViewListener
+    render_on :view_issues_context_menu_end,
+              :partial => 'custom_buttons/view_issues_context_menu'
+
     def view_layouts_base_html_head(_ = {})
       stylesheet_link_tag('redmine_customize', :plugin => 'redmine_customize') +
         javascript_include_tag('sidebar_collapse', :plugin => 'redmine_customize')

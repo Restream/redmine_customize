@@ -1,0 +1,21 @@
+<% if @can[:edit] %>
+  <li class="folder">
+    <a href="#" class="submenu"><%= l(:label_custom_buttons_plural) %></a>
+    <ul>
+      <% User.current.visible_custom_buttons(@issues).each do |b| -%>
+        <li><%= context_menu_link b.name,
+                                  {
+                                      :controller => 'issues',
+                                      :action => 'bulk_update',
+                                      :ids => @issue_ids,
+                                      :issue => context_menu_custom_button_new_values(b),
+                                      :back_url => @back
+                                  },
+                                  :method => :post,
+                                  :disabled => !@can[:update],
+                                  :title => b.title,
+                                  :class => "icon custom-icon-#{b.image} custom-button" %></li>
+    <% end -%>
+    </ul>
+  </li>
+<% end %>

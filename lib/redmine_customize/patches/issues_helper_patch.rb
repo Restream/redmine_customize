@@ -24,6 +24,15 @@ module RedmineCustomize::Patches::IssuesHelperPatch
     end
     new_values
   end
+
+  def context_menu_custom_button_new_values(button)
+    new_values = custom_button_new_values(button)
+    if new_values.has_key?('assigned_to_id')
+      new_values['custom_assigned_to_id'] = new_values['assigned_to_id']
+      new_values.delete 'assigned_to_id'
+    end
+    new_values
+  end
 end
 
 unless IssuesHelper.included_modules.include? RedmineCustomize::Patches::IssuesHelperPatch
