@@ -56,7 +56,7 @@ class CustomButton < ActiveRecord::Base
     int_ids = ids.map &:to_i
     if filter_key == :assigned_to_role_id
       role_ids = issue.assigned_to && issue.assigned_to.roles_for_project(issue.project).map(&:id)
-      role_ids && (role_ids & int_ids).any?
+      role_ids.nil? ? false : (role_ids & int_ids).any?
     else
       int_ids.include?(issue.send(filter_key))
     end

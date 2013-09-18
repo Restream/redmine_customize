@@ -9,6 +9,11 @@ module RedmineCustomize::Hooks
       javascript_include_tag 'custom_buttons', :plugin => 'redmine_customize'
     end
 
+    def view_issues_bulk_edit_details_bottom(_ = {})
+      javascript_include_tag 'custom_buttons_bulk_edit',
+                             :plugin => 'redmine_customize'
+    end
+
     def view_layouts_base_body_bottom(_ = {})
       javascript_tag "initSidebar(\"#{sidebar_block_path('')}\", #{User.current.pref.collapsed_sidebar_blocks.to_json});"
     end
