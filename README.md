@@ -13,6 +13,20 @@ Locales supplied by plugins can now override redmine translations
 
 Make multiple select in filters bigger by adding some css.
 
+### Custom buttons
+
+You can define your own (admin can make public) buttons for useful issue updates.
+Buttons added to issue edit form, context menu and bulk edit form.
+
+### Allow to hide sidebar blocks
+
+Blocks in the sidebar can be hidden or showed individually.
+All settings stored in user profile.
+
+### Link to new issue with filled attributes
+
+Added "Get url for this form" button on the new issue form.
+
 ## TODO
 
 write better documentation
