@@ -62,8 +62,12 @@ class CustomButtonsController < ApplicationController
         order('projects.name, issue_categories.name')
     @users = User.active.order(User.fields_for_order_statement).to_a
     @users_with_author = [
-        Hashie::Mash.new(:name => l(:field_author), :id => 'author'),
-        Hashie::Mash.new(:name => l(:label_me), :id => 'me'),
+        Hashie::Mash.new(:name => l(:field_author),
+                         :id => RedmineCustomize::USER_AUTHOR),
+        Hashie::Mash.new(:name => l(:label_me),
+                         :id => RedmineCustomize::USER_ME),
+        Hashie::Mash.new(:name => l(:label_last_updated_by),
+                         :id => RedmineCustomize::USER_LAST_UPDATED_BY)
     ] + @users
     @roles = Role.givable
   end

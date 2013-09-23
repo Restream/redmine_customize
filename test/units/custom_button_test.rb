@@ -3,7 +3,7 @@ require File.expand_path('../../test_helper', __FILE__)
 class CustomButtonTest < ActiveSupport::TestCase
   fixtures :projects, :trackers, :issue_statuses, :issue_categories, :users,
            :issues, :members, :roles, :member_roles, :enumerations,
-           :enabled_modules
+           :enabled_modules, :journals, :journal_details
 
   def setup
     @user = User.find(2)
@@ -155,6 +155,26 @@ class CustomButtonTest < ActiveSupport::TestCase
     button = CustomButton.new(
         :hide_when_nothing_change => '1',
         :new_values => { :status_id => 2 }
+    )
+    assert_false button.send(:show_for_issue?, @issue)
+  end
+
+  def test_show_for_issue__if_assigned_to_changed
+    # assigned_to_id == 3 && author_id == 2
+    button = CustomButton.new(
+        :hide_when_nothing_change => '1',
+        :new_values => { :assigned_to_id => 'author' }
+    )
+    assert_true button.send(:show_for_issue?, @issue)
+  end
+
+  def test_show_for_issue__if_assigned_to_not_changed
+    # assigned_to_id == 3 && author_id == 3
+    @issue.stubs(:author).returns User.find(3)
+    @issue.stubs(:author_id).returns 3
+    button = CustomButton.new(
+        :hide_when_nothing_change => '1',
+        :new_values => { :assigned_to_id => 'author' }
     )
     assert_false button.send(:show_for_issue?, @issue)
   end

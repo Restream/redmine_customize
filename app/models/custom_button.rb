@@ -97,18 +97,27 @@ class CustomButton < ActiveRecord::Base
 
   def has_changes_for_issue?(issue)
     new_values.inject(false) do |has_changes, (key, value)|
-      has_changes ||
-          (value.present? && issue.safe_attribute?(key) &&
-              issue.send(key).to_s != value.to_s)
+      has_changes || has_attr_change_for_issue?(issue, key, value)
     end || has_custom_field_changes_for_issue?(issue)
   end
 
   def has_custom_field_changes_for_issue?(issue)
     issue.custom_field_values.inject(false) do |has_changes, cfvalue|
-      new_cfvalue = custom_value_for(cfvalue.custom_field)
+      new_cfvalue = custom_field_value(cfvalue.custom_field).to_s
       has_changes ||
-          (new_cfvalue.present? && cfvalue.value.to_s != new_cfvalue.value.to_s)
+          (new_cfvalue.present? && cfvalue.value.to_s != new_cfvalue)
     end
+  end
+
+  def has_attr_change_for_issue?(issue, attr, value)
+    return false if value.blank?
+    return false unless issue.safe_attribute?(attr)
+    new_value = if attr.to_sym == :assigned_to_id
+      issue.custom_user_id(value) || value
+    else
+      value
+    end
+    issue.send(attr).to_s != new_value.to_s
   end
 
 end

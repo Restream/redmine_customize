@@ -7,13 +7,12 @@ module RedmineCustomize::Patches::IssuesHelperPatch
     new_values = {}
     if issue
       button.new_values.each do |k, v|
-        if k == 'assigned_to_id' && v == 'author'
-          v = issue.author_id
+        new_value = if k.to_sym == :assigned_to_id
+          issue.custom_user_id(v) || v
+        else
+          v
         end
-        if k == 'assigned_to_id' && v == 'me'
-          v = User.current.id
-        end
-        new_values[k] = v if v.present? && issue.safe_attribute?(k)
+        new_values[k] = new_value if new_value.present? && issue.safe_attribute?(k)
       end
     else
       button.new_values.each { |k, v| new_values[k] = v if v.present? }
