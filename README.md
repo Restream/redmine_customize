@@ -27,6 +27,10 @@ All settings stored in user profile.
 
 Added "Get url for this form" button on the new issue form.
 
+### All visible projects in the jump box
+
+Added all visible projects to the jump box. Change standard select to nice select2.
+
 ## TODO
 
 write better documentation

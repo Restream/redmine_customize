@@ -4,6 +4,7 @@ module RedmineCustomize
   USER_LAST_UPDATED_BY = 'last_updated_by'
 end
 
+require 'redmine_customize/patches/project_patch'
 require 'redmine_customize/patches/user_patch'
 require 'redmine_customize/patches/issue_patch'
 require 'redmine_customize/patches/user_preference_patch'

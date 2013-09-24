@@ -8,16 +8,20 @@ module RedmineCustomizeHelper
   end
 
   def project_ids_for_jump_box
-    projects = User.current.memberships.collect(&:project).compact.select(&:active?).uniq
-    root_projects = Project.active.roots.has_module(:issue_tracking).order(:name)
+    user_projects = User.current.memberships.collect(&:project).compact.select(&:active?).uniq
+    visible_projects = Project.active.visible
+    active_projects = Project.active
+    root_projects = Project.cache_children(active_projects).sort
     result = []
     result << {
         :text => l(:label_my_projects),
-        :children => projects_tree_for_jump_box(root_projects, :only => projects)
+        :children => projects_tree_for_jump_box(root_projects, :only => user_projects)
     }
     result << {
-        :text => l(:label_public_projects),
-        :children => projects_tree_for_jump_box(root_projects, :except => projects)
+        :text => l(:description_choose_project),
+        :children => projects_tree_for_jump_box(root_projects,
+                                                :only => visible_projects,
+                                                :except => user_projects)
     }
     result
   end
@@ -29,7 +33,7 @@ module RedmineCustomizeHelper
     result = []
     projects.each do |project|
 
-      children = project.children.active.order(:name)
+      children = project.cached_children.sort
       children_tree = projects_tree_for_jump_box(children, options)
 
       if show_this_project?(project, options)
@@ -52,9 +56,8 @@ module RedmineCustomizeHelper
   private
 
   def show_this_project?(project, options = {})
-    return false unless project.visible?
-    return options[:only].include?(project) if options[:only]
     return false if options[:except] && options[:except].include?(project)
+    return options[:only].include?(project) if options[:only]
     true
   end
 end

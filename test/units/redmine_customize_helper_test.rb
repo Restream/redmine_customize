@@ -39,10 +39,10 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
           :text => "My projects" },
         { :children =>
               [{ :children =>
-                     [{ :children => [{ :id => 6, :text => "Child of private child" }],
-                        :text => "Private child of eCookbook" },
-                      { :id => 3, :text => "eCookbook Subproject 1" },
-                      { :id => 4, :text => "eCookbook Subproject 2" }],
+                     [{ :id => 3, :text => "eCookbook Subproject 1" },
+                      { :id => 4, :text => "eCookbook Subproject 2" },
+                      { :children => [{ :id => 6, :text => "Child of private child" }],
+                        :text => "Private child of eCookbook" }],
                  :text => "eCookbook" }],
           :text => "Public projects" }
     ]
@@ -56,10 +56,10 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
         { :children => [{ :id => 1, :text => "eCookbook" }], :text => "My projects" },
         { :children =>
               [{ :children =>
-                     [{ :children => [{ :id => 6, :text => "Child of private child" }],
-                        :text => "Private child of eCookbook" },
-                      { :id => 3, :text => "eCookbook Subproject 1" },
-                      { :id => 4, :text => "eCookbook Subproject 2" }],
+                     [{ :id => 3, :text => "eCookbook Subproject 1" },
+                      { :id => 4, :text => "eCookbook Subproject 2" },
+                      { :children => [{ :id => 6, :text => "Child of private child" }],
+                        :text => "Private child of eCookbook" }],
                  :text => "eCookbook" }],
           :text => "Public projects" }
     ]
