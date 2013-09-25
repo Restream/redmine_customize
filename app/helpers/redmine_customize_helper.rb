@@ -15,13 +15,15 @@ module RedmineCustomizeHelper
     result = []
     result << {
         :text => l(:label_my_projects),
-        :children => projects_tree_for_jump_box(root_projects, :only => user_projects)
+        :children => projects_tree_for_jump_box(root_projects,
+                                                :only => user_projects,
+                                                :allowed => visible_projects)
     }
     result << {
         :text => l(:description_choose_project),
         :children => projects_tree_for_jump_box(root_projects,
                                                 :only => visible_projects,
-                                                :except => user_projects)
+                                                :allowed => visible_projects)
     }
     result
   end
@@ -36,28 +38,35 @@ module RedmineCustomizeHelper
       children = project.cached_children.sort
       children_tree = projects_tree_for_jump_box(children, options)
 
-      if show_this_project?(project, options)
-        result << {
-            :text => project.name,
-            :id => project_path(:id => project, :jump => current_menu_item)
-        }
-      end
+      node = {}
 
-      if children_tree.any?
-        result << {
-            :text => project.name,
-            :children => children_tree
-        }
-      end
+      node.merge!(
+          :text => project.name
+      ) if show_project_as_leaf?(project, options)
+
+      node.merge!(
+          :text => project.name,
+          :children => children_tree
+      ) if children_tree.any?
+
+      node.merge!(
+          :id => project_path(:id => project, :jump => current_menu_item)
+      ) if !node.empty? && allowed_to_jump?(project, options)
+
+      result << node unless node.empty?
     end
     result
   end
 
   private
 
-  def show_this_project?(project, options = {})
+  def show_project_as_leaf?(project, options = {})
     return false if options[:except] && options[:except].include?(project)
     return options[:only].include?(project) if options[:only]
     true
+  end
+
+  def allowed_to_jump?(project, options = {})
+    options[:allowed] ? options[:allowed].include?(project) : false
   end
 end
