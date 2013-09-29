@@ -7,11 +7,11 @@ $(document).ready(function(){
     data: data,
     placeholder: placeholder,
     matcher: function(term, text, option) {
-      // ignore groups
-      if (option.children == undefined) {
-        return text.toUpperCase().indexOf(term.toUpperCase()) >= 0;
-      } else {
+      // ignore items without id
+      if (option.id == undefined) {
         return false;
+      } else {
+        return text.toUpperCase().indexOf(term.toUpperCase()) >= 0;
       }
     }
   }).change(function(e) {
