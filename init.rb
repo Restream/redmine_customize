@@ -31,5 +31,5 @@ Redmine::Plugin.register :redmine_customize do
       custom_buttons/destroy
   }
 
-  requires_redmine_plugin :redmine_select2, :version_or_higher => '0.0.1'
+  requires_redmine_plugin :redmine__select2, :version_or_higher => '1.0.1'
 end
