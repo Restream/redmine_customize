@@ -31,7 +31,7 @@ class CustomButtonTest < ActiveSupport::TestCase
         :assigned_to_role_ids => '2'
     )
 
-    assert_true button.visible?(@issue)
+    assert_equal true, button.visible?(@issue)
   end
 
   def test_visible_some_filter
@@ -42,7 +42,7 @@ class CustomButtonTest < ActiveSupport::TestCase
         :assigned_to_ids => '3'
     )
 
-    assert_true button.visible?(@issue)
+    assert_equal true, button.visible?(@issue)
   end
 
   def test_visible_wrong_filter
@@ -53,13 +53,13 @@ class CustomButtonTest < ActiveSupport::TestCase
         :assigned_to_ids => '3'
     )
 
-    assert_false button.visible?(@issue)
+    assert_equal false, button.visible?(@issue)
   end
 
   def test_visible_no_filter
     button = CustomButton.new()
 
-    assert_true button.visible?(@issue)
+    assert_equal true, button.visible?(@issue)
   end
 
   def test_public_button
@@ -68,13 +68,13 @@ class CustomButtonTest < ActiveSupport::TestCase
         :is_public => 1
     )
 
-    assert_true button.is_public?
+    assert_equal true, button.is_public?
   end
 
   def test_private_button_by_default
     button = CustomButton.new()
 
-    assert_false button.is_public?
+    assert_equal false, button.is_public?
   end
 
   def test_filter_setter
@@ -148,7 +148,7 @@ class CustomButtonTest < ActiveSupport::TestCase
         :hide_when_nothing_change => '1',
         :new_values => { :status_id => 3 }
     )
-    assert_true button.send(:show_for_issue?, @issue)
+    assert_equal true, button.send(:show_for_issue?, @issue)
   end
 
   def test_show_for_issue__when_has_no_changes
@@ -156,7 +156,7 @@ class CustomButtonTest < ActiveSupport::TestCase
         :hide_when_nothing_change => '1',
         :new_values => { :status_id => 2 }
     )
-    assert_false button.send(:show_for_issue?, @issue)
+    assert_equal false, button.send(:show_for_issue?, @issue)
   end
 
   def test_show_for_issue__if_assigned_to_changed
@@ -165,7 +165,7 @@ class CustomButtonTest < ActiveSupport::TestCase
         :hide_when_nothing_change => '1',
         :new_values => { :assigned_to_id => 'author' }
     )
-    assert_true button.send(:show_for_issue?, @issue)
+    assert_equal true, button.send(:show_for_issue?, @issue)
   end
 
   def test_show_for_issue__if_assigned_to_not_changed
@@ -176,7 +176,7 @@ class CustomButtonTest < ActiveSupport::TestCase
         :hide_when_nothing_change => '1',
         :new_values => { :assigned_to_id => 'author' }
     )
-    assert_false button.send(:show_for_issue?, @issue)
+    assert_equal false, button.send(:show_for_issue?, @issue)
   end
 
 end

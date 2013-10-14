@@ -138,7 +138,7 @@ class CustomButtonsControllerTest < ActionController::TestCase
 
     btn = @user.custom_buttons.find_by_name(attrs[:name])
     assert btn
-    assert_false btn.is_public?
+    assert_equal false, btn.is_public?
   end
 
   def test_only_admin_can_create_public_button
@@ -154,7 +154,7 @@ class CustomButtonsControllerTest < ActionController::TestCase
 
     btn = admin.custom_buttons.find_by_name(attrs[:name])
     assert btn
-    assert_true btn.is_public?
+    assert_equal true, btn.is_public?
   end
 
   def test_user_can_not_update_public
@@ -162,7 +162,7 @@ class CustomButtonsControllerTest < ActionController::TestCase
     assert_response :redirect
 
     @button.reload
-    assert_false @button.is_public?
+    assert_equal false, @button.is_public?
   end
 
   def test_admin_can_update_public
@@ -178,6 +178,6 @@ class CustomButtonsControllerTest < ActionController::TestCase
     assert_response :redirect
 
     button.reload
-    assert_true button.is_public?
+    assert_equal true, button.is_public?
   end
 end
