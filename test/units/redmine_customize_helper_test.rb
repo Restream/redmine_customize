@@ -25,44 +25,78 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
   #     4                      public
   #   2 	     [2, 8]          private
   #
-  # User(3) 1, 1:[5:[6], 3, 4]
+  # User(2) My projects: 1:[5], 2; Projects: 1:[5:[6], 3, 4], 2
+  # User(3) My projects: 1; Projects: 1:[5*:[6], 3, 4], 2  * - not clickable
 
   def test_jumpbox_for_member
     User.current = User.find(2)
-    ptree = project_ids_for_jump_box
-    exp_ptree = [
-        { :children =>
-              [{ :id => 1, :text => "eCookbook" },
-               { :children => [{ :id => 5, :text => "Private child of eCookbook" }],
-                 :text => "eCookbook" },
-               { :id => 2, :text => "OnlineStore" }],
-          :text => "My projects" },
-        { :children =>
-              [{ :children =>
-                     [{ :id => 3, :text => "eCookbook Subproject 1" },
-                      { :id => 4, :text => "eCookbook Subproject 2" },
-                      { :children => [{ :id => 6, :text => "Child of private child" }],
-                        :text => "Private child of eCookbook" }],
-                 :text => "eCookbook" }],
-          :text => "Public projects" }
-    ]
+    ptree = serialize_project_tree(project_ids_for_jump_box)
+    exp_ptree = serialize_project_tree(
+        [
+            {:text => 'My projects', :children =>
+                [
+                    {:id => 1, :text => 'eCookbook', :children =>
+                        [
+                            {:id => 5, :text => 'Private child of eCookbook'}
+                        ]
+                    },
+                    {:id => 2, :text => 'OnlineStore'}
+                ],
+            },
+            {
+                :text => 'Projects', :children =>
+                [
+                    {:id => 1, :text => 'eCookbook', :children =>
+                        [
+                            {:id => 5, :text => 'Private child of eCookbook', :children =>
+                                [
+                                    {:id => 6, :text => 'Child of private child'}
+                                ]
+                            },
+                            {:id => 3, :text => 'eCookbook Subproject 1'},
+                            {:id => 4, :text => 'eCookbook Subproject 2'},
+                        ],
+                    },
+                    {:id => 2, :text => 'OnlineStore'}
+                ],
+            }
+        ])
     assert_equal exp_ptree, ptree
   end
 
   def test_jumpbox_for_non_member
     User.current = User.find(3)
-    ptree = project_ids_for_jump_box
-    exp_ptree =[
-        { :children => [{ :id => 1, :text => "eCookbook" }], :text => "My projects" },
-        { :children =>
-              [{ :children =>
-                     [{ :id => 3, :text => "eCookbook Subproject 1" },
-                      { :id => 4, :text => "eCookbook Subproject 2" },
-                      { :children => [{ :id => 6, :text => "Child of private child" }],
-                        :text => "Private child of eCookbook" }],
-                 :text => "eCookbook" }],
-          :text => "Public projects" }
-    ]
+    ptree = serialize_project_tree(project_ids_for_jump_box)
+    exp_ptree = serialize_project_tree(
+        [
+            {:text => 'My projects', :children => [{:id => 1, :text => 'eCookbook'}]},
+            {:text => 'Projects', :children =>
+                [
+                    {:id => 1, :text => 'eCookbook', :children =>
+                        [
+                            {:text => 'Private child of eCookbook', :children =>
+                                [
+                                    {:id => 6, :text => 'Child of private child'}
+                                ]
+                            },
+                            {:id => 3, :text => 'eCookbook Subproject 1'},
+                            {:id => 4, :text => 'eCookbook Subproject 2'},
+                        ],
+                    }],
+            }
+        ])
     assert_equal exp_ptree, ptree
+  end
+
+  # serialize hashes with sort by keys
+  def serialize_project_tree(ptree)
+    case
+      when ptree.is_a?(Hash)
+        "{ #{ptree.keys.sort.map { |k| ":#{k} => #{serialize_project_tree(ptree[k])}" }.join(', ') } }"
+      when ptree.is_a?(Array)
+        "[#{ptree.map { |el| serialize_project_tree(el) }.sort.join(', ')}]"
+      else
+        ptree.to_s
+    end
   end
 end
