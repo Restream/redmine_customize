@@ -55,7 +55,7 @@ var saveSidebarBlockState = function(block) {
 };
 
 $(document).ready(function(){
-  $('div#sidebar').on('click', sidebarBlockHeaders, function(ev) {
+  $('div#sidebar').on('click', 'h3', function(ev) {
     $(this).toggleClass(sidebarCollapsedClass);
     updateSidebarClasses();
     ev.stopPropagation();
