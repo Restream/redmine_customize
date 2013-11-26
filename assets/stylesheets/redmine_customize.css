@@ -83,3 +83,7 @@ fieldset.top-menu-items input[type=text] {
 a#get-url-link {
   margin: 0 10px 0 10px;
 }
+
+div.description {
+  overflow-wrap: break-word;
+}
