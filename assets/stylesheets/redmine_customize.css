@@ -84,6 +84,7 @@ a#get-url-link {
   margin: 0 10px 0 10px;
 }
 
-div.description {
+div.description, div#preview, div#history {
   overflow-wrap: break-word;
+  word-break: break-all;
 }
