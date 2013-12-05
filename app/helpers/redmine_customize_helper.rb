@@ -1,5 +1,5 @@
 module RedmineCustomizeHelper
-  def render_customized_project_jump_box
+  def render_project_jump_box
     hidden_field_tag 'project_quick_jump_box', '',
                      :data => {
                          :options => project_ids_for_jump_box,

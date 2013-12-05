@@ -1,0 +1,10 @@
+<%= javascript_tag do -%>
+  $(function() {
+    $('div#top-menu').append('<%= escape_javascript(render 'customize/top_menu') %>');
+  });
+<% end -%>
+
+<%= stylesheet_link_tag('redmine_customize', :plugin => 'redmine_customize') %>
+<%= javascript_include_tag('sidebar_collapse', :plugin => 'redmine_customize') %>
+<%= javascript_include_tag('project_quick_jump_box', :plugin => 'redmine_customize') %>
+

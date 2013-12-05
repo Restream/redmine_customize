@@ -126,13 +126,13 @@ class CustomButtonTest < ActiveSupport::TestCase
         :assigned_to_ids   => '3,4',
         :assigned_to_role_ids => '1,2'
     )
-    assert_equal [1, 2], button.projects.map(&:id)
-    assert_equal [2, 3], button.trackers.map(&:id)
-    assert_equal [1, 3], button.statuses.map(&:id)
-    assert_equal [2, 3], button.categories.map(&:id)
-    assert_equal [1, 2], button.authors.map(&:id)
-    assert_equal [3, 4], button.assigned_tos.map(&:id)
-    assert_equal [1, 2], button.assigned_to_roles.map(&:id)
+    assert_equal [1, 2], button.projects.map(&:id).sort
+    assert_equal [2, 3], button.trackers.map(&:id).sort
+    assert_equal [1, 3], button.statuses.map(&:id).sort
+    assert_equal [2, 3], button.categories.map(&:id).sort
+    assert_equal [1, 2], button.authors.map(&:id).sort
+    assert_equal [3, 4], button.assigned_tos.map(&:id).sort
+    assert_equal [1, 2], button.assigned_to_roles.map(&:id).sort
   end
 
   def test_clear_filter
