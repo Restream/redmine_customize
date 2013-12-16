@@ -3,6 +3,10 @@ require 'project'
 module RedmineCustomize::Patches::ProjectPatch
   extend ActiveSupport::Concern
 
+  included do
+    has_many :public_drafts
+  end
+
   def cached_children
     @cached_children ||= []
   end

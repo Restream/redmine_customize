@@ -12,4 +12,15 @@ class RedmineCustomize::Services::DraftsTest < ActiveSupport::TestCase
     assert public_draft
     assert_equal values, public_draft.values
   end
+
+  def test_attempt_to_save_non_unique_hex_key_will_raise_error
+    RedmineCustomize::Services::Drafts.stubs(:generate_hex_key).returns('0')
+    project = Project.find(1)
+    values = { :subject => 'test' }
+    public_draft = RedmineCustomize::Services::Drafts.create_public_draft(project, values)
+    assert public_draft
+    assert_raise RedmineCustomize::Services::DraftSaveError do
+      RedmineCustomize::Services::Drafts.create_public_draft(project, values)
+    end
+  end
 end
