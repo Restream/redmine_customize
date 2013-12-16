@@ -4,4 +4,7 @@ RedmineApp::Application.routes.draw do
       :index, :new, :create, :edit, :update, :destroy
   ]
   resources :sidebar_blocks, :only => [:update]
+  resources :projects, :only => [] do
+    resources :draft_issues, :only => [:create]
+  end
 end
