@@ -10,6 +10,10 @@ class DraftIssuesController < ApplicationController
     render :json => {}, :status => :error, :layout => nil
   end
 
+  def show
+    redirect_to RedmineCustomize::Services::Drafts.new_issue_urlc(params[:id])
+  end
+
   private
 
   def find_project

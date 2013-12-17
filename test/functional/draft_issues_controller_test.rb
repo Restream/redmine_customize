@@ -10,21 +10,25 @@ class DraftIssuesControllerTest < ActionController::TestCase
     @request    = ActionController::TestRequest.new
     @user = User.find(2)
     @request.session[:user_id] = @user.id
+    @project = Project.find(1)
+    @issue_attrs = { :subject => 'draft' }
   end
 
   def test_create_draft
-    project = Project.find(1)
-    issue_attrs = { :subject => 'draft' }
-    xhr :post, :create, :project_id => project.identifier, :issue => issue_attrs
+    xhr :post, :create, :project_id => @project.identifier, :issue => @issue_attrs
     assert_response :success
   end
 
   def test_save_error
-    project = Project.find(1)
-    issue_attrs = { :subject => 'draft' }
     RedmineCustomize::Services::Drafts.stubs(:generate_hex_key).returns('0')
-    RedmineCustomize::Services::Drafts.create_public_draft(project, issue_attrs)
-    xhr :post, :create, :project_id => project.identifier, :issue => issue_attrs
+    RedmineCustomize::Services::Drafts.create_public_draft(@project, @issue_attrs)
+    xhr :post, :create, :project_id => @project.identifier, :issue => @issue_attrs
     assert_response :error
+  end
+
+  def test_redirected_to_new_issue
+    draft = RedmineCustomize::Services::Drafts.create_public_draft(@project, @issue_attrs)
+    get :show, :id => draft.hex_key
+    assert_redirected_to new_project_issue_url(@project.identifier, :draft => draft.hex_key)
   end
 end
