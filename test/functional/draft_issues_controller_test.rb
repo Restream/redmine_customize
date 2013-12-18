@@ -17,6 +17,10 @@ class DraftIssuesControllerTest < ActionController::TestCase
   def test_create_draft
     xhr :post, :create, :project_id => @project.identifier, :issue => @issue_attrs
     assert_response :success
+    draft = PublicDraft.order(:id).last
+    assert draft
+    exp_url = draft_issue_url(draft.hex_key)
+    assert_equal exp_url, response.body
   end
 
   def test_save_error

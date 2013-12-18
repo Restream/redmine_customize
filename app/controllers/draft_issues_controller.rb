@@ -1,13 +1,12 @@
 class DraftIssuesController < ApplicationController
-  respond_to :json, :only => [:create]
-
   before_filter :find_project, :only => [:create]
 
   def create
     draft = RedmineCustomize::Services::Drafts.create_public_draft(@project, params[:issue])
-    render :json => { :hex_key => draft.hex_key }, :status => :ok, :layout => nil
+    render :text => draft_issue_url(draft.hex_key, :only_path => false),
+           :status => :ok, :layout => nil
   rescue RedmineCustomize::Services::DraftSaveError
-    render :json => {}, :status => :error, :layout => nil
+    render :nothing => true, :status => :error, :layout => nil
   end
 
   def show
