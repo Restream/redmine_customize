@@ -85,5 +85,5 @@ a#get-url-link {
 }
 
 div.description, div#preview, div#history {
-  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
