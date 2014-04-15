@@ -34,6 +34,10 @@ Added "Get url for this form" button on the new issue form.
 
 Added all visible projects to the jump box. Change standard select to nice select2.
 
+### Insert quote at the cursor
+
+Insert quote at the cursor when write comments instead replacing existing text
+
 ## License
 
 Copyright (C) 2013 Undev.ru
