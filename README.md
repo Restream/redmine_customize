@@ -38,6 +38,10 @@ Added all visible projects to the jump box. Change standard select to nice selec
 
 Insert quote at the cursor when write comments instead replacing existing text
 
+### Show description for attachment
+
+Show description for attachment in the issue history
+
 ## License
 
 Copyright (C) 2013 Undev.ru

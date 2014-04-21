@@ -3,6 +3,10 @@ require 'issues_helper'
 module RedmineCustomize::Patches::IssuesHelperPatch
   extend ActiveSupport::Concern
 
+  included do
+    alias_method_chain :show_detail, :attachment_description
+  end
+
   def custom_button_new_values(button, issue = nil)
     new_values = {}
     if issue
@@ -31,6 +35,21 @@ module RedmineCustomize::Patches::IssuesHelperPatch
       new_values.delete 'assigned_to_id'
     end
     new_values
+  end
+
+  def show_detail_with_attachment_description(detail, no_html=false, options={})
+    detail_html = show_detail_without_attachment_description(detail, no_html, options)
+    issue = detail.journal.issue
+    attachment = detail.property == 'attachment' && issue.attachments.find_by_id(detail.prop_key)
+    if attachment
+      [
+          detail_html,
+          (h(" - #{attachment.description}") if attachment.description.present?),
+          "<span class=\"size\">(#{number_to_human_size attachment.filesize})</span>"
+      ].compact.join(' ').html_safe
+    else
+      detail_html
+    end
   end
 end
 
