@@ -42,6 +42,10 @@ Insert quote at the cursor when write comments instead replacing existing text
 
 Show description for attachment in the issue history
 
+### Highlight note in history
+
+Highlight note in history when open links with specific note (.../issues/XXX#note-YYY)
+
 ## License
 
 Copyright (C) 2013 Undev.ru
