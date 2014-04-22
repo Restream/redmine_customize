@@ -87,3 +87,7 @@ a#get-url-link {
 div.description, div#preview, div#history {
   word-wrap: break-word;
 }
+
+div.journal.selected {
+  background-color: #ffffdd;
+}

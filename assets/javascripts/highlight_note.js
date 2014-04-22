@@ -1,7 +1,19 @@
 $(document).ready(function(){
   var highlightNote = function() {
+    $("div.journal").removeClass("selected");
+    var journalNote;
     var noteId = /#note-\d+/.exec(window.location.hash);
-    if (noteId) $(noteId[0] + ", " + noteId[0] + " > h4").effect('highlight', null, 3000);
+    if (noteId) {
+      journalNote = $(noteId[0]).parent();
+    } else {
+      var changeId = /#change-\d+/.exec(window.location.hash);
+      if (changeId) {
+        journalNote = $(changeId[0]);
+      }
+    }
+    if (journalNote) {
+      journalNote.addClass("selected", 500, "easeInBack");
+    }
   };
 
   highlightNote();
