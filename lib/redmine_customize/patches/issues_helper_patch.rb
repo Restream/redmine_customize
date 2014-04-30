@@ -39,8 +39,8 @@ module RedmineCustomize::Patches::IssuesHelperPatch
 
   def show_detail_with_attachment_description(detail, no_html=false, options={})
     detail_html = show_detail_without_attachment_description(detail, no_html, options)
-    issue = detail.journal.issue
-    attachment = detail.property == 'attachment' && issue.attachments.find_by_id(detail.prop_key)
+    issue = detail.try(:journal).try(:issue) || @issue
+    attachment = issue && detail.property == 'attachment' && issue.attachments.find_by_id(detail.prop_key)
     if attachment
       [
           detail_html,
