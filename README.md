@@ -46,6 +46,10 @@ Show description for attachment in the issue history
 
 Highlight note in history when open links with specific note (.../issues/XXX#note-YYY)
 
+### Copy watchers when copying issue
+
+Copy watchers when copying issue
+
 ## License
 
 Copyright (C) 2013 Undev.ru

@@ -3,6 +3,10 @@ require 'issue'
 module RedmineCustomize::Patches::IssuePatch
   extend ActiveSupport::Concern
 
+  included do
+    alias_method_chain :copy_from, :watchers
+  end
+
   def custom_user_id(custom_label)
     case custom_label
       when RedmineCustomize::USER_AUTHOR
@@ -14,6 +18,13 @@ module RedmineCustomize::Patches::IssuePatch
       else
         nil
     end
+  end
+
+  def copy_from_with_watchers(arg, options = {})
+    copy_from_without_watchers(arg, options)
+    issue = arg.is_a?(Issue) ? arg : Issue.visible.find(arg)
+    self.watcher_user_ids = issue.watcher_user_ids
+    self
   end
 end
 
