@@ -7,6 +7,7 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
 
   include Redmine::I18n
   include RedmineCustomizeHelper
+  include Rails.application.routes.url_helpers
 
   # return just project id instead path
   def project_path(options)
@@ -15,6 +16,8 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
 
   def setup
     stubs(:current_menu_item).returns(nil)
+    @version = Version.new(:name => 'test', :sharing => 'none')
+    @version.project = Project.find(5)
   end
 
   # Project.id [Members] 	    [public?]
@@ -98,5 +101,30 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
       else
         ptree.to_s
     end
+  end
+
+  def test_version_issues_cpath_sharing_none
+    @version.sharing = 'none'
+    assert_match '/projects/private-child/issues?', version_issues_cpath(@version)
+  end
+
+  def test_version_issues_cpath_sharing_descendants
+    @version.sharing = 'descendants'
+    assert_match '/projects/private-child/issues?', version_issues_cpath(@version)
+  end
+
+  def test_version_issues_cpath_sharing_hierarchy
+    @version.sharing = 'hierarchy'
+    assert_match '/projects/ecookbook/issues?', version_issues_cpath(@version)
+  end
+
+  def test_version_issues_cpath_sharing_tree
+    @version.sharing = 'tree'
+    assert_match '/projects/ecookbook/issues?', version_issues_cpath(@version)
+  end
+
+  def test_version_issues_cpath_sharing_system
+    @version.sharing = 'system'
+    assert_match '/issues?', version_issues_cpath(@version)
   end
 end

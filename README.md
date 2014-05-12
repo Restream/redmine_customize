@@ -50,6 +50,10 @@ Highlight note in history when open links with specific note (.../issues/XXX#not
 
 Copy watchers when copying issue
 
+### Respect version's sharing settings
+
+Fixed links in version overview. Find issues according to version sharing settings (http://www.redmine.org/projects/redmine/wiki/RedmineProjectSettings#Versions)
+
 ## License
 
 Copyright (C) 2013 Undev.ru

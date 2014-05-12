@@ -58,6 +58,22 @@ module RedmineCustomizeHelper
     result
   end
 
+  def version_issues_cpath(version, options = {})
+    options = {
+        :fixed_version_id => version,
+        :set_filter => 1
+    }.merge(options)
+    project = case version.sharing
+                when 'hierarchy', 'tree'
+                  version.project.root if version.project.root.visible?
+                when 'system'
+                  nil
+                else
+                  version.project
+              end
+    project ? project_issues_path(project, options) : issues_path(options)
+  end
+
   private
 
   def show_project_as_leaf?(project, options = {})
