@@ -16,6 +16,7 @@ ru:
 
   label_get_url: 'Получить url текущей формы'
   label_last_updated_by: 'Автор последних изменений'
+  label_copy_relations: "Копировать связи"
 
   text_manage_custom_buttons: "Здесь Вы можете добавить дополнительные кнопки на страницу задачи"
   text_custom_button_new_values_can_not_be_empty: "Заполните новые значения"

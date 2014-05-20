@@ -48,7 +48,7 @@ Highlight note in history when open links with specific note (.../issues/XXX#not
 
 ### Copy watchers when copying issue
 
-Copy watchers when copying issue
+Copy watchers and related issues when copying issue
 
 ### Respect version's sharing settings
 

@@ -1,0 +1,6 @@
+<% if @copy_from && @copy_from.relations.any? %>
+  <p>
+    <label for="copy_relations"><%= l(:label_copy_relations) %></label>
+    <%= check_box_tag 'copy_relations', '1', params[:copy_relations].present? %>
+  </p>
+<% end %>

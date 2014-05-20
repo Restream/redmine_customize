@@ -4,6 +4,8 @@ module RedmineCustomize::Hooks
               :partial => 'custom_buttons/view_issues_context_menu'
     render_on :view_layouts_base_html_head,
               :partial => 'customize/layouts_base_html_head'
+    render_on :view_issues_form_details_bottom,
+              :partial => 'customize/issues_form_details_bottom'
 
     def view_issues_show_details_bottom(_ = {})
       javascript_include_tag('custom_buttons', :plugin => 'redmine_customize') +

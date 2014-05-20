@@ -13,6 +13,7 @@ en:
   label_no_custom_buttons: "No custom buttons defined yet"
   label_custom_button_filter: "Show on the following issues"
   label_custom_button_new_values: "New values for the issue"
+  label_copy_relations: "Copy relations"
 
   label_get_url: 'Get url for this form'
   label_last_updated_by: 'Last updated by'
