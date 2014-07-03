@@ -54,6 +54,10 @@ Copy watchers and related issues when copying issue
 
 Fixed links in version overview. Find issues according to version sharing settings (http://www.redmine.org/projects/redmine/wiki/RedmineProjectSettings#Versions)
 
+### Submit form by Cmd+Enter
+
+Submit form when updating issue or created one by hitting cmd+Enter (ctrl+Enter on Win, linux).
+
 ## License
 
 Copyright (C) 2013 Undev.ru
