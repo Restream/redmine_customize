@@ -8,7 +8,7 @@ class CustomMenuItem < Hashie::Dash
     options[:body] = args[0] if args.length > 0
     options[:url] = args[1] if args.length > 1
     options[:title] = args[2] if args.length > 2
-    super(options)
+    super(options.symbolize_keys)
   end
 
   def to_s
