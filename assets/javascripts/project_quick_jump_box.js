@@ -16,7 +16,7 @@ $(document).ready(function(){
     }
   }).change(function(e) {
     if (e.val != "") { window.location = e.val; }
-  }).on("select2-open", function() {
+  }).on("select2-opening", function() {
     var scrollPosition = [
         self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
         self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
