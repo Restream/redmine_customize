@@ -1,5 +1,16 @@
 <% customize = Customize.instance %>
 
+<fieldset>
+  <legend><%= l(:redmine_customize_settings) %></legend>
+
+  <p>
+    <%= label_tag l(:custom_notice_account_pending) %>
+    <%= text_area_tag 'settings[notice_account_pending]', @settings['notice_account_pending'],
+                      :cols => 30, :rows => 5, :class => 'wiki-edit' %>
+  </p>
+
+</fieldset>
+
 <fieldset class="top-menu-items">
   <legend><%= l(:label_top_menu_items) %></legend>
 

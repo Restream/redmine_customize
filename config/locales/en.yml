@@ -1,5 +1,5 @@
 en:
-  redmine_customize_settings: "RedmineCustomize settings"
+  redmine_customize_settings: "Custom settings"
 
   label_top_menu_items: "Links that will be added to the top menu"
   label_top_menu_item_body: "Link body"
@@ -28,3 +28,5 @@ en:
 
   field_image: "Icon"
   field_hide_when_nothing_change: "Hide button if no changes will made"
+
+  custom_notice_account_pending: "Flash text after registration (before admin approve)"

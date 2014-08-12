@@ -32,4 +32,9 @@ Redmine::Plugin.register :redmine_customize do
   }
 
   requires_redmine_plugin :redmine__select2, :version_or_higher => '1.0.1'
+
+  menu :admin_menu,
+       :redmine_customize_settings,
+       { :controller => 'settings', :action => 'plugin', :id => 'redmine_customize' },
+       :html => { :class => 'settings' }
 end

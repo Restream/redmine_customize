@@ -1,5 +1,5 @@
 ru:
-  redmine_customize_settings: "Настройки RedmineCustomize"
+  redmine_customize_settings: "Дополнительные настройки"
 
   label_top_menu_items: "Ссылки, которые будут добавлены в главное меню"
   label_top_menu_item_body: "Текст ссылки"
@@ -28,3 +28,5 @@ ru:
 
   field_image: "Иконка"
   field_hide_when_nothing_change: "Не показывать в случае отсутствия изменений"
+
+  custom_notice_account_pending: "Текст сообщения после регистрации (до подтверждения администратором)"

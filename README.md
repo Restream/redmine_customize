@@ -58,6 +58,11 @@ Fixed links in version overview. Find issues according to version sharing settin
 
 Submit form when updating issue or created one by hitting cmd+Enter (ctrl+Enter on Win, linux).
 
+### Custom 'notice account pending' text
+
+On the plugin settings page administrator can set custom text for 'notice account pending' text.
+For example: 'Call administrator (+55555555) for approve your account)'
+
 ## License
 
 Copyright (C) 2013 Undev.ru
