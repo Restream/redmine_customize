@@ -31,10 +31,10 @@ before_install:
   - git clone --depth=1 https://github.com/Undev/redmine__select2.git $REDMINE_PATH/plugins/redmine__select2
 
 before_script:
-  - rake db:create
-  - rake db:migrate
-  - rake redmine:plugins:migrate
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  - bundle exec rake redmine:plugins:migrate
 
 script:
-  - rake redmine:plugins:test NAME=$PLUGIN_NAME
+  - bundle exec rake redmine:plugins:test NAME=$PLUGIN_NAME
 
