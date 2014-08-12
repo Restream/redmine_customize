@@ -14,7 +14,7 @@ class CustomNoticeTest < ActionController::IntegrationTest
                                          :mail => 'newuser@foo.bar', :password => 'newpass123',
                                          :password_confirmation => 'newpass123'}
       assert_redirected_to '/login'
-      assert_equal l(:notice_account_pending), flash[:notice]
+      assert_equal l(:notice_account_pending), flash[RedmineCustomize::FLASH_ACCOUNT_PENDING_KEY]
     end
   end
 
@@ -35,7 +35,7 @@ class CustomNoticeTest < ActionController::IntegrationTest
                                          :mail => 'newuser@foo.bar', :password => 'newpass123',
                                          :password_confirmation => 'newpass123'}
       assert_redirected_to '/login'
-      assert_equal 'Custom Notice', flash[:notice]
+      assert_equal 'Custom Notice', flash[RedmineCustomize::FLASH_ACCOUNT_PENDING_KEY]
     end
   end
 

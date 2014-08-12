@@ -2,6 +2,8 @@ module RedmineCustomize
   USER_ME = 'me'
   USER_AUTHOR = 'author'
   USER_LAST_UPDATED_BY = 'last_updated_by'
+
+  FLASH_ACCOUNT_PENDING_KEY = Redmine::VERSION.to_s >= '2.4.0' ? :error : :notice
 end
 
 require 'redmine_customize/patches/project_patch'
