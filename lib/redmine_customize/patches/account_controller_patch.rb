@@ -8,6 +8,7 @@ module RedmineCustomize::Patches::AccountControllerPatch
   end
 
   def account_pending_with_custom_text
+    Setting.clear_cache
     custom_notice = Setting['plugin_redmine_customize']['notice_account_pending']
     flash[:notice] = custom_notice.blank? ? l(:notice_account_pending) : custom_notice
     redirect_to signin_path
