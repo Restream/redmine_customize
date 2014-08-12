@@ -12,27 +12,14 @@ gemfile:
   - $REDMINE_PATH/Gemfile
 
 env:
-  - REDMINE_VER=2.2.4 DB=mysql
   - REDMINE_VER=2.3.3 DB=mysql
-  - REDMINE_VER=2.4.1 DB=mysql
-  - REDMINE_VER=2.2.4 DB=postgresql
+  - REDMINE_VER=2.3.4 DB=mysql
+  - REDMINE_VER=2.4.6 DB=mysql
+  - REDMINE_VER=2.5.2 DB=mysql
   - REDMINE_VER=2.3.3 DB=postgresql
-  - REDMINE_VER=2.4.1 DB=postgresql
-
-matrix:
-  exclude:
-    - rvm: 2.0.0
-      env: REDMINE_VER=2.1.6 DB=mysql
-      gemfile: $REDMINE_PATH/Gemfile
-    - rvm: 2.0.0
-      env: REDMINE_VER=2.2.4 DB=mysql
-      gemfile: $REDMINE_PATH/Gemfile
-    - rvm: 2.0.0
-      env: REDMINE_VER=2.1.6 DB=postgresql
-      gemfile: $REDMINE_PATH/Gemfile
-    - rvm: 2.0.0
-      env: REDMINE_VER=2.2.4 DB=postgresql
-      gemfile: $REDMINE_PATH/Gemfile
+  - REDMINE_VER=2.3.4 DB=postgresql
+  - REDMINE_VER=2.4.6 DB=postgresql
+  - REDMINE_VER=2.5.2 DB=postgresql
 
 before_install:
   - export PLUGIN_NAME=redmine_customize
