@@ -45,7 +45,9 @@ class RedmineCustomize::IssuesControllerTest < ActionController::TestCase
     assert issue
     get :show, :id => issue.id
     after_first_visit = Time.now
+    sleep 1
     get :show, :id => issue.id
+    sleep 1
     after_last_visit = Time.now
     visit = IssueVisit.find_by_issue(issue, @user)
     assert visit
