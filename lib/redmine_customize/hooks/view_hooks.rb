@@ -7,7 +7,8 @@ module RedmineCustomize::Hooks
     render_on :view_issues_form_details_bottom,
               :partial => 'customize/issues_form_details_bottom'
 
-    def view_issues_show_details_bottom(_ = {})
+    def view_issues_show_details_bottom(context = {})
+      IssueVisit.save_visit(context[:issue]) if User.current.logged?
       javascript_include_tag('custom_buttons', :plugin => 'redmine_customize') +
           javascript_include_tag('highlight_note', :plugin => 'redmine_customize')
     end
