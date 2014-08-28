@@ -5,6 +5,30 @@
 
 Plugin for some Redmine customizations
 
+## Install
+
+1. Go to your redmine root directory
+
+        cd YOUR_REDMINE_ROOT
+
+1. Install the required [redmine__select2](https://github.com/Undev/redmine__select2) plugin
+
+        git clone https://github.com/Undev/redmine__select2.git plugins/redmine__select2
+
+1. Install this plugin
+
+        git clone https://github.com/Undev/redmine_customize.git plugins/redmine_customize
+
+1. Install required gems
+
+        bundle install
+
+1. Run plugin migrations
+
+        bundle exec rake redmine:plugins:migrate RAILS_ENV=production
+
+1. Restart Redmine
+
 ## Customizations
 
 ### Allow other plugins to override translations
