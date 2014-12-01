@@ -1,5 +1,3 @@
-require 'issues_helper'
-
 module RedmineCustomize::Patches::IssuesHelperPatch
   extend ActiveSupport::Concern
 
@@ -51,8 +49,4 @@ module RedmineCustomize::Patches::IssuesHelperPatch
       detail_html
     end
   end
-end
-
-unless IssuesHelper.included_modules.include? RedmineCustomize::Patches::IssuesHelperPatch
-  IssuesHelper.send :include, RedmineCustomize::Patches::IssuesHelperPatch
 end
