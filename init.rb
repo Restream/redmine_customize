@@ -8,9 +8,9 @@ ActionDispatch::Callbacks.to_prepare do
 end
 
 Redmine::Plugin.register :redmine_customize do
-  name        'RedmineCustomize plugin'
-  description 'Plugin for Redmine customization'
-  author      'nodecarter'
+  name        'Redmine Customization Plugin'
+  description 'This plugin provides useful Redmine customization features.'
+  author      'Undev'
   version     '0.5.5'
   url         'https://github.com/Undev/redmine_customize'
 

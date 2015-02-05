@@ -1,8 +1,8 @@
 en:
-  redmine_customize_settings: "Custom settings"
+  redmine_customize_settings: "Account approval notice"
 
-  label_top_menu_items: "Links that will be added to the top menu"
-  label_top_menu_item_body: "Link body"
+  label_top_menu_items: "Links to be added to the top menu"
+  label_top_menu_item_body: "Link text"
   label_top_menu_item_url: "URL"
   label_top_menu_item_title: "Title"
 
@@ -10,23 +10,23 @@ en:
   label_custom_button_edit: "Edit custom button"
   label_custom_button: "Custom button"
   label_custom_buttons_plural: "Custom buttons"
-  label_no_custom_buttons: "No custom buttons defined yet"
-  label_custom_button_filter: "Show on the following issues"
+  label_no_custom_buttons: "No custom buttons added yet"
+  label_custom_button_filter: "Show in the following cases"
   label_custom_button_new_values: "New values for the issue"
   label_copy_relations: "Copy relations"
 
-  label_get_url: 'Get url for this form'
+  label_get_url: 'Get the URL for this form'
   label_last_updated_by: 'Last updated by'
 
-  text_manage_custom_buttons: "You can add custom buttons to issue page here"
-  text_custom_button_new_values_can_not_be_empty: "New values can not be empty"
-  text_custom_button_created: "Custom button created!"
-  text_custom_button_updated: "Custom button updated!"
-  text_custom_button_destroyed: "Custom button destroyed!"
+  text_manage_custom_buttons: "Manage custom buttons for issue pages"
+  text_custom_button_new_values_can_not_be_empty: "New values cannot be empty"
+  text_custom_button_created: "Custom button created."
+  text_custom_button_updated: "Custom button updated."
+  text_custom_button_destroyed: "Custom button deleted."
 
-  new_custom_button: "Add new custom button"
+  new_custom_button: "New custom button"
 
   field_image: "Icon"
-  field_hide_when_nothing_change: "Hide button if no changes will made"
+  field_hide_when_nothing_change: "Hide the button if no changes can be made"
 
-  custom_notice_account_pending: "Flash text after registration (before admin approve)"
+  custom_notice_account_pending: "Text to be displayed to users after registration (before approval by admin)"

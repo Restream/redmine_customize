@@ -1,40 +1,90 @@
-# Redmine customization plugin
+# Redmine Customization Plugin
 
 [![Build Status](https://travis-ci.org/Undev/redmine_customize.png)](https://travis-ci.org/Undev/redmine_customize)
 [![Code Climate](https://codeclimate.com/github/Undev/redmine_customize.png)](https://codeclimate.com/github/Undev/redmine_customize)
 
-Plugin for some Redmine customizations
+This plugin provides a number of useful features for Redmine customization.
 
-## Install
+* This plugin enables other plugins to override UI strings with localized strings
+* The Redmine administrator can add a custom text for the 'account approval pending' notice
+* The Redmine administrator can create links to be added to the top menu
+* Users can create custom buttons and minimize sidebar blocks
+* All projects become visible in the **Jump to a project** box
+* Users can get a URL for a new issue draft 
+* The plugin makes the selector in filters larger
+* When a user copies an issue, watchers of the issue are copied as well
+* Quotes are now inserted directly at the cursor's position in the issue note
+* Users can submit an issue by pressing Cmd+Enter on the issue form page
+* The plugin shows attachment descriptions on the issue page
+* The plugin highlights notes in the issue history when accessed by direct links
+* The plugin supports and preserves the project version sharing settings
 
-1. Go to your redmine root directory
+## Compatibility
 
-        cd YOUR_REDMINE_ROOT
+This plugin version is compatible only with Redmine 2.1.x and later.
 
-1. Install the required [redmine__select2](https://github.com/Undev/redmine__select2) plugin
+## Installation
 
-        git clone https://github.com/Undev/redmine__select2.git plugins/redmine__select2
+1. To install the plugins
+    * Download the .ZIP archives, extract files and copy the plugin directories into #{REDMINE_ROOT}/plugins.
+    
+    Or
 
-1. Install this plugin
+    * Change you current directory to your Redmine root directory:  
 
-        git clone https://github.com/Undev/redmine_customize.git plugins/redmine_customize
+            cd {REDMINE_ROOT}
+            
+      Copy the plugins from GitHub using the following commands:
+      
+            git clone https://github.com/Undev/redmine__select2 plugins/redmine__select2
+            git clone https://github.com/Undev/redmine_customize.git plugins/redmine_customize
+            
+2. Install the required gems using the command:  
 
-1. Install required gems
+        bundle install  
 
-        bundle install
+    * In case of bundle install errors, remove the Gemfile.lock file, update the local package index and install the required dependencies. Then execute the bundle install command again:  
 
-1. Run plugin migrations
+            rm Gemfile.lock
+            sudo apt-get update
+            sudo apt-get install -y libxml2-dev libxslt-dev libpq-dev
+            bundle install
+            
+3. This plugin requires a migration. Run the following command to upgrade your database (make a database backup before):  
 
         bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 
-1. Restart Redmine
+4. Restart Redmine.
 
-## Customizations
+Now you should be able to see the plugins in **Administration > Plugins**.
+
+## Usage
+
+### Override UI strings with translations
+
+The Redmine Customization Plugin enables other plugins to override UI strings with localized strings. Patch to Redmine::I18n::Backend allows to load redmine core locale files first.
+Locales supplied by plugins can now override redmine translations
+
+* The Redmine administrator can add a custom text for the 'account approval pending' notice
+* The Redmine administrator can create links to be added to the top menu
+* Users can create custom buttons and minimize sidebar blocks
+* All projects become visible in the **Jump to a project** box
+* Users can get a URL for a new issue draft 
+* The plugin makes the selector in filters larger
+* When a user copies an issue, watchers of the issue are copied as well
+* Quotes are now inserted directly at the cursor's position in the issue note
+* Users can submit an issue by pressing Cmd+Enter on the issue form page
+* The plugin shows attachment descriptions on the issue page
+* The plugin highlights notes in the issue history when accessed by direct links
+* The plugin supports and preserves the project version sharing settings
+
+
+
+
 
 ### Allow other plugins to override translations
 
-Patch to Redmine::I18n::Backend allows to load redmine core locale files first.
-Locales supplied by plugins can now override redmine translations
+
 
 ### Make multiple select in filters bigger
 
@@ -52,6 +102,8 @@ All settings stored in user profile.
 
 ### Link to new issue with filled attributes
 
+
+with pre-filled attributes
 Added "Get url for this form" button on the new issue form.
 
 ### All visible projects in the jump box
@@ -89,10 +141,16 @@ For example: 'Call administrator (+55555555) for approve your account)'
 
 ## License
 
-Copyright (C) 2013 Undev.ru
+Copyright (c) 2015 Undev
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+http://www.apache.org/licenses/LICENSE-2.0
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
