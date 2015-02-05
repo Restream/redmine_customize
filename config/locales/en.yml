@@ -15,7 +15,7 @@ en:
   label_custom_button_new_values: "New values for the issue"
   label_copy_relations: "Copy relations"
 
-  label_get_url: 'Get the URL for this form'
+  label_get_url: 'Get the URL for this issue'
   label_last_updated_by: 'Last updated by'
 
   text_manage_custom_buttons: "Manage custom buttons for issue pages"
