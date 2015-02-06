@@ -29,4 +29,4 @@ en:
   field_image: "Icon"
   field_hide_when_nothing_change: "Hide the button if no changes can be made"
 
-  custom_notice_account_pending: "Text to be displayed to users after registration (before approval by admin)"
+  custom_notice_account_pending: "Text to display to users after registration (before approval by admin)"
