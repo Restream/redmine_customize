@@ -5,18 +5,17 @@
 
 This plugin provides a number of useful features for Redmine customization.
 
-* This plugin enables other plugins to override UI strings with localized strings
-* The Redmine administrator can add a custom text for the 'account approval pending' notice
-* The Redmine administrator can create links to be added to the top menu
-* Users can create custom buttons and minimize sidebar blocks
-* All projects become visible in the **Jump to a project** box
-* Users can get a URL for a new issue draft 
+* This plugin enables other plugins to override the existing Redmine translations
+* The Redmine administrator can set a custom account approval notice text and add top menu links
+* Users can create custom buttons and collapse sidebar blocks
 * The plugin makes the selector in filters larger
-* When a user copies an issue, watchers of the issue are copied as well
-* Quotes are now inserted directly at the cursor's position in the issue note
-* Users can submit an issue by pressing Cmd+Enter on the issue form page
-* The plugin shows attachment descriptions on the issue page
-* The plugin highlights notes in the issue history when accessed by direct links
+* The **Jump to a project** box has an improved design and shows all projects
+* Users can get a URL for a new issue draft
+* When an issue is copied, watchers and related issues are copied as well
+* Quotes are inserted at the cursor position in the issue note
+* Users can submit issues by pressing Command+Enter
+* The plugin shows attached file descriptions in the issue history
+* The plugin highlights notes accessed by direct links
 * The plugin supports and preserves the project version sharing settings
 
 ## Compatibility
@@ -60,84 +59,111 @@ Now you should be able to see the plugins in **Administration > Plugins**.
 
 ## Usage
 
-### Override UI strings with translations
+### Override Redmine Translations
 
-The Redmine Customization Plugin enables other plugins to override UI strings with localized strings. Patch to Redmine::I18n::Backend allows to load redmine core locale files first.
-Locales supplied by plugins can now override redmine translations
+The Redmine Customization Plugin enables other plugins to override the existing translations with custom localized strings. This is possible due to the patch to Redmine::I18n::Backend, which allows loading Redmine core locale files before the plugin locale files.
 
-* The Redmine administrator can add a custom text for the 'account approval pending' notice
-* The Redmine administrator can create links to be added to the top menu
-* Users can create custom buttons and minimize sidebar blocks
-* All projects become visible in the **Jump to a project** box
-* Users can get a URL for a new issue draft 
-* The plugin makes the selector in filters larger
-* When a user copies an issue, watchers of the issue are copied as well
-* Quotes are now inserted directly at the cursor's position in the issue note
-* Users can submit an issue by pressing Cmd+Enter on the issue form page
-* The plugin shows attachment descriptions on the issue page
-* The plugin highlights notes in the issue history when accessed by direct links
-* The plugin supports and preserves the project version sharing settings
+### Set Custom Account Approval Notice Text
 
+The plugin enables the Redmine administrator to set a custom text for the account approval pending notice.
 
+To do this, go to **Administration > Redmine customize settings**, enter the text in the corresponding field in the **Account approval notice** section and click **Apply**.  
+![administration section](customize_1.PNG)  
+![approval pending text](customize_2.PNG)
 
+### Create Top Menu Links
 
+The plugin enables the Redmine administrator to add links to the top menu in Redmine.
 
-### Allow other plugins to override translations
+To add a link to the top menu, go to **Administration > Redmine customize settings**.  
+![administration section](customize_1.PNG) 
 
+In the **Top menu links** section, click **Add**.  
+![add a top menu link](customize_3.PNG)
 
+Enter the link text, URL and title (optional) and click **Apply**.  
+![add a link](customize_4.PNG)
 
-### Make multiple select in filters bigger
+Now the link will be displayed at the top menu in Redmine.  
+![top menu link added](customize_5.PNG)
 
-Make multiple select in filters bigger by adding some css.
+### Create Custom Buttons
 
-### Custom buttons
+The plugin enables Redmine users to add and configure their own buttons to update issues. The Redmine Administrator can also create buttons for all users (public buttons).
 
-You can define your own (admin can make public) buttons for useful issue updates.
-Buttons added to issue edit form, context menu and bulk edit form.
+To add a custom button, go to **My account** and click **Manage custom buttons for issue pages** in the **Custom buttons** section.  
+![custom buttons section](customize_6.PNG)
 
-### Allow to hide sidebar blocks
+Then click **New custom button**.  
+![new custom button](customize_7.PNG)
 
-Blocks in the sidebar can be hidden or showed individually.
-All settings stored in user profile.
+Specify the button name, select an icon and configure the button as needed.
 
-### Link to new issue with filled attributes
+In the **Show in the following cases** section, specify the conditions for displaying the button. You can select to show the button in certain projects, for certain trackers, issue statuses, categories, authors, assignees and roles. To hide the button if the values it is supposed to change are already set, select the **Hide the button if no changes can be made** check box.
 
+In the **New values for the issue** section, select the target values that should be set when the button is clicked.
 
-with pre-filled attributes
-Added "Get url for this form" button on the new issue form.
+![save custom button](customize_8.PNG)
 
-### All visible projects in the jump box
+Click **Save** to create the button.
 
-Added all visible projects to the jump box. Change standard select to nice select2.
+Now the button will be displayed on the issue page.
+![button added](customize_10.PNG)
 
-### Insert quote at the cursor
+To edit or delete a custom button, click **My account** and then click **Manage custom buttons for issue pages**.  
+![manage custom buttons](customize_9.PNG)
 
-Insert quote at the cursor when write comments instead replacing existing text
+### Collapse Sidebar Blocks
 
-### Show description for attachment
+The plugin enables users to collapse and expand certain sidebar blocks using the **plus/minus** controls.  
+![collapse sidebar blocks](customize_11.PNG)
 
-Show description for attachment in the issue history
+The plugin saves the preferred selection for future sessions.
 
-### Highlight note in history
+### Enlarge Filter Selectors
 
-Highlight note in history when open links with specific note (.../issues/XXX#note-YYY)
+The plugin enables users to collapse and expand the selectors in issue filters using the **plus/minus** controls.
+![enlarge filter selectors](customize_14.PNG)
 
-### Copy watchers when copying issue
+### Improve Jump to Project Box
 
-Copy watchers and related issues when copying issue
+This plugin improves the design of the **Jump to a project** box and makes it display all projects.  
+![jump to a project](customize_12.PNG)
+
+### Create Issue Drafts
+
+The plugin enables users to create an issue draft with pre-filled attributes, and get its URL without the need to save the issue.
+
+To create the issue draft and get its URL, click **Get the URL for this issue**
+![get the URL](customize_13.PNG)
+
+In the pop-up window, copy the URL in the **URL for this form** field and click **OK**. This URL can be sent to other users who will make the necessary changes and save the issue.
+
+### Create Exact Issue Copies
+
+When a user makes a copy of an issue, the plugin ensures that the watchers and related issues are copied as well.
+
+### Insert Quotes Safely
+
+The plugin enables users to insert quotes directly at the cursor position in the issue note without replacing the text they may have already added.
+
+### Submit Issues Quickly
+
+The plugin enables users to submit an issue by pressing Command+Enter (Ctrl+Enter in Windows and Linux) on the issue form page. 
+
+### Show Attachment Descriptions in Issue Notes
+
+The plugin shows the descriptions of the attached files in the issue history.
+![attached file description](customize_15.PNG)
+
+### Highlight Notes in Issue History
+
+The plugin highlights a note in the issue history when it is accessed by a direct link ((.../issues/XXX#note-YYY)
+![highlighted issue note](customize_16.PNG)
 
 ### Respect version's sharing settings
-
+* The plugin supports and preserves the project version sharing settings
 Fixed links in version overview. Find issues according to version sharing settings (http://www.redmine.org/projects/redmine/wiki/RedmineProjectSettings#Versions)
-
-### Submit form by Cmd+Enter
-
-Submit form when updating issue or created one by hitting cmd+Enter (ctrl+Enter on Win, linux).
-
-### Custom 'notice account pending' text
-
-On the plugin settings page administrator can set custom text for 'notice account pending' text.
-For example: 'Call administrator (+55555555) for approve your account)'
 
 ## License
 
