@@ -1,7 +1,7 @@
 en:
   redmine_customize_settings: "Account approval notice"
 
-  label_top_menu_items: "Links to be added to the top menu"
+  label_top_menu_items: "Top menu links"
   label_top_menu_item_body: "Link text"
   label_top_menu_item_url: "URL"
   label_top_menu_item_title: "Title"
