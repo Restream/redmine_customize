@@ -5,19 +5,18 @@
 
 This plugin provides a number of useful features for Redmine customization.
 
-* This plugin enables other plugins to override the existing Redmine translations
-* The Redmine administrator can set a custom account approval notice text and add top menu links
-* Users can create custom buttons and collapse sidebar blocks
-* The plugin makes the selector in filters larger
-* The 'Jump to a project' box has an improved design and shows all projects
-* Users can get a URL for a new issue draft
-* When an issue is copied, watchers and related issues are copied as well
-* Quotes are inserted at the cursor position in the issue note
-* Users can submit issues by pressing Command+Enter
-* The plugin shows attached file descriptions in the issue history
-* The plugin highlights notes accessed by direct links
-
-* The plugin supports and preserves the project version sharing settings
+* This plugin enables other plugins to override the existing Redmine translations.
+* The Redmine administrator can set a custom account approval notice text and add top menu links.
+* Users can create custom buttons and collapse sidebar blocks.
+* The plugin makes the selector in filters larger.
+* The 'Jump to a project' box has an improved design and shows all projects.
+* Users can get a URL for a new issue draft.
+* When an issue is copied, watchers and related issues are copied as well.
+* Quotes are inserted at the cursor position in the issue note.
+* Users can submit issues by pressing Command+Enter.
+* The plugin shows attached file descriptions in the issue history.
+* The plugin highlights notes accessed by direct links.
+* The plugin fixes a Redmine error related to incorrect display of issues with a shared target version.
 
 ## Compatibility
 
@@ -62,9 +61,9 @@ Now you should be able to see the plugins in **Administration > Plugins**.
 
 ### Override Redmine Translations
 
-The Redmine Customization Plugin enables other plugins to override the existing translations with custom localized strings. This is possible due to the patch to Redmine::I18n::Backend, which allows loading Redmine core locale files before the plugin locale files.
+The Redmine Customization Plugin enables other plugins to override the existing translations with custom localized strings. This is possible due to the patch to **Redmine::I18n::Backend** which allows loading Redmine core locale files before the plugin locale files.
 
-### Set Custom Account Approval Notice Text
+### Customize Account Approval Notice Text
 
 The plugin enables the Redmine administrator to set a custom text for the account approval pending notice.
 
@@ -79,10 +78,7 @@ The plugin enables the Redmine administrator to add links to the top menu in Red
 To add a link to the top menu, go to **Administration > Redmine customize settings**.  
 ![administration section](customize_1.PNG) 
 
-In the **Top menu links** section, click **Add**.  
-![add a top menu link](customize_3.PNG)
-
-Enter the link text, URL and title (optional) and click **Apply**.  
+In the **Top menu links** section, click **Add**.  Enter the link text, URL and title (optional) and click **Apply**.  
 ![add a link](customize_4.PNG)
 
 Now the link will be displayed at the top menu in Redmine.  
@@ -101,7 +97,7 @@ Then click **New custom button**.
 Specify the button name, select an icon and configure the button as needed.  
 ![save custom button](customize_8.PNG)
 
-In the **Show in the following cases** section, specify the conditions for displaying the button. You can select to show the button in certain projects, for certain trackers, issue statuses, categories, authors, assignees and roles. 
+In the **Show in the following cases** section, specify the cases when the button should be displayed. You can select to show the button in certain projects, for certain trackers, issue statuses, categories, authors, assignees and roles. 
 
 To hide the button if the values it is supposed to change are already set, select the **Hide the button if no changes can be made** check box.
 
@@ -127,7 +123,7 @@ The plugin saves the preferred selection for future sessions.
 The plugin enables users to collapse and expand the selectors in issue filters using the **plus/minus** controls.
 ![enlarge filter selectors](customize_14.PNG)
 
-### Improve Jump to Project Box
+### Improve Jump to Project Box 
 
 This plugin improves the design of the **Jump to a project** box and makes it display all projects.  
 ![jump to a project](customize_12.PNG)
@@ -144,12 +140,12 @@ In the pop-up window, copy the URL in the **URL for this form** field and click 
 ### Create Exact Issue Copies
 
 When a user makes a copy of an issue, the plugin ensures that the issue watchers are copied as well The user can also enable the **Copy relations** check box to copy the related issues.  
-![copy relations](customize_19.PNG)
+![copy relations](customize_18.PNG)
 
 ### Insert Quotes Safely
 
 The plugin enables users to insert quotes directly at the cursor position in the issue note without replacing the text they may have already added.
-![insert a quote](customize_18.PNG)
+![insert a quote](customize_17.PNG)
 
 ### Submit Issues Quickly
 
@@ -165,9 +161,11 @@ The plugin shows the descriptions of the attached files in the issue history.
 The plugin highlights a note in the issue history when it is accessed by a direct link ((.../issues/XXX#note-YYY)
 ![highlighted issue note](customize_16.PNG)
 
-### Respect version's sharing settings
-* The plugin supports and preserves the project version sharing settings
-Fixed links in version overview. Find issues according to version sharing settings (http://www.redmine.org/projects/redmine/wiki/RedmineProjectSettings#Versions)
+### Fix Shared Version Issue
+
+The plugin fixes a Redmine error when issues with a [shared target version](http://www.redmine.org/projects/redmine/wiki/RedmineProjectSettings#Versions) are not displayed correctly on the version overview page. 
+
+*This was fixed in Redmine 2.6.*
 
 ## License
 
