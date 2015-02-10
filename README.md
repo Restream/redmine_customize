@@ -49,7 +49,7 @@ This plugin version is compatible only with Redmine 2.1.x and later.
             sudo apt-get install -y libxml2-dev libxslt-dev libpq-dev
             bundle install
             
-3. This plugin requires a migration. Run the following command to upgrade your database (make a database backup before):  
+3. These plugins require a migration. Run the following command to upgrade your database (make a database backup before):  
 
         bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 
