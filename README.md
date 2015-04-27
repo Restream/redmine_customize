@@ -167,6 +167,10 @@ The plugin fixes a Redmine error when issues with a [shared target version](http
 
 *This was fixed in Redmine 2.6.*
 
+## Maintainers
+
+Danil Tashkinov, [github.com/nodecarter](https://github.com/nodecarter)
+
 ## License
 
 Copyright (c) 2015 Undev
