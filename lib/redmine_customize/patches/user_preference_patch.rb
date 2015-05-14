@@ -17,6 +17,15 @@ module RedmineCustomize::Patches
     def collapsed_sidebar_blocks
       self[:sidebar_blocks] || []
     end
+
+    def hide_public_projects
+      self[:hide_public_projects]
+    end
+
+    def hide_public_projects=(value)
+      self[:hide_public_projects] = value
+    end
+
   end
 end
 

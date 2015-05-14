@@ -1,0 +1,3 @@
+<% if User.current.admin? %>
+  <p><%= pref_fields.check_box :hide_public_projects %></p>
+<% end %>

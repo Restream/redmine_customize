@@ -167,6 +167,10 @@ The plugin fixes a Redmine error when issues with a [shared target version](http
 
 *This was fixed in Redmine 2.6.*
 
+### Hide public projects for specific users
+
+The plugin can hide public projects for specific users. 
+
 ## Maintainers
 
 Danil Tashkinov, [github.com/nodecarter](https://github.com/nodecarter)

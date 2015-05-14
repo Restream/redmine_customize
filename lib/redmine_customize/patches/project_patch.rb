@@ -5,6 +5,10 @@ module RedmineCustomize::Patches::ProjectPatch
 
   included do
     has_many :public_drafts
+
+    class << self
+      alias_method_chain :allowed_to_condition, :hide_public
+    end
   end
 
   def cached_children
@@ -32,6 +36,10 @@ module RedmineCustomize::Patches::ProjectPatch
       roots
     end
 
+    def allowed_to_condition_with_hide_public(user, permission, options={})
+      options.merge!(:member => true) if user.pref[:hide_public_projects] == '1'
+      allowed_to_condition_without_hide_public user, permission, options
+    end
   end
 end
 
