@@ -25,6 +25,8 @@ This plugin version is compatible only with Redmine 2.1.x and later.
 
 ## Installation
 
+This plugin requires Redmine Select2 Plugin to be installed.
+
 1. To install the plugins
     * Download the .ZIP archives, extract files and copy the plugin directories into #{REDMINE_ROOT}/plugins.
     
