@@ -17,6 +17,7 @@ This plugin provides a number of useful features for Redmine customization.
 * The plugin shows attached file descriptions in the issue history.
 * The plugin highlights notes accessed by direct links.
 * The plugin fixes a Redmine error related to incorrect display of issues with a shared target version.
+* The plugin adds a sibling section to issue show page. 
 
 ## Compatibility
 

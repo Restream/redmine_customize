@@ -1,0 +1,22 @@
+<% if (siblings = @issue.siblings.visible.sort_by(&:lft)).any? %>
+  <hr />
+  <div id="issue_tree">
+    <div class="contextual">
+      <%= link_to_new_subtask(@issue.parent) if User.current.allowed_to?(:manage_subtasks, @project) %>
+    </div>
+    <p><strong><%=l(:label_sibling_plural)%></strong></p>
+    <form>
+    <table class="list issues">
+      <% siblings.each do |sibling| %>
+        <tr class="issue hascontextmenu" id="sibling-<%= sibling.id %>">
+          <td class="checkbox"><%= check_box_tag('ids[]', sibling.id, false, :id => nil) %></td>
+          <td class="subject"><%= link_to_issue(sibling, :truncate => 60, :project => false) %></td>
+          <td class="status"><%=h sibling.status.name %></td>
+          <td><%= link_to_user(sibling.assigned_to) %></td>
+          <td><%= progress_bar(sibling.done_ratio, :width => '80px') %></td>
+        </tr>
+      <% end %>
+    </table>
+    </form>
+  </div>
+<% end %>

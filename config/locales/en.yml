@@ -18,6 +18,8 @@ en:
   label_get_url: 'Get the URL for this issue'
   label_last_updated_by: 'Last updated by'
 
+  label_sibling_plural: "Siblings (same parent)"
+
   text_manage_custom_buttons: "Manage custom buttons for issue pages"
   text_custom_button_new_values_can_not_be_empty: "New values cannot be empty"
   text_custom_button_created: "Custom button created."
