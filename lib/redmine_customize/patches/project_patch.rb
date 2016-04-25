@@ -36,9 +36,9 @@ module RedmineCustomize::Patches::ProjectPatch
       roots
     end
 
-    def allowed_to_condition_with_hide_public(user, permission, options={})
+    def allowed_to_condition_with_hide_public(user, permission, options={}, &block)
       options.merge!(:member => true) if user.pref[:hide_public_projects] == '1'
-      allowed_to_condition_without_hide_public user, permission, options
+      allowed_to_condition_without_hide_public user, permission, options, &block
     end
   end
 end
