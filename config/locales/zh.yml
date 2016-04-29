@@ -1,0 +1,35 @@
+zh:
+  redmine_customize_settings: "注册账号核准提示信息"
+
+  label_top_menu_items: "顶部菜单链接"
+  label_top_menu_item_body: "链接标题"
+  label_top_menu_item_url: "URL"
+  label_top_menu_item_title: "标题"
+
+  label_custom_button_new: "新增自定义按钮"
+  label_custom_button_edit: "编辑自定义按钮"
+  label_custom_button: "自定义按钮"
+  label_custom_buttons_plural: "自定义按钮"
+  label_no_custom_buttons: "暂未添加自定义按钮。"
+  label_custom_button_filter: "在以下情况下显示按钮"
+  label_custom_button_new_values: "自定义按钮对应值"
+  label_copy_relations: "复制关联关系"
+
+  label_get_url: '获取该问题的URL地址'
+  label_last_updated_by: '最近更新'
+
+  label_sibling_plural: "同级问题 (同一个父问题)"
+
+  text_manage_custom_buttons: "管理问题页上的自定义按钮。"
+  text_custom_button_new_values_can_not_be_empty: "自定义按钮对应值不能为空！"
+  text_custom_button_created: "自定义按钮已创建。"
+  text_custom_button_updated: "自定义按钮已更新。"
+  text_custom_button_destroyed: "自定义按钮已删除。"
+
+  new_custom_button: "新增自定义按钮"
+
+  field_image: "图标"
+  field_hide_when_nothing_change: "若问题无变更则隐藏按钮。"
+  field_hide_public_projects: "隐藏与用户无关的项目（用户非项目中成员）"
+
+  custom_notice_account_pending: "未核准的注册用户提示信息(在用户通过管理员核准之前显示的相关信息)"
