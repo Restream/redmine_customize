@@ -28,7 +28,3 @@ module RedmineCustomize::Patches
 
   end
 end
-
-unless UserPreference.included_modules.include?(RedmineCustomize::Patches::UserPreferencePatch)
-  UserPreference.send :include, RedmineCustomize::Patches::UserPreferencePatch
-end

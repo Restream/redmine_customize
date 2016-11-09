@@ -1,7 +1,7 @@
 # Redmine Customization Plugin
 
-[![Build Status](https://travis-ci.org/Undev/redmine_customize.png)](https://travis-ci.org/Undev/redmine_customize)
-[![Code Climate](https://codeclimate.com/github/Undev/redmine_customize.png)](https://codeclimate.com/github/Undev/redmine_customize)
+[![Build Status](https://travis-ci.org/Restream/redmine_customize.svg?branch=master)](https://travis-ci.org/Restream/redmine_customize)
+[![Code Climate](https://codeclimate.com/github/Restream/redmine_customize.svg)](https://codeclimate.com/github/Restream/redmine_customize)
 
 This plugin provides a number of useful features for Redmine customization.
 
@@ -21,7 +21,7 @@ This plugin provides a number of useful features for Redmine customization.
 
 ## Compatibility
 
-This plugin version is compatible only with Redmine 2.1.x and later.
+This plugin version is compatible only with Redmine 3.x and later.
 
 ## Installation
 
@@ -38,8 +38,8 @@ This plugin requires Redmine Select2 Plugin to be installed.
             
       Copy the plugins from GitHub using the following commands:
       
-            git clone https://github.com/Undev/redmine__select2.git plugins/redmine__select2
-            git clone https://github.com/Undev/redmine_customize.git plugins/redmine_customize
+            git clone https://github.com/Restream/redmine__select2.git plugins/redmine__select2
+            git clone https://github.com/Restream/redmine_customize.git plugins/redmine_customize
             
 2. Install the required gems using the command:  
 
@@ -180,7 +180,7 @@ Danil Tashkinov, [github.com/nodecarter](https://github.com/nodecarter)
 
 ## License
 
-Copyright (c) 2015 Undev
+Copyright (c) 2015 Restream
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

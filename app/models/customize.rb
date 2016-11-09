@@ -14,7 +14,7 @@ class Customize
     end
 
     def default_settings
-      { :top_menu_items => [] }
+      { top_menu_items: [] }
     end
 
   end

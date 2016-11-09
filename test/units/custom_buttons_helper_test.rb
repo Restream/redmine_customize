@@ -2,8 +2,8 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class CustomButtonsHelperTest < ActiveSupport::TestCase
   fixtures :projects, :trackers, :issue_statuses, :issue_categories, :users,
-           :issues, :members, :roles, :member_roles, :enumerations,
-           :enabled_modules
+    :issues, :members, :roles, :member_roles, :enumerations,
+    :enabled_modules
 
   include CustomButtonsHelper
 
@@ -25,15 +25,15 @@ class CustomButtonsHelperTest < ActiveSupport::TestCase
   # User(3) 1, 1:[5:[6], 3, 4]
 
   def test_subproject_of_private_project_is_available
-    ptree = project_ids_options_for_select
+    ptree     = project_ids_options_for_select
     exp_ptree = [
-        {:id => 1, :text => 'eCookbook'},
-        {:children =>
-             [{:children => [{:id => 6, :text => 'Child of private child'}],
-               :text => 'Private child of eCookbook'},
-              {:id => 3, :text => 'eCookbook Subproject 1'},
-              {:id => 4, :text => 'eCookbook Subproject 2'}],
-         :text => 'eCookbook'}
+      { id: 1, text: 'eCookbook' },
+      { children:
+              [{ children: [{ id: 6, text: 'Child of private child' }],
+                text:      'Private child of eCookbook' },
+                { id: 3, text: 'eCookbook Subproject 1' },
+                { id: 4, text: 'eCookbook Subproject 2' }],
+        text: 'eCookbook' }
     ]
     assert_equal exp_ptree, ptree
   end

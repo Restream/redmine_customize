@@ -4,5 +4,5 @@ class DraftBase < ActiveRecord::Base
   attr_accessible :values
   serialize :values, Hash
 
-  validates :project, :presence => true
+  validates :project, presence: true
 end

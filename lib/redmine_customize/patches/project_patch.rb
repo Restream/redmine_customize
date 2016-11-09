@@ -1,4 +1,4 @@
-require 'project'
+require_dependency 'project'
 
 module RedmineCustomize::Patches::ProjectPatch
   extend ActiveSupport::Concern
@@ -20,7 +20,7 @@ module RedmineCustomize::Patches::ProjectPatch
     def cache_children(projects)
       # first clear cache
       projects.each { |p| p.cached_children.clear }
-      roots = []
+      roots     = []
       ancestors = []
       projects.sort_by(&:lft).each do |project|
         while ancestors.any? && !project.is_descendant_of?(ancestors.last)
@@ -37,12 +37,8 @@ module RedmineCustomize::Patches::ProjectPatch
     end
 
     def allowed_to_condition_with_hide_public(user, permission, options={}, &block)
-      options.merge!(:member => true) if user.pref[:hide_public_projects] == '1'
+      options.merge!(member: true) if user.pref[:hide_public_projects] == '1'
       allowed_to_condition_without_hide_public user, permission, options, &block
     end
   end
-end
-
-unless Project.included_modules.include? RedmineCustomize::Patches::ProjectPatch
-  Project.send :include, RedmineCustomize::Patches::ProjectPatch
 end

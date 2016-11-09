@@ -1,12 +1,12 @@
 class CustomButtonsController < ApplicationController
   before_filter :require_login
   before_filter :get_user
-  before_filter :watch_is_public, :only => [:create, :update]
+  before_filter :watch_is_public, only: [:create, :update]
 
   helper :custom_fields
 
   def index
-    @custom_buttons = @user.custom_buttons
+    @custom_buttons = @user.custom_buttons.by_position
   end
 
   def new
@@ -21,7 +21,7 @@ class CustomButtonsController < ApplicationController
       redirect_to custom_buttons_path
     else
       get_collections_for_select
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -37,7 +37,7 @@ class CustomButtonsController < ApplicationController
       redirect_to custom_buttons_path
     else
       get_collections_for_select
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
@@ -55,21 +55,18 @@ class CustomButtonsController < ApplicationController
   end
 
   def get_collections_for_select
-    @projects = Project.where(Project.allowed_to_condition(@user, :edit_issues))
-    @trackers = Tracker.sorted
-    @statuses = IssueStatus.sorted
-    @categories = IssueCategory.includes(:project).
-        order('projects.name, issue_categories.name')
-    @users = User.active.order(User.fields_for_order_statement).to_a
+    @projects          = Project.where(Project.allowed_to_condition(@user, :edit_issues))
+    @trackers          = Tracker.sorted
+    @statuses          = IssueStatus.sorted
+    @categories        = IssueCategory.includes(:project).
+      order('projects.name, issue_categories.name')
+    @users             = User.active.order(User.fields_for_order_statement).to_a
     @users_with_author = [
-        Hashie::Mash.new(:name => l(:field_author),
-                         :id => RedmineCustomize::USER_AUTHOR),
-        Hashie::Mash.new(:name => l(:label_me),
-                         :id => RedmineCustomize::USER_ME),
-        Hashie::Mash.new(:name => l(:label_last_updated_by),
-                         :id => RedmineCustomize::USER_LAST_UPDATED_BY)
+      Hashie::Mash.new(name: l(:field_author), id: RedmineCustomize::USER_AUTHOR),
+      Hashie::Mash.new(name: l(:label_me), id: RedmineCustomize::USER_ME),
+      Hashie::Mash.new(name: l(:label_last_updated_by), id: RedmineCustomize::USER_LAST_UPDATED_BY)
     ] + @users
-    @roles = Role.givable
+    @roles             = Role.givable
   end
 
   def watch_is_public

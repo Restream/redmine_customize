@@ -3,8 +3,8 @@ insertTextAtCursor('issue_notes', "<%= raw escape_javascript(@content) %>");
   # when quoting a private journal, check the private checkbox
   if @journal && @journal.private_notes?
 %>
-$('#issue_private_notes').attr('checked', true);
+jql('#issue_private_notes').attr('checked', true);
 <% end %>
 
 showAndScrollTo("update", "notes");
-$('#notes').scrollTop = $('#notes').scrollHeight - $('#notes').clientHeight;
+jql('#notes').scrollTop = jql('#notes').scrollHeight - jql('#notes').clientHeight;

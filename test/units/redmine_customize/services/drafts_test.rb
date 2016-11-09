@@ -2,12 +2,12 @@ require File.expand_path('../../../../test_helper', __FILE__)
 
 class RedmineCustomize::Services::DraftsTest < ActiveSupport::TestCase
   fixtures :projects, :trackers, :issue_statuses, :issue_categories, :users,
-           :issues, :members, :roles, :member_roles, :enumerations,
-           :enabled_modules, :journals, :journal_details
+    :issues, :members, :roles, :member_roles, :enumerations,
+    :enabled_modules, :journals, :journal_details
 
   def setup
     @project = Project.find(1)
-    @values = { :subject => 'test' }
+    @values  = { subject: 'test' }
   end
 
   def test_create_public_draft
@@ -27,7 +27,7 @@ class RedmineCustomize::Services::DraftsTest < ActiveSupport::TestCase
 
   def test_url_for_return_right_url
     public_draft = RedmineCustomize::Services::Drafts.create_public_draft(@project, @values)
-    url = RedmineCustomize::Services::Drafts.new_issue_urlc(public_draft.hex_key)
+    url          = RedmineCustomize::Services::Drafts.new_issue_urlc(public_draft.hex_key)
     expected_url = "/projects/ecookbook/issues/new?draft=#{public_draft.hex_key}"
     assert_equal expected_url, url
   end

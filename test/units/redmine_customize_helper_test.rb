@@ -2,8 +2,8 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class RedmineCustomizeHelperTest < ActiveSupport::TestCase
   fixtures :projects, :trackers, :issue_statuses, :issue_categories, :users,
-           :issues, :members, :roles, :member_roles, :enumerations,
-           :enabled_modules
+    :issues, :members, :roles, :member_roles, :enumerations,
+    :enabled_modules
 
   include Redmine::I18n
   include RedmineCustomizeHelper
@@ -16,7 +16,7 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
 
   def setup
     stubs(:current_menu_item).returns(nil)
-    @version = Version.new(:name => 'test', :sharing => 'none')
+    @version         = Version.new(name: 'test', sharing: 'none')
     @version.project = Project.find(5)
   end
 
@@ -33,61 +33,61 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
 
   def test_jumpbox_for_member
     User.current = User.find(2)
-    ptree = serialize_project_tree(project_ids_for_jump_box)
-    exp_ptree = serialize_project_tree(
-        [
-            {:text => 'My projects', :children =>
+    ptree        = serialize_project_tree(project_ids_for_jump_box)
+    exp_ptree    = serialize_project_tree(
+      [
+        { text: 'My projects', children:
                 [
-                    {:id => 1, :text => 'eCookbook', :children =>
+                  { id: 1, text: 'eCookbook', children:
                         [
-                            {:id => 5, :text => 'Private child of eCookbook'}
+                          { id: 5, text: 'Private child of eCookbook' }
                         ]
-                    },
-                    {:id => 2, :text => 'OnlineStore'}
+                  },
+                  { id: 2, text: 'OnlineStore' }
                 ],
-            },
-            {
-                :text => 'Projects', :children =>
+        },
+        {
+          text: 'Projects', children:
                 [
-                    {:id => 1, :text => 'eCookbook', :children =>
+                  { id: 1, text: 'eCookbook', children:
                         [
-                            {:id => 5, :text => 'Private child of eCookbook', :children =>
+                          { id: 5, text: 'Private child of eCookbook', children:
                                 [
-                                    {:id => 6, :text => 'Child of private child'}
+                                  { id: 6, text: 'Child of private child' }
                                 ]
-                            },
-                            {:id => 3, :text => 'eCookbook Subproject 1'},
-                            {:id => 4, :text => 'eCookbook Subproject 2'},
+                          },
+                          { id: 3, text: 'eCookbook Subproject 1' },
+                          { id: 4, text: 'eCookbook Subproject 2' },
                         ],
-                    },
-                    {:id => 2, :text => 'OnlineStore'}
+                  },
+                  { id: 2, text: 'OnlineStore' }
                 ],
-            }
-        ])
+        }
+      ])
     assert_equal exp_ptree, ptree
   end
 
   def test_jumpbox_for_non_member
     User.current = User.find(3)
-    ptree = serialize_project_tree(project_ids_for_jump_box)
-    exp_ptree = serialize_project_tree(
-        [
-            {:text => 'My projects', :children => [{:id => 1, :text => 'eCookbook'}]},
-            {:text => 'Projects', :children =>
+    ptree        = serialize_project_tree(project_ids_for_jump_box)
+    exp_ptree    = serialize_project_tree(
+      [
+        { text: 'My projects', children: [{ id: 1, text: 'eCookbook' }] },
+        { text: 'Projects', children:
                 [
-                    {:id => 1, :text => 'eCookbook', :children =>
+                  { id: 1, text: 'eCookbook', children:
                         [
-                            {:text => 'Private child of eCookbook', :children =>
-                                [
-                                    {:id => 6, :text => 'Child of private child'}
-                                ]
-                            },
-                            {:id => 3, :text => 'eCookbook Subproject 1'},
-                            {:id => 4, :text => 'eCookbook Subproject 2'},
+                          { text: 'Private child of eCookbook', children:
+                                  [
+                                    { id: 6, text: 'Child of private child' }
+                                  ]
+                          },
+                          { id: 3, text: 'eCookbook Subproject 1' },
+                          { id: 4, text: 'eCookbook Subproject 2' },
                         ],
-                    }],
-            }
-        ])
+                  }],
+        }
+      ])
     assert_equal exp_ptree, ptree
   end
 

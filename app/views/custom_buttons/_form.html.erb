@@ -1,4 +1,4 @@
-<%= labelled_form_for(custom_button, :url => url) do |f| %>
+<%= labelled_form_for(custom_button, url: url) do |f| %>
   <%= error_messages_for 'custom_button' %>
 
   <div class="box tabular splitcontent custom-button-form">
@@ -11,8 +11,13 @@
           <p><%= f.check_box :is_public %></p>
         <% end %>
 
-        <p><%= f.text_field :name, :required => true %></p>
+        <p><%= f.text_field :name, required: true %></p>
         <p><%= f.text_field :title %></p>
+
+        <p id="custom-button-icon" class="select2-field">
+          <%= label_tag l(:field_icon) %>
+          <%= f.select :icon, options_for_select(CustomButton::FA, f.object.icon), include_blank: true  %>
+        </p>
 
       </fieldset>
       <fieldset>
@@ -22,88 +27,77 @@
 
         <p id="custom-button-projects" class="select2-field">
           <%= label_tag l(:field_project) %>
-          <%= f.hidden_field :project_ids,
-                             :data => { :options => project_ids_options_for_select } %>
+          <%= select_tag 'custom_button[project_ids]', '',
+              id:   'custom_button_project_ids',
+              data: { options: project_ids_options_for_select } %>
         </p>
 
         <p id="custom-button-trackers" class="select2-field">
           <%= label_tag l(:field_tracker) %>
           <%= f.hidden_field :tracker_ids,
-                             :data => { :options => select2_options(@trackers) } %>
+              data: { options: select2_options(@trackers) } %>
         </p>
 
         <p id="custom-button-statuses" class="select2-field">
           <%= label_tag l(:field_status) %>
           <%= f.hidden_field :status_ids,
-                             :data => { :options => select2_options(@statuses) } %>
+              data: { options: select2_options(@statuses) } %>
         </p>
 
         <p id="custom-button-categories" class="select2-field">
           <%= label_tag l(:field_category) %>
           <%= f.hidden_field :category_ids,
-                             :data => { :options =>
-            @categories.map { |c| { :text => "#{c.name} (#{c.project})", :id => c.id } } } %>
+              data: { options:
+                  @categories.map { |c| { text: "#{c.name} (#{c.project})", id: c.id } } } %>
         </p>
 
         <p id="custom-button-authors" class="select2-field">
           <%= label_tag l(:field_author) %>
           <%= f.hidden_field :author_ids,
-                             :data => { :options => select2_options(@users) } %>
+              data: { options: select2_options(@users) } %>
         </p>
 
         <p id="custom-button-assigned_tos" class="select2-field">
           <%= label_tag l(:field_assigned_to) %>
           <%= f.hidden_field :assigned_to_ids,
-                             :data => { :options => select2_options(@users) } %>
+              data: { options: select2_options(@users) } %>
         </p>
 
         <p id="custom-button-assigned_to_roles" class="select2-field">
           <%= label_tag l(:field_assigned_to_role) %>
           <%= f.hidden_field :assigned_to_role_ids,
-                             :data => { :options => select2_options(@roles) } %>
-        </p>
-
-        <p>
-          <%= label_tag l(:field_image) %>
-
-          <% CustomButton::CUSTOM_ICONS.each do |icon| %>
-            <%= label_tag "custom_button_image_#{icon}", nil,
-                          :class => "icon custom-icon-#{icon}",
-                          :style => 'margin-left: 0px; width: 20px; margin-right: 30px;' do %>
-              <%= f.radio_button :image, icon %>
-            <% end %>
-          <% end %>
+              data: { options: select2_options(@roles) } %>
         </p>
 
       </fieldset>
     </div>
     <div class="splitcontentright">
-      <fieldset>
+      <fieldset class="new-values">
         <legend><%= l(:label_custom_button_new_values) %></legend>
 
         <p><%= f.label_for_field :status %><%= select_tag 'custom_button[new_values][status_id]',
-                          options_for_select(@statuses.map { |s| [s.name, s.id] },
-                                             custom_button.new_values['status_id']),
-                          :include_blank => true %></p>
+            options_for_select(@statuses.map { |s| [s.name, s.id] },
+                custom_button.new_values['status_id']),
+            include_blank: true %></p>
 
         <p><%= f.label_for_field :done_ratio %><%= select_tag 'custom_button[new_values][done_ratio]',
-                          options_for_select((0..10).to_a.collect { |r| ["#{r*10} %", r*10] },
-                                             custom_button.new_values['done_ratio']),
-                          :include_blank => true %></p>
+            options_for_select((0..10).to_a.collect { |r| ["#{r*10} %", r*10] },
+                custom_button.new_values['done_ratio']),
+            include_blank: true %></p>
 
         <p><%= f.label_for_field :category %><%= select_tag 'custom_button[new_values][category_id]',
-                          options_for_select(@categories.map { |c| ["#{c.name} (#{c.project})", c.id] },
-                                             custom_button.new_values['category_id']),
-                          :include_blank => true %></p>
+            options_for_select(@categories.map { |c| ["#{c.name} (#{c.project})", c.id] },
+                custom_button.new_values['category_id']),
+            include_blank: true %></p>
 
         <p><%= f.label_for_field :assigned_to %><%= select_tag 'custom_button[new_values][assigned_to_id]',
-                          options_for_select(@users_with_author.map { |u| [u.name, u.id] },
-                                             custom_button.new_values['assigned_to_id']),
-                          :include_blank => true %></p>
+            options_for_select(@users_with_author.map { |u| [u.name, u.id] },
+                custom_button.new_values['assigned_to_id']),
+            include_blank: true %></p>
 
         <p><%= f.label_for_field :notes %><%= text_area_tag 'custom_button[new_values][notes]',
-                          custom_button.new_values['notes'],
-                          :cols => 60 %></p>
+            custom_button.new_values['notes'],
+            cols: 60 %></p>
 
         <% custom_button.custom_field_values.each do |value| %>
           <p><%= wor_custom_field_tag_with_label :custom_button, value %></p>
@@ -116,4 +110,4 @@
   <%= link_to l(:button_cancel), custom_buttons_path %>
 <% end %>
 
-<%= javascript_include_tag 'custom_buttons_form', :plugin => 'redmine_customize' %>
+<%= javascript_include_tag 'custom_buttons_form', plugin: 'redmine_customize' %>

@@ -4,8 +4,8 @@ class CustomizeTest < ActiveSupport::TestCase
 
   def test_add_item_to_the_top_menu
     body, url, title = 'link_body', 'http://example.com', 'link_title'
-    item_a = CustomMenuItem.new(body, url, title)
-    a = Customize.instance
+    item_a           = CustomMenuItem.new(body, url, title)
+    a                = Customize.instance
     a.top_menu_items << item_a
     a.save
     b = Customize.instance

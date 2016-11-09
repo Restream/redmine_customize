@@ -1,21 +1,21 @@
 require File.expand_path('../../test_helper', __FILE__)
 require 'issues_controller'
 
-class HidePublicProjectsTest < ActionController::IntegrationTest
+class HidePublicProjectsTest < ActionDispatch::IntegrationTest
   fixtures :projects, :users, :members, :member_roles, :roles,
-           :trackers,
-           :enabled_modules,
-           :versions,
-           :issue_statuses, :issue_categories, :issue_relations,
-           :enumerations,
-           :issues, :attachments
+    :trackers,
+    :enabled_modules,
+    :versions,
+    :issue_statuses, :issue_categories, :issue_relations,
+    :enumerations,
+    :issues, :attachments
 
   def setup
-    @user = User.find(8)
-    User.current = @user
+    @user                = User.find(8)
+    User.current         = @user
     @public_projects_ids = [1, 3, 4, 6]
     @member_projects_ids = [2, 5]
-    @all_projects_ids = (@public_projects_ids + @member_projects_ids).uniq.sort
+    @all_projects_ids    = (@public_projects_ids + @member_projects_ids).uniq.sort
   end
 
   def test_user_can_view_public_projects

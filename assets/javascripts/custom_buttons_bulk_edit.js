@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jql(document).ready(function($){
   $("div.contextual").on("click", "a.custom-button", function(e){
     e.preventDefault();
     var new_values = $(this).data("new-values");

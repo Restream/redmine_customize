@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jql(document).ready(function($){
   var highlightNote = function() {
     $("div.journal").removeClass("selected");
     var journalNote;

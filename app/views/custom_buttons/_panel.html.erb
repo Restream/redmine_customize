@@ -1,5 +1,5 @@
 <fieldset class="box">
-  <legend><%=l( :label_custom_buttons_plural )%></legend>
+  <legend><%= l(:label_custom_buttons_plural) %></legend>
   <% if @user.custom_buttons.any? %>
   <% else %>
     <p class="nodata"><%= l(:label_no_custom_buttons) %></p>

@@ -11,6 +11,6 @@ class CreateDrafts < ActiveRecord::Migration
     end
     add_index :drafts, :project_id
     add_index :drafts, :user_id
-    add_index :drafts, :hex_key, :unique => true
+    add_index :drafts, :hex_key, unique: true
   end
 end

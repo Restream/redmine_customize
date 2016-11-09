@@ -1,25 +1,25 @@
 <div class="contextual">
-  <%= link_to l( :new_custom_button ), new_custom_button_path, :class => 'icon icon-add' %>
+  <%= link_to l(:new_custom_button), new_custom_button_path, class: 'icon icon-add' %>
 </div>
 
-<h2><%=l( :label_custom_buttons_plural )%></h2>
+<h2><%= l(:label_custom_buttons_plural) %></h2>
 
 <% if @custom_buttons.any? %>
   <table class="list">
     <thead>
     <tr>
       <% if @user.admin? %>
-        <th><%= l( :field_is_public ) %></th>
+        <th><%= l(:field_is_public) %></th>
       <% end %>
-      <th><%= l( :field_name ) %></th>
-      <th><%= l( :field_project ) %></th>
-      <th><%= l( :field_tracker ) %></th>
-      <th><%= l( :field_status ) %></th>
-      <th><%= l( :field_category ) %></th>
-      <th><%= l( :field_author ) %></th>
-      <th><%= l( :field_assigned_to ) %></th>
-      <th><%= l( :field_assigned_to_role ) %></th>
-      <th style="min-width: 80px"><%= l( :button_sort ) %></th>
+      <th><%= l(:field_name) %></th>
+      <th><%= l(:field_project) %></th>
+      <th><%= l(:field_tracker) %></th>
+      <th><%= l(:field_status) %></th>
+      <th><%= l(:field_category) %></th>
+      <th><%= l(:field_author) %></th>
+      <th><%= l(:field_assigned_to) %></th>
+      <th><%= l(:field_assigned_to_role) %></th>
+      <th style="min-width: 80px"><%= l(:button_sort) %></th>
       <th></th>
     </tr>
     </thead>
@@ -27,9 +27,9 @@
     <% @custom_buttons.each do |custom_button| %>
       <tr>
         <% if @user.admin? %>
-          <td class="center"><%= check_box_tag 'is_public', '1', custom_button.is_public, :disabled => true %></td>
+          <td class="center"><%= check_box_tag 'is_public', '1', custom_button.is_public, disabled: true %></td>
         <% end %>
-        <td class="center"><%= custom_button.name %></td>
+        <td class="center"><i class="fa <%= custom_button.icon %>"></i> <%= custom_button.name %></td>
         <td class="center"><%= hruled_list custom_button.projects %></td>
         <td class="center"><%= hruled_list custom_button.trackers %></td>
         <td class="center"><%= hruled_list custom_button.statuses %></td>
@@ -39,18 +39,18 @@
         <td class="center"><%= hruled_list custom_button.assigned_to_roles %></td>
         <td class="center">
           <%= reorder_links('custom_button', {
-              :controller => 'custom_buttons',
-              :action => 'update',
-              :id => custom_button
+            controller: 'custom_buttons',
+            action:     'update',
+            id:         custom_button
           }, :put) %>
         </td>
         <td class="buttons">
-          <%= link_to(l(:button_edit), edit_custom_button_path(custom_button), :class => 'icon icon-edit') %>
+          <%= link_to(l(:button_edit), edit_custom_button_path(custom_button), class: 'icon icon-edit') %>
 
           <%= link_to(l(:button_delete), custom_button_path(custom_button),
-                      :method  => :delete,
-                      :confirm => l( :text_are_you_sure ),
-                      :class   => 'icon icon-del' ) %>
+            method:  :delete,
+            confirm: l(:text_are_you_sure),
+            class:   'icon icon-del') %>
         </td>
       </tr>
     <% end %>

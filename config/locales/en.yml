@@ -28,8 +28,10 @@ en:
 
   new_custom_button: "New custom button"
 
-  field_image: "Icon"
+  field_icon: "Icon"
   field_hide_when_nothing_change: "Hide the button if no changes can be made"
   field_hide_public_projects: "Hide all projects where user is not a member"
 
   custom_notice_account_pending: "Text to display to users after registration (before approval by admin)"
+
+  label_issue_plural: "Tickets"

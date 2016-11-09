@@ -4,9 +4,9 @@ class CustomMenuItem < Hashie::Dash
   property :title
 
   def initialize(*args)
-    options = args.extract_options!
-    options[:body] = args[0] if args.length > 0
-    options[:url] = args[1] if args.length > 1
+    options         = args.extract_options!
+    options[:body]  = args[0] if args.length > 0
+    options[:url]   = args[1] if args.length > 1
     options[:title] = args[2] if args.length > 2
     super(options.symbolize_keys)
   end

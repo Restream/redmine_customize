@@ -1,4 +1,4 @@
-require 'account_controller'
+require_dependency 'account_controller'
 
 module RedmineCustomize::Patches::AccountControllerPatch
   extend ActiveSupport::Concern
@@ -17,8 +17,4 @@ module RedmineCustomize::Patches::AccountControllerPatch
       flash[RedmineCustomize::FLASH_ACCOUNT_PENDING_KEY] = custom_notice if custom_notice.present?
     end
   end
-end
-
-unless AccountController.included_modules.include? RedmineCustomize::Patches::AccountControllerPatch
-  AccountController.send :include, RedmineCustomize::Patches::AccountControllerPatch
 end

@@ -1,12 +1,12 @@
-require 'project'
-require 'principal'
-require 'user'
+require_dependency 'project'
+require_dependency 'principal'
+require_dependency 'user'
 
 module RedmineCustomize::Patches::UserPatch
   extend ActiveSupport::Concern
 
   included do
-    has_many :custom_buttons, :order => 'position'
+    has_many :custom_buttons
     alias_method_chain :allowed_to?, :hide_public_projects
   end
 
@@ -14,8 +14,8 @@ module RedmineCustomize::Patches::UserPatch
     issues = [issue_or_issues].flatten.compact
     return [] if issues.empty?
 
-    btns = custom_buttons.private.to_a + CustomButton.public.by_position.to_a
-    btns.uniq_by(&:id).find_all do |b|
+    btns = custom_buttons.is_private.to_a + CustomButton.is_public.by_position.to_a
+    btns.uniq{ |b| b.id }.find_all do |b|
       issues.inject(true) { |visible, issue| visible && b.visible?(issue) }
     end
   end
@@ -28,15 +28,11 @@ module RedmineCustomize::Patches::UserPatch
 
       roles = roles_for_project(context)
       return false unless roles
-      roles.any? {|role|
+      roles.any? { |role|
         role.member? && role.allowed_to?(action) && (block_given? ? yield(role, self) : true)
       }
     else
       allowed_to_without_hide_public_projects?(action, context, options, &block)
     end
   end
-end
-
-unless User.included_modules.include? RedmineCustomize::Patches::UserPatch
-  User.send :include, RedmineCustomize::Patches::UserPatch
 end

@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jql(document).ready(function($){
   var selector = "#project_quick_jump_box";
   var data = $(selector).data("options");
   var placeholder = $(selector).data("placeholder");

@@ -1,4 +1,4 @@
-require 'application_controller'
+require_dependency 'application_controller'
 
 module RedmineCustomize::Patches::ApplicationControllerPatch
   extend ActiveSupport::Concern
@@ -18,12 +18,8 @@ module RedmineCustomize::Patches::ApplicationControllerPatch
 
   def apply_customize_issues_helper_patch
     if _helpers.included_modules.include?(IssuesHelper) &&
-        !_helpers.included_modules.include?(RedmineCustomize::Patches::IssuesHelperPatch)
+      !_helpers.included_modules.include?(RedmineCustomize::Patches::IssuesHelperPatch)
       _helpers.send :include, RedmineCustomize::Patches::IssuesHelperPatch
     end
   end
-end
-
-unless ApplicationController.included_modules.include? RedmineCustomize::Patches::ApplicationControllerPatch
-  ApplicationController.send :include, RedmineCustomize::Patches::ApplicationControllerPatch
 end

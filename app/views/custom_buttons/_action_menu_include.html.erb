@@ -1,9 +1,10 @@
 <% if authorize_for('issues', 'edit') %>
   <% User.current.visible_custom_buttons(@issue).each do |b| %>
-    <%= link_to b.name,
-                '#',
-                :title => b.title,
-                :data => { :new_values => custom_button_new_values(b, @issue) },
-                :class => "icon custom-icon-#{b.image} custom-button" %>
+    <%= link_to '#',
+      title: b.title,
+      data:  { new_values: custom_button_new_values(b, @issue) },
+      class: 'custom-button' do %>
+      <i class="fa <%= b.icon %>"></i> <%= b.name %>
+    <% end %>
   <% end %>
 <% end %>

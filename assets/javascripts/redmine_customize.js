@@ -1,4 +1,5 @@
-$(document).ready(function(){
+jql(document).ready(function($){
+  $.fn.select2.defaults.set("theme", "classic");
   $('#issue-form').each(function(){
     $(document).keydown(function(event){
       var cmdPressed = !event.altKey && !event.shiftKey;

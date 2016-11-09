@@ -9,7 +9,7 @@ module RedmineCustomize::Patches::IssuesHelperPatch
     new_values = {}
     if issue
       button.new_values.each do |k, v|
-        new_value = if k.to_sym == :assigned_to_id
+        new_value     = if k.to_sym == :assigned_to_id
           issue.custom_user_id(v) || v
         else
           v
@@ -20,7 +20,7 @@ module RedmineCustomize::Patches::IssuesHelperPatch
       button.new_values.each { |k, v| new_values[k] = v if v.present? }
     end
     button.custom_field_values.each do |v|
-      field_name = "custom_field_values_#{v.custom_field_id}"
+      field_name             = "custom_field_values_#{v.custom_field_id}"
       new_values[field_name] = v.value if v.value.present?
     end
     new_values
@@ -37,13 +37,13 @@ module RedmineCustomize::Patches::IssuesHelperPatch
 
   def show_detail_with_attachment_description(detail, no_html=false, options={})
     detail_html = show_detail_without_attachment_description(detail, no_html, options)
-    issue = detail.try(:journal).try(:issue) || @issue
-    attachment = issue && detail.property == 'attachment' && issue.attachments.find_by_id(detail.prop_key)
+    issue       = detail.try(:journal).try(:issue) || @issue
+    attachment  = issue && detail.property == 'attachment' && issue.attachments.find_by_id(detail.prop_key)
     if attachment
       [
-          detail_html,
-          (h(" - #{attachment.description}") if attachment.description.present?),
-          "<span class=\"size\">(#{number_to_human_size attachment.filesize})</span>"
+        detail_html,
+        (h(" - #{attachment.description}") if attachment.description.present?),
+        "<span class=\"size\">(#{number_to_human_size attachment.filesize})</span>"
       ].compact.join(' ').html_safe
     else
       detail_html

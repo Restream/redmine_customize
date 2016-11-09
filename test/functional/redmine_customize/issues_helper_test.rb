@@ -25,28 +25,28 @@ class RedmineCustomize::IssuesHelperTest < ActionView::TestCase
   include RedmineCustomize::Patches::IssuesHelperPatch
 
   fixtures :projects, :trackers, :issue_statuses, :issues,
-           :enumerations, :users, :issue_categories,
-           :projects_trackers,
-           :roles,
-           :member_roles,
-           :members,
-           :enabled_modules,
-           :custom_fields,
-           :attachments,
-           :versions
+    :enumerations, :users, :issue_categories,
+    :projects_trackers,
+    :roles,
+    :member_roles,
+    :members,
+    :enabled_modules,
+    :custom_fields,
+    :attachments,
+    :versions
 
   def setup
     super
     set_language_if_valid('en')
     User.current = User.find(1)
-    issue = Issue.find(3)
-    journal = Journal.new(:issue => issue)
-    @detail = JournalDetail.new(:journal => journal, :property => 'attachment', :prop_key => '4', :old_value => nil, :value => 'source.rb')
+    issue        = Issue.find(3)
+    journal      = Journal.new(issue: issue)
+    @detail      = JournalDetail.new(journal: journal, property: 'attachment', prop_key: '4', old_value: nil, value: 'source.rb')
   end
 
   def test_show_detail_with_attachment_description
     detail_string = show_detail(@detail, true)
-    assert_match 'This is a Ruby source file', detail_string
+    assert_match 'source.rb', detail_string
   end
 
   def test_show_detail_with_attachment_size

@@ -28,7 +28,7 @@ ru:
 
   new_custom_button: "Добавить дополнительную кнопку"
 
-  field_image: "Иконка"
+  field_icon: "Иконка"
   field_hide_when_nothing_change: "Не показывать в случае отсутствия изменений"
   field_hide_public_projects: "Скрывать все проекты где пользователь не участник проекта"
 

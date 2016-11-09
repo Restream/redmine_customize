@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jql(document).ready(function($){
   $('form#issue-form').on('click', 'a#get-url-link', function(ev) {
     $.post($(this).data('url'), $('#issue-form').serialize())
       .done(function(data) {

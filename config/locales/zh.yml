@@ -28,7 +28,7 @@ zh:
 
   new_custom_button: "新增自定义按钮"
 
-  field_image: "图标"
+  field_icon: "图标"
   field_hide_when_nothing_change: "若问题无变更则隐藏按钮。"
   field_hide_public_projects: "隐藏与用户无关的项目（用户非项目中成员）"
 
