@@ -33,7 +33,7 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
 
   def test_jumpbox_for_member
     User.current = User.find(2)
-    ptree        = serialize_project_tree(project_ids_for_jump_box)
+    ptree        = serialize_project_tree(options_for_select2_jump_box)
     exp_ptree    = serialize_project_tree(
       [
         { text: 'My projects', children:
@@ -69,7 +69,7 @@ class RedmineCustomizeHelperTest < ActiveSupport::TestCase
 
   def test_jumpbox_for_non_member
     User.current = User.find(3)
-    ptree        = serialize_project_tree(project_ids_for_jump_box)
+    ptree        = serialize_project_tree(options_for_select2_jump_box)
     exp_ptree    = serialize_project_tree(
       [
         { text: 'My projects', children: [{ id: 1, text: 'eCookbook' }] },

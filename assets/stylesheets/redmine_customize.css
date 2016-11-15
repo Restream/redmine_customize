@@ -56,3 +56,25 @@ div.description, div#preview, div#history {
 div.journal.selected {
   background-color: #ffffdd;
 }
+
+/* Jump box customizations */
+.jump-box-group {
+  font-weight: bold;
+}
+
+.jump-box-lvl0 {
+  margin-left: 0;
+}
+
+.jump-box-lvl1 {
+  margin-left: 1em;
+}
+
+.jump-box-lvl2 {
+  margin-left: 2em;
+}
+
+.jump-box-lvl3 {
+  margin-left: 3em;
+}
+

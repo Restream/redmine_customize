@@ -1,6 +1,6 @@
 require File.expand_path('../../test_helper', __FILE__)
 
-class CustomNoticeTest < ActionDispatch::IntegrationTest
+class CustomNoticeTest < Redmine::IntegrationTest
   fixtures :users, :roles
 
   include Redmine::I18n
@@ -9,7 +9,7 @@ class CustomNoticeTest < ActionDispatch::IntegrationTest
     with_settings default_language: 'en' do
       Setting.self_registration = '2'
 
-      post 'account/register', user: { login: 'newuser', language: 'en',
+      post '/account/register', user: { login: 'newuser', language: 'en',
         firstname:                            'New', lastname: 'User',
         mail:                                 'newuser@foo.bar', password: 'newpass123',
         password_confirmation:                'newpass123' }
@@ -24,13 +24,13 @@ class CustomNoticeTest < ActionDispatch::IntegrationTest
 
       log_user('admin', 'admin')
 
-      post 'settings/plugin/redmine_customize',
+      post '/settings/plugin/redmine_customize',
         settings: { notice_account_pending: 'Custom Notice' }
 
 
       User.current = nil
 
-      post 'account/register', user: { login: 'newuser', language: 'en',
+      post '/account/register', user: { login: 'newuser', language: 'en',
         firstname:                            'New', lastname: 'User',
         mail:                                 'newuser@foo.bar', password: 'newpass123',
         password_confirmation:                'newpass123' }

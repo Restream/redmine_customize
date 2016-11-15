@@ -21,7 +21,6 @@ class RedmineCustomize::IssuesControllerTest < ActionController::TestCase
     assert_select "input#issue_subject:match('value', ?)", 'draft_subject'
   end
 
-  focus
   def test_show_issue_without_errors
     get :show, id: 1
     assert_response :success
