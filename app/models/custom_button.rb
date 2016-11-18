@@ -69,13 +69,12 @@ class CustomButton < ActiveRecord::Base
     filter_collection = "#{f.to_s.pluralize}"
 
     define_method filter_getter do
-      Array === filters[filter_key] ? filters[filter_key].join(',') : []
+      filters[filter_key]
     end
 
     define_method filter_setter do |val|
-      ids = val.to_s.split(',')
-      ids.reject! { |i| i.to_s == '[]' || i.to_s == '0' }
-      filters[filter_key] = ids
+      # Remove empty values
+      filters[filter_key] = val.is_a?(Array) ? val.map(&:presence).compact : val
     end
 
     define_method filter_collection do

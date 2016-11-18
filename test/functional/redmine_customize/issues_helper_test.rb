@@ -39,7 +39,7 @@ class RedmineCustomize::IssuesHelperTest < ActionView::TestCase
     super
     set_language_if_valid('en')
     User.current = User.find(1)
-    issue        = Issue.find(3)
+    issue        = Issue.find(2)
     journal      = Journal.new(issue: issue)
     @detail      = JournalDetail.new(journal: journal, property: 'attachment', prop_key: '4', old_value: nil, value: 'source.rb')
   end

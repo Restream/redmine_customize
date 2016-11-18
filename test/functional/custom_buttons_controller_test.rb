@@ -62,11 +62,11 @@ class CustomButtonsControllerTest < ActionController::TestCase
     }
     attrs = {
       name:            'test_update',
-      tracker_ids:     '1',
-      status_ids:      '1',
-      category_ids:    '1',
-      author_ids:      '2',
-      assigned_to_ids: '2',
+      tracker_ids:     ['1'],
+      status_ids:      ['1'],
+      category_ids:    ['1'],
+      author_ids:      ['2'],
+      assigned_to_ids: ['2'],
       new_values:      { status_id: 3, done_ratio: 50 }
     }
 

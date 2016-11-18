@@ -6,7 +6,6 @@ jql(document).ready(function ($) {
       data: $(selector).data("options")
     });
   };
-  makeMultiSelect2("#custom_button_project_ids");
   makeMultiSelect2("#custom_button_tracker_ids");
   makeMultiSelect2("#custom_button_status_ids");
   makeMultiSelect2("#custom_button_category_ids");

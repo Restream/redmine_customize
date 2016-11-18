@@ -1,19 +1,16 @@
 jql(document).ready(function ($) {
-  var selector = "#project_quick_jump_box";
-  var data = $(selector).data("options");
-  var placeholder = $(selector).data("placeholder");
-  var jump_options;
-
   // Find children by parent-id data attribute
   function findChildren(option) {
+    var allOptions = $(option).closest("select")[0].options;
     var children = [];
     var i, j;
+    var id = $(option).data('id');
+
     if (option.children && option.children.length > 0) {
       children.concat(option.children);
-    } else {
-      var id = $(option).data('id');
-      for (i = 0; i < jump_options.length; i++) {
-        var child = jump_options[i];
+    } else if (id) {
+      for (i = 0; i < allOptions.length; i++) {
+        var child = allOptions[i];
         if ($(child).data('parent-id') === id) {
           children.push(child);
         }
@@ -99,28 +96,33 @@ jql(document).ready(function ($) {
     return null;
   }
 
-  $(selector).select2({
-    width: '300px',
-    data: data,
-    placeholder: placeholder,
-    matcher: matcher,
-    templateResult: function (data) {
-      // We only really care if there is an element to pull classes from
-      if (!data.element) {
-        return data.text;
+  // Add select2 to all projects selectors
+  $("#project_quick_jump_box,#custom_button_project_ids").each(function(){
+
+    var projectTree = $(this).select2({
+      matcher: matcher,
+      templateResult: function (data) {
+        // We only really care if there is an element to pull classes from
+        if (!data.element) {
+          return data.text;
+        }
+        var $element = $(data.element);
+        var $wrapper = $('<span></span>');
+        $wrapper.addClass($element[0].className);
+        $wrapper.text(data.text);
+        return $wrapper;
       }
-      var $element = $(data.element);
-      var $wrapper = $('<span></span>');
-      $wrapper.addClass($element[0].className);
-      $wrapper.text(data.text);
-      return $wrapper;
-    }
-  }).on("select2:select", function (e) {
-    var newLocation = e.params.data.id;
-    if (newLocation != "") {
-      window.location = newLocation;
+    });
+
+    // For quick_jump_box we change location after selecting project
+    if ($(this)[0].id === "project_quick_jump_box") {
+
+      projectTree.on("select2:select", function (e) {
+        var newLocation = $(e.params.data.element).data('jump');
+        if (newLocation && newLocation != "") {
+          window.location = newLocation;
+        }
+      });
     }
   });
-
-  jump_options = $(selector)[0].options;
 });
