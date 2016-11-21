@@ -5,7 +5,6 @@ var sidebarCollapsedClass = 'collapsed';
 var sidebarUpdateUrl = '';
 
 var updateSidebarClasses = function() {
-  var $ = jql;
   $(sidebarBlockHeaders).each(function(_, header) {
     var blockContent = $(header).nextUntil(sidebarBlockUntil);
     if ($(header).hasClass(sidebarCollapsedClass)) {
@@ -18,7 +17,6 @@ var updateSidebarClasses = function() {
 };
 
 var sidebarBlockName = function(block) {
-  var $ = jql;
   if ($(block).parent('div#watchers').length) {
     // instead of "Watchers (XX)" just use "Watchers"
     return 'Watchers'
@@ -29,7 +27,6 @@ var sidebarBlockName = function(block) {
 
 // load state from div@sidebar data attribute
 var initSidebar = function(updateUrl, collapsedBlocks) {
-  var $ = jql;
   sidebarUpdateUrl = updateUrl;
   $(sidebarBlockHeaders).each(function(_, header) {
     if (jQuery.inArray(sidebarBlockName(header), collapsedBlocks) >= 0) {
@@ -41,7 +38,6 @@ var initSidebar = function(updateUrl, collapsedBlocks) {
 };
 
 var saveSidebarBlockState = function(block) {
-  var $ = jql;
   var url = sidebarUpdateUrl + encodeURI(sidebarBlockName(block));
   var isCollapsed = $(block).hasClass(sidebarCollapsedClass);
   $.ajax({
@@ -58,7 +54,7 @@ var saveSidebarBlockState = function(block) {
   return false;
 };
 
-jql(document).ready(function($){
+$(document).ready(function($){
   $('div#sidebar').on('click', 'h3', function(ev) {
     $(this).toggleClass(sidebarCollapsedClass);
     updateSidebarClasses();
