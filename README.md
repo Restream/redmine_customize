@@ -71,34 +71,34 @@ The Redmine Customization Plugin enables other plugins to override the existing 
 The plugin enables the Redmine administrator to set a custom text for the account approval pending notice.
 
 To do this, go to **Administration > Redmine customize settings**, enter the text in the corresponding field in the **Account approval notice** section and click **Apply**.  
-![administration section](doc/customize_1.PNG)  
-![approval pending text](doc/customize_2.PNG)
+![administration section](doc/customize_1.png)  
+![approval pending text](doc/customize_2.png)
 
 ### Create Top Menu Links
 
 The plugin enables the Redmine administrator to add links to the top menu in Redmine.
 
 To add a link to the top menu, go to **Administration > Redmine customize settings**.  
-![administration section](doc/customize_1.PNG) 
+![administration section](doc/customize_1.png) 
 
 In the **Top menu links** section, click **Add**.  Enter the link text, URL and title (optional) and click **Apply**.  
-![add a link](doc/customize_4.PNG)
+![add a link](doc/customize_4.png)
 
 Now the link will be displayed at the top menu in Redmine.  
-![top menu link added](doc/customize_5.PNG)
+![top menu link added](doc/customize_5.png)
 
 ### Create Custom Buttons
 
 The plugin enables Redmine users to add and configure their own buttons to update issues. The Redmine Administrator can also create buttons for all users (public buttons).
 
 To add a custom button, go to **My account** and click **Manage custom buttons for issue pages** in the **Custom buttons** section.  
-![custom buttons section](doc/customize_6.PNG)
+![custom buttons section](doc/customize_6.png)
 
 Then click **New custom button**.  
-![new custom button](doc/customize_7.PNG)
+![new custom button](doc/customize_7.png)
 
 Specify the button name, select an icon and configure the button as needed.  
-![save custom button](doc/customize_8.PNG)
+![save custom button](doc/customize_8.png)
 
 In the **Show in the following cases** section, specify the cases when the button should be displayed. You can select to show the button in certain projects, for certain trackers, issue statuses, categories, authors, assignees and roles. 
 
@@ -109,46 +109,46 @@ In the **New values for the issue** section, select the target values that shoul
 Click **Save** to create the button.
 
 Now the button will be displayed on the issue page.
-![button added](doc/customize_10.PNG)
+![button added](doc/customize_10.png)
 
 To edit or delete a custom button, click **My account** and then click **Manage custom buttons for issue pages**.  
-![manage custom buttons](doc/customize_9.PNG)
+![manage custom buttons](doc/customize_9.png)
 
 ### Collapse Sidebar Blocks
 
 The plugin enables users to collapse and expand certain sidebar blocks using the **plus/minus** controls.  
-![collapse sidebar blocks](doc/customize_11.PNG)
+![collapse sidebar blocks](doc/customize_11.png)
 
 The plugin saves the preferred selection for future sessions.
 
 ### Enlarge Filter Selectors
 
 The plugin enables users to collapse and expand the selectors in issue filters using the **plus/minus** controls.
-![enlarge filter selectors](doc/customize_14.PNG)
+![enlarge filter selectors](doc/customize_14.png)
 
 ### Improve Jump to Project Box 
 
 This plugin improves the design of the **Jump to a project** box and makes it display all projects.  
-![jump to a project](doc/customize_12.PNG)
+![jump to a project](doc/customize_12.png)
 
 ### Create Issue Drafts
 
 The plugin enables users to create an issue draft with pre-filled attributes, and get its URL without the need to save the issue.
 
 To create the issue draft and get its URL, click **Get the URL for this issue**
-![get the URL](doc/customize_13.PNG)
+![get the URL](doc/customize_13.png)
 
 In the pop-up window, copy the URL in the **URL for this form** field and click **OK**. This URL can be sent to other users who will make the necessary changes and save the issue.
 
 ### Create Exact Issue Copies
 
 When a user makes a copy of an issue, the plugin ensures that the issue watchers are copied as well The user can also enable the **Copy relations** check box to copy the related issues.  
-![copy relations](doc/customize_18.PNG)
+![copy relations](doc/customize_18.png)
 
 ### Insert Quotes Safely
 
 The plugin enables users to insert quotes directly at the cursor position in the issue note without replacing the text they may have already added.
-![insert a quote](doc/customize_17.PNG)
+![insert a quote](doc/customize_17.png)
 
 ### Submit Issues Quickly
 
@@ -157,12 +157,12 @@ The plugin enables users to submit an issue by pressing Command+Enter (Ctrl+Ente
 ### Show Attachment Descriptions in Issue Notes
 
 The plugin shows the descriptions of the attached files in the issue history.
-![attached file description](doc/customize_15.PNG)
+![attached file description](doc/customize_15.png)
 
 ### Highlight Notes in Issue History
 
 The plugin highlights a note in the issue history when it is accessed by a direct link ((.../issues/XXX#note-YYY)
-![highlighted issue note](doc/customize_16.PNG)
+![highlighted issue note](doc/customize_16.png)
 
 ### Fix Shared Version Issue
 
