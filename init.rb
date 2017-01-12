@@ -7,7 +7,7 @@ Redmine::Plugin.register :redmine_customize do
   name 'Redmine Customization Plugin'
   description 'This plugin provides useful Redmine customization features.'
   author 'Restream'
-  version '1.2.1'
+  version '1.2.2'
   url 'https://github.com/Restream/redmine_customize'
 
   require File.expand_path('../app/models/customize', __FILE__)

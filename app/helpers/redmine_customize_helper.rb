@@ -55,18 +55,23 @@ module RedmineCustomizeHelper
       css      = "jump-box-lvl#{ level }"
       css << ' jump-box-group' unless is_leaf
 
+      # Generate unique id for option tag
       option_id = next_jump_id
-      result.safe_concat content_tag(:option, project.name,
-        selected: selected,
-        disabled: !allowed,
-        value:    project.id,
-        data:     { id: option_id, parent_id: options[:parent_id], jump: value },
-        class:    css)
 
-      unless is_leaf
-        result.safe_concat projects_tree_options(children, options.merge(level: level + 1, parent_id: option_id))
+      children_options = is_leaf ?
+        projects_tree_options(children, options.merge(level: level + 1, parent_id: option_id)) : nil
+
+      # Show item only if it include in "only" or has children
+      if !children_options.blank? || show_project_as_leaf?(project, options)
+        result.safe_concat content_tag(:option, project.name,
+          selected: selected,
+          disabled: !allowed,
+          value:    project.id,
+          data:     { id: option_id, parent_id: options[:parent_id], jump: value },
+          class:    css)
+
+        result.safe_concat children_options unless children_options.blank?
       end
-
     end
     result
   end
