@@ -16,7 +16,7 @@ module RedmineCustomize::Hooks
     end
 
     def view_layouts_base_body_bottom(_ = {})
-      javascript_tag "initSidebar(\"#{sidebar_block_path('')}\", #{User.current.pref.collapsed_sidebar_blocks.to_json});"
+      javascript_tag "initSidebar(\"#{sidebar_block_url('')}\", #{User.current.pref.collapsed_sidebar_blocks.to_json});"
     end
 
     def view_issues_new_top(_ = {})

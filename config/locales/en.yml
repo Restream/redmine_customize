@@ -33,5 +33,3 @@ en:
   field_hide_public_projects: "Hide all projects where user is not a member"
 
   custom_notice_account_pending: "Text to display to users after registration (before approval by admin)"
-
-  label_issue_plural: "Tickets"

@@ -21,6 +21,19 @@ class RedmineCustomize::IssuesControllerTest < ActionController::TestCase
     assert_select "input#issue_subject:match('value', ?)", 'draft_subject'
   end
 
+  def test_draft_values_were_applied_to_new_issue_without_project
+    issue_attrs = { subject: 'draft_subject' }
+    draft       = RedmineCustomize::Services::Drafts.create_public_draft(@project, issue_attrs)
+    get :new, draft: draft.hex_key
+    assert_response :success
+    assert_select "input#issue_subject:match('value', ?)", 'draft_subject'
+  end
+
+  def test_issues_new_without_project_and_draft
+    get :new
+    assert_response :success
+  end
+
   def test_show_issue_without_errors
     get :show, id: 1
     assert_response :success
